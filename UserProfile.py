@@ -1,6 +1,6 @@
 from ExtraDataClasses import CancerData, MedConditionData
 
-
+# This is a data model
 class UserProfile:
     def __init__(self, age: int, ethnicity: str, economic_level: int, social_level: int, education_level: int,
                  height_meters: float, weight_kg: float, alcohol_consumption: int, smoking: int, eating_habits: int,

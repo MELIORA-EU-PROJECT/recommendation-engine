@@ -1,3 +1,4 @@
+# More data models for other types of data
 class CancerData:
     def __init__(self, active: bool, cancer_duration_days: int, therapy_type: str, last_treatment_date: str):
         self.active = active

@@ -1,6 +1,7 @@
+# This file is used to define the goals that will be used in the system.
+
 from enum import Enum, auto
 from typing import Dict
-
 from Rules_Config import Rules
 
 

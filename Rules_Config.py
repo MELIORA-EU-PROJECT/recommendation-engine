@@ -1,7 +1,7 @@
+# This file is used to define the rules that will be used in the system.
+
 from enum import Enum, auto
-
 from Rule import Rule
-
 
 class Rules(Enum):
     AGE_GREATER_THAN_50 = 0
