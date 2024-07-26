@@ -1,0 +1,48 @@
+{
+  // 3 values , from 0 to 100
+  "missing_heart_rate_percentage_vector": [
+    4,
+    0,
+    2
+  ],
+  // 3 values , from 0 to 100
+  "recovery_during_sleep_vector": [
+    57,
+    29,
+    91
+  ],
+  // 3 values , from 0 to 30
+  "recovery_during_day_vector": [
+    20,
+    13,
+    25
+  ],
+  // 1 value, self reported, 1 to 5
+  "perceived_sleep_problems": 3,
+  // 1 value, self reported, 1 to 5
+  "perceived_sleep_sufficiency": 4,
+  // 1 value, self reported, 1 to 5
+  "perceived_stress": 2,
+  // 3 values , from 0 to 100
+  "physical_activity_points_vector": [
+    100,
+    34,
+    76
+  ],
+  // 1 value, self reported, 1 to 5
+  "perceived_physical_activity": 4,
+  // 1 value, self reported, 1 to 5
+  "vegetables_fruits": 3,
+  // 1 value, self reported, 1 to 5
+  "fast_food": 2,
+  // 1 value, self reported, 1 to 5
+  "eating_rhythm": 3,
+  // 1 value, self reported, 1 to 5
+  "emotional_eating": 2,
+  // 1 value, questionnaire, 0 to 10
+  "alcohol": 3,
+  // 1 value, self reported, 1 to 5
+  "smoking": 2,
+  // 1 value, smoking test, 0 to 6
+  "smoking_test": 5
+}
