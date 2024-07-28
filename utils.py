@@ -203,8 +203,107 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 
 
 def infer_aggregated_data_layer(user_profile: dict) -> dict:
-    raise NotImplementedError("This function is not implemented yet.")
+    return_dict = {}
+    # region Improve Sleep Quality
+    Xs = [user_profile["recovery_during_sleep"][0], user_profile["perceived_sleep_problems"][0],
+          user_profile["recovery_during_24_hours"][0], user_profile["perceived_sleep_sufficiency"][0],
+          user_profile["perceived_stress"][0], user_profile["stress_level"][0], user_profile["sleep_quality"][0]]
+    xs = [min_max_transform(x, 1, 5) for x in Xs]
+    ws = [6, 1, 3, 7, 3, 8, 10]
+    assert len(Xs) == len(xs) == len(
+        ws), f"Xs, xs and ws should have the same length. Got Xs: {len(Xs)}, xs: {len(xs)}, ws: {len(ws)}"
+    v_prime = normalized_manhattan_distance(xs, ws)
+    v = map_v_prime_to_v(v_prime)
+    return_dict["improve_sleep_quality"] = [v, 4]
+    # endregion Improve Sleep Quality
+    # region Increase Physical Activity
+    Xs = [user_profile["physical_activity_level"][0], user_profile["perceived_physical_activity_level"][0],
+          user_profile["exercise_habits"][0]]
+    xs = [min_max_transform(x, 1, 5) for x in Xs]
+    ws = [8, 4, 8]
+    assert len(Xs) == len(xs) == len(
+        ws), f"Xs, xs and ws should have the same length. Got Xs: {len(Xs)}, xs: {len(xs)}, ws: {len(ws)}"
+    v_prime = normalized_manhattan_distance(xs, ws)
+    v = map_v_prime_to_v(v_prime)
+    return_dict["increase_physical_activity"] = [v, 4]
+    # endregion Increase Physical Activity
+    # region Improve Diet Quality
+    Xs = [user_profile["vegetable_fruit_consumption"][0], user_profile["excessive_intake_of_unhealthy_foods"][0],
+          user_profile["eating_rhythm"][0], user_profile["emotional_eating"][0]]
+    xs = [min_max_transform(x, 1, 5) for x in Xs]
+    ws = [8, 8, 3, 3]
+    assert len(Xs) == len(xs) == len(
+        ws), f"Xs, xs and ws should have the same length. Got Xs: {len(Xs)}, xs: {len(xs)}, ws: {len(ws)}"
+    v_prime = normalized_manhattan_distance(xs, ws)
+    v = map_v_prime_to_v(v_prime)
+    return_dict["improve_diet_quality"] = [v, 4]
+    # endregion Improve Diet Quality
+    # region Reduce Alcohol Consumption
+    Xs = [user_profile["alcohol_consumption"][0]]
+    xs = [min_max_transform(x, 1, 5) for x in Xs]
+    ws = [10]
+    assert len(Xs) == len(xs) == len(
+        ws), f"Xs, xs and ws should have the same length. Got Xs: {len(Xs)}, xs: {len(xs)}, ws: {len(ws)}"
+    v_prime = normalized_manhattan_distance(xs, ws)
+    v = map_v_prime_to_v(v_prime)
+    return_dict["reduce_alcohol_consumption"] = [v, 4]
+    # endregion Reduce Alcohol Consumption
+    # region Cease Smoking
+    Xs = [user_profile["usage_of_tobacco_products"][0], user_profile["strength_of_nicotine_addiction"][0]]
+    xs = [min_max_transform(x, 1, 5) for x in Xs]
+    ws = [8, 10]
+    assert len(Xs) == len(xs) == len(
+        ws), f"Xs, xs and ws should have the same length. Got Xs: {len(Xs)}, xs: {len(xs)}, ws: {len(ws)}"
+    v_prime = normalized_manhattan_distance(xs, ws)
+    v = map_v_prime_to_v(v_prime)
+    return_dict["cease_smoking"] = [v, 4]
+    # endregion Cease Smoking
+    return return_dict
 
 
 def min_max_transform(x, x_min, x_max):
     return (x - x_min) / (x_max - x_min)
+
+
+def normalized_manhattan_distance(xs, ws):
+    return np.sum(ws * np.abs(np.ones(len(xs)) - xs)) / np.sum(ws)
+
+
+def map_v_prime_to_v(v_prime):
+    if v_prime < 0.125:
+        return 1
+    elif v_prime < 0.375:
+        return 2
+    elif v_prime < 0.625:
+        return 3
+    elif v_prime < 0.875:
+        return 4
+    else:
+        return 5
+
+
+def sim_need(user_profile: dict, intervention_library: dict):
+    sim_need_dict = {}
+    for intervention_title, intervention_properties in intervention_library.items():
+        sim = 0
+        intervention_operator = intervention_properties["opr"]
+
+        # |b_str - 1|
+        distances = []
+        for behavior in intervention_properties["beh"]:
+            if behavior in user_profile:
+                distances.append(abs(user_profile[behavior][0] - 1))
+
+        if intervention_operator == "min":
+            sim = 1 - np.min(distances)
+        elif intervention_operator == "max":
+            sim = 1 - np.max(distances)
+        elif intervention_operator == "weighted":
+            raise NotImplementedError("Weighted operator is not implemented yet.")
+
+        sim_need_dict[intervention_title] = sim
+
+    return sim_need_dict
+
+
+def sim_stage(user_profile: dict, intervention_library: dict):

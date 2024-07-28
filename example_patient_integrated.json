@@ -1,0 +1,96 @@
+{
+    "missing_heart_rate_percentage_vector": [
+        4,
+        0,
+        2,
+    ],
+    "recovery_during_sleep_vector": [
+        57,
+        29,
+        91,
+    ],
+    "recovery_during_day_vector": [
+        20,
+        13,
+        25,
+    ],
+    "perceived_sleep_problems": [
+        3,
+        0.8,
+    ],
+    "perceived_sleep_sufficiency": [
+        4,
+        0.8,
+    ],
+    "perceived_stress": [
+        2,
+        0.8,
+    ],
+    "physical_activity_points_vector": [
+        100,
+        34,
+        76,
+    ],
+    "perceived_physical_activity": 4,
+    "vegetables_fruits": 3,
+    "fast_food": 2,
+    "eating_rhythm": [
+        3,
+        0.8,
+    ],
+    "emotional_eating": [
+        2,
+        0.8,
+    ],
+    "alcohol": 3,
+    "smoking": 2,
+    "smoking_test": 5,
+    "recovery_during_sleep": [
+        3,
+        0.96,
+    ],
+    "recovery_during_24_hours": [
+        3,
+        0.96,
+    ],
+    "sleep_quality": [
+        3,
+        1.0,
+    ],
+    "stress_level": [
+        2,
+        0.75,
+    ],
+    "perceived_physical_activity_level": [
+        4,
+        0.8,
+    ],
+    "physical_activity_level": [
+        5,
+        0.96,
+    ],
+    "exercise_habits": [
+        4,
+        0.75,
+    ],
+    "vegetable_fruit_consumption": [
+        3,
+        0.8,
+    ],
+    "excessive_intake_of_unhealthy_foods": [
+        2,
+        0.8,
+    ],
+    "alcohol_consumption": [
+        3,
+        0.9,
+    ],
+    "usage_of_tobacco_products": [
+        2,
+        0.8,
+    ],
+    "strength_of_nicotine_addiction": [
+        1,
+        0.9,
+    ],
+}

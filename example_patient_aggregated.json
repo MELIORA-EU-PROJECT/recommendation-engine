@@ -1,0 +1,22 @@
+{
+    "improve_sleep_quality": [
+        3,
+        4,
+    ],
+    "increase_physical_activity": [
+        2,
+        4,
+    ],
+    "improve_diet_quality": [
+        4,
+        4,
+    ],
+    "reduce_alcohol_consumption": [
+        3,
+        4,
+    ],
+    "cease_smoking": [
+        5,
+        4,
+    ],
+}
