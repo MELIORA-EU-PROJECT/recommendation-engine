@@ -4,7 +4,7 @@
         4,
     ],
     "increase_physical_activity": [
-        2,
+        3,
         4,
     ],
     "improve_diet_quality": [
@@ -12,11 +12,11 @@
         4,
     ],
     "reduce_alcohol_consumption": [
-        3,
+        5,
         4,
     ],
     "cease_smoking": [
-        5,
+        3,
         4,
     ],
 }
