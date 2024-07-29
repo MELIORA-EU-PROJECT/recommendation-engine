@@ -1,3 +1,5 @@
+import math
+
 import numpy as np
 
 
@@ -307,3 +309,35 @@ def sim_need(user_profile: dict, intervention_library: dict):
 
 
 def sim_stage(user_profile: dict, intervention_library: dict):
+    sim_stage_dict = {}
+    for intervention_title, intervention_properties in intervention_library.items():
+        relevant_behaviors_stages = []
+        for behavior in intervention_properties["beh"]:
+            if behavior in user_profile:
+                relevant_behaviors_stages.append(user_profile[behavior][1])
+
+        for stage in intervention_properties["stg"]:
+            if stage in relevant_behaviors_stages:
+                sim_stage_dict[intervention_title] = 1.0
+
+        min_distance = math.inf
+        if intervention_title not in sim_stage_dict:
+            for i in relevant_behaviors_stages:
+                for j in intervention_properties["stg"]:
+                    if abs(i - j) < min_distance:
+                        min_distance = abs(i - j)
+            sim_stage_dict[intervention_title] = 1 - 0.25 * min_distance
+
+    return sim_stage_dict
+
+
+def sim_total(sim_needs, sim_stages):
+    sim_total_dict = {}
+    for intervention_title in sim_needs:
+        if sim_needs[intervention_title] >= 0.5:
+            sim_total_dict[intervention_title] = 0.5 * sim_needs[intervention_title] + 0.5 * sim_stages[
+                intervention_title]
+        else:
+            sim_total_dict[intervention_title] = 0
+
+    return sim_total_dict
