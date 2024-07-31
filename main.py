@@ -8,6 +8,7 @@ import json5
 from utils import *
 
 # @formatter:off
+# TODO: Add more items
 intervention_library = {"Twitter_Post_About_Quiting_Smoking": {"beh": ["cease_smoking"], "stg": [1,2,3], "opr": "max"},
                         "Youtube_Video_About_Quiting_Smoking": {"beh": ["cease_smoking"], "stg": [2,3], "opr": "max"},
                         "News_Article_About_Diet_And_Exercise": {"beh": ["improve_diet_quality", "increase_physical_activity"], "stg": [2, 3], "opr": "min"},

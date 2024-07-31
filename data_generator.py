@@ -1,6 +1,12 @@
 import random
 
 user_profile = {}
+# TODO:
+# bernouli distributions
+# lognormal distributions
+# uniform distributions
+# READ TTM
+# add more examples
 user_profile["missing_heart_rate_percentage_vector"] = [random.randint(0, 100) for _ in range(3)]
 user_profile["recovery_during_sleep_vector"] = [random.randint(0, 100) for _ in range(3)]
 user_profile["recovery_during_day_vector"] = [random.randint(0, 30) for _ in range(3)]
@@ -17,6 +23,12 @@ user_profile["alcohol"] = random.randint(0, 10)
 user_profile["smoking"] = random.randint(1, 5)
 user_profile["smoking_test"] = random.randint(0, 6)
 
+# TODO PAPER
+# RELATED WORK + INTRO
+# 4 PAPERS ON CAUSALITY
+# CREATE A DUMMY GRAPH AND TRY TO INTEGRATE IT IN THE PROGRAM
+# DOWHY framework,GraphViz,
+# write a simple explantation of dag integration in the TTM
 import requests
 
 url = f"http://localhost:8000/"
