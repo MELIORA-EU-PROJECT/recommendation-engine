@@ -49,33 +49,19 @@ def get_recommendations(user_profile) -> dict:
     return sim_total_ordered
 
 
-from fastapi import FastAPI, Body
-from pydantic import BaseModel
-
-app = FastAPI()
-
-
-class UserProfile(BaseModel):
-    missing_heart_rate_percentage_vector: list[int]
-    recovery_during_sleep_vector: list[int]
-    recovery_during_day_vector: list[int]
-    perceived_sleep_problems: int
-    perceived_sleep_sufficiency: int
-    perceived_stress: int
-    physical_activity_points_vector: list[int]
-    perceived_physical_activity: int
-    vegetables_fruits: int
-    fast_food: int
-    eating_rhythm: int
-    emotional_eating: int
-    alcohol: int
-    smoking: int
-    smoking_test: int
-
-
-@app.post("/")
-async def root(item: UserProfile):
-    user_profile = item.model_dump()
-    print(f"User Profile: {user_profile}")
+with open("example_patient.json", "r") as read_file:
+    user_profile = json5.load(read_file)
+    # print(json5.dumps(user_profile, indent=4, quote_keys=True))
     recommendations = get_recommendations(user_profile)
-    return recommendations
+# from fastapi import FastAPI, Body
+# from pydantic import BaseModel
+#
+# app = FastAPI()
+#
+#
+# @app.post("/")
+# async def root(item: BaseModel):
+#     user_profile = item.model_dump()
+#     print(f"User Profile: {user_profile}")
+#     recommendations = get_recommendations(user_profile)
+#     return recommendations
