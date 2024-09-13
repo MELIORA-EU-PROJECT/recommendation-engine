@@ -2,10 +2,6 @@ import random
 import numpy as np
 
 user_profile = {}
-# TODO:
-# bernouli distributions
-# lognormal distributions
-# uniform distributions
 # READ TTM
 # add more examples
 
