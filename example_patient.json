@@ -56,15 +56,15 @@
 	"drinks_per_session": "3-4",
 	"how_often_6_or_more_drinks": "never",
 	"3_or_more_red_meat_weekly": true,
-	"how_often_fruit": "1 per day",
-	"how_often_vegetables": "1 per day",
-	"how_often_nuts": "5-6 per week",
-	"how_often_fish": "less than 1 per week",
-	"how_often_whole_grain": "4-5 per day",
-	"how_often_refined_grain": "6 or more per day",
-	"how_often_low_fat_dairy": "1 per day",
-	"how_often_high_fat_dairy": "5-6 per week",
-	"how_often_sweets": "none",
+	"how_often_fruit": "1 serving per day",
+	"how_often_vegetables": "1 serving per day",
+	"how_often_nuts": "5-6 servings per week",
+	"how_often_fish": "Less than 1 serving per week",
+	"how_often_whole_grain": "4-5 servings per day",
+	"how_often_refined_grain": "6 or more servings per day",
+	"how_often_low_fat_dairy": "1 serving per day",
+	"how_often_high_fat_dairy": "5-6 servings per week",
+	"how_often_sweets": "I do not eat it at all",
 	// 1 to 5, 1 being definently limiting, 5 being definently not limiting
 	"cost_of_healthy_food": 3,
 	"high_availability_of_fast_food": 4,
@@ -120,7 +120,7 @@
 		1,
 		"hour"
 	],
-	"walkind_days_per_week": 4,
+	"walking_days_per_week": 4,
 	"walking_time_per_day": [
 		1,
 		"hour"
@@ -170,7 +170,7 @@
 	"role_model_physical_activity": 3,
 	"improvement_of_energy_physical_activity": 4,
 	"healthcare_professional_tailored_plan": 3,
-	"alcohol_last_week": "4 times or more",
+	"alcohol_last_week": "4 or more",
 	"alcohol_last_week_per_day": "7-9",
 	"alcohol_6_or_more_single_occasions": "4-5",
 }
