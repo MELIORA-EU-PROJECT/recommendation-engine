@@ -430,6 +430,81 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
         np.mean([vigorous_activity_level, moderate_activity_level, walking_level, sitting_level]))
     user_profile["physical_activity_level"] = physical_activity_score
     # endregion Physical activity level
+    # region Limitation to increase physical activity
+    limiting_factors = [user_profile["lack_of_time_for_physical_activity"],
+                        user_profile["lack_of_motivation_short_term"],
+                        user_profile["lack_of_motivation_long_term"],
+                        user_profile["feel_fatigue"],
+                        user_profile["sedentary_lifestyle"],
+                        user_profile["lack_of_support_from_healthcare_professionals"],
+                        user_profile["lack_of_exercising_skills"],
+                        user_profile["lack_of_physical_fitness"],
+                        user_profile["concern_physical_condition"],
+                        user_profile["lack_of_support_from_family_physical_activity"],
+                        user_profile["lack_of_physical_activity_preventing_disease"],
+                        user_profile["lack_of_infrastructure"],
+                        user_profile["delusion"],
+                        user_profile["lack_of_knowledge_on_physical_activity_recommendations"],
+                        user_profile["fear_of_injury"],
+                        user_profile["stigma"],
+                        user_profile["weather_conditions"],
+                        user_profile["safety_concerns"],
+                        user_profile["uncomfortability"],
+                        user_profile["accuracy_of_physical_activity_information"]]
+
+    user_profile["limitation_to_increase_physical_activity"] = round(np.mean(limiting_factors))
+    # endregion Limitation to increase physical activity
+    # region Enhancing factors to increase physical activity
+    enhancing_factors = [user_profile["support_from_family_physical_activity"],
+                         user_profile["healthcare_professional_support_physical_activity"],
+                         user_profile["knowledge_on_physical_activity_recommendations"],
+                         user_profile["accessibility_of_physical_activity_infrastructure"],
+                         user_profile["development_of_routine_physical_activity"],
+                         user_profile["wake_up_call_physical_activity"],
+                         user_profile["role_model_physical_activity"],
+                         user_profile["improvement_of_energy_physical_activity"],
+                         user_profile["healthcare_professional_tailored_plan"]]
+    user_profile["enhancing_factors_to_increase_physical_activity"] = round(np.mean(enhancing_factors))
+    # endregion Enhancing factors to increase physical activity
+    # region Limitation to improve diet quality
+    limiting_factors = [user_profile["cost_of_healthy_food"],
+                        user_profile["high_availability_of_fast_food"],
+                        user_profile["lack_of_good_quality_food"],
+                        user_profile["lack_of_time"],
+                        user_profile["lack_of_support_from_family"],
+                        user_profile["difficulty_in_avoiding_unhealthy_food_on_social_occasions"],
+                        user_profile["unhealthy_family_eating_habits"],
+                        user_profile["lack_of_support_from_healthcare_system"],
+                        user_profile["lack_of_knowledge_toward_healthier_life"],
+                        user_profile["lack_of_knowledge_on_current_healthy_eating_recommendations"],
+                        user_profile["lack_of_knowledge_on_healthy_food_preparation"],
+                        user_profile["accuracy_of_healthy_eating_information"],
+                        user_profile["lack_of_effort"],
+                        user_profile["temptation_resistance"],
+                        user_profile["craving"],
+                        user_profile["dislike_of_healthy_food_taste"],
+                        user_profile["lack_of_motivation"],
+                        user_profile["lack_of_healthy_food_preventing_disease"]]
+
+    user_profile["limitation_to_improve_diet_quality"] = round(np.mean(limiting_factors))
+    # endregion Limitation to improve diet quality
+    # region Enhancing factors to improve diet quality
+    enhancing_factors = [user_profile["low_cost_of_healthy_food"],
+                         user_profile["accesability_of_good_quality_food"],
+                         user_profile["reduction_to_costs_of_healthy_food"],
+                         user_profile["help_in_food_preparation"],
+                         user_profile["support_from_family"],
+                         user_profile["healthcare_professional_support"],
+                         user_profile["support_of_knowledge_on_healthy_eating_recommendations"],
+                         user_profile["accountability_partner"],
+                         user_profile["collaboration_with_healthcare_professionals"],
+                         user_profile["skills_on_healthy_food_preparation"],
+                         user_profile["wake_up_call"],
+                         user_profile["development_of_routine"],
+                         user_profile["improvement_of_energy"],
+                         user_profile["role_model"]]
+    user_profile["enhancing_factors_to_improve_diet_quality"] = round(np.mean(enhancing_factors))
+    # endregion Enhancing factors to improve diet quality
     return user_profile
 
 
