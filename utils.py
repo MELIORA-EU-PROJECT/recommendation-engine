@@ -111,8 +111,49 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
          alcohol_last_week_per_day, alcohol_6_or_more_single_occasions]))
 
     # endregion Alcohol consumption
-    # region Stress level
-    # endregion Stress level
+    # region Mental Health
+    mental_condition = user_profile["mental_condition"]
+    if mental_condition:
+        if "mental_conditions" not in user_profile:
+            raise ValueError(
+                f"mental_conditions should be in user_profile because 'mental_condition' flag is set. Got {user_profile}")
+        mental_conditions = user_profile["mental_conditions"]
+        match len(mental_conditions):
+            case num if num <= 1:
+                mental_condition = 5
+            case num if 2 <= num <= 3:
+                mental_condition = 4
+            case num if 4 <= num <= 5:
+                mental_condition = 3
+            case num if 6 <= num <= 7:
+                mental_condition = 2
+            case num if num >= 8:
+                mental_condition = 1
+            case _:
+                raise ValueError(f"UNREACHABLE: mental_conditions: {mental_conditions}")
+    else:
+        mental_condition = 5
+
+    extra_perceived_problems = [
+        user_profile["nervousness"],
+        user_profile["worryness"],
+        user_profile["depression"],
+        user_profile["uninterest"],
+    ]
+
+    extra_perceived_problems = round(np.mean(extra_perceived_problems))
+    match extra_perceived_problems:
+        case 0:
+            extra_perceived_problems = 5
+        case 1:
+            extra_perceived_problems = 4
+        case 2:
+            extra_perceived_problems = 2
+        case 3:
+            extra_perceived_problems = 1
+
+    user_profile["mental_health"] = round(np.mean([mental_condition, extra_perceived_problems]))
+    # endregion Mental Health
     # region Usage of tobacco products
     ever_smoked = user_profile["ever_smoked"]
     match ever_smoked:
@@ -296,9 +337,27 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 
     # endregion Eating Pyramid score
     # region Proximity to exercise facilities
+    distances_to_facilities = [
+        user_profile["park_distance"],
+        user_profile["open_gym_distance"],
+        user_profile["gym_distance"],
+        user_profile["pool_distance"],
+    ]
+    for i, distance in enumerate(distances_to_facilities):
+        match distance:
+            case "< 10 min":
+                distances_to_facilities[i] = 5
+            case "10-30 min":
+                distances_to_facilities[i] = 3
+            case "> 30 min":
+                distances_to_facilities[i] = 1
+            case _:
+                raise ValueError(f"distance should be one of the following: "
+                                 f"< 10 min, 10-30 min, > 30 min. "
+                                 f"On {user_profile} got {distance}")
+
+    user_profile["proximity_to_exercise_facilities"] = round(np.mean(distances_to_facilities))
     # endregion Proximity to exercise facilities
-    # region Exercise habits
-    # endregion Exercise habits
     # region Physical activity level
     # region vigorous activity
     # https://www.ncbi.nlm.nih.gov/books/NBK566048/
@@ -505,6 +564,25 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
                          user_profile["role_model"]]
     user_profile["enhancing_factors_to_improve_diet_quality"] = round(np.mean(enhancing_factors))
     # endregion Enhancing factors to improve diet quality
+    # region Level of symptoms
+    symptoms = [user_profile["pain"],
+                user_profile["fatigue"],
+                user_profile["nausea"],
+                user_profile["constipation"],
+                user_profile["disturbed_sleep"],
+                user_profile["shortness_of_breath"],
+                user_profile["lack_of_appetite"],
+                user_profile["drowsiness"],
+                user_profile["dry_mouth"],
+                ]
+
+    # https://stackoverflow.com/a/51494556/13250408
+    user_profile["level_of_symptoms"] = round((5 - 0) * (np.mean(symptoms) - 0) / (10 - 0) + 0)
+    # endregion Level of symptoms
+    # region Quality of life
+    qol = user_profile["quality_of_life"] + 1
+    user_profile["quality_of_life"] = qol
+    # endregion Quality of life
     return user_profile
 
 
