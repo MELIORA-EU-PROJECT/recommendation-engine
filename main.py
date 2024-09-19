@@ -4,6 +4,7 @@ All rights reserved
 """
 
 import json5
+import uvicorn
 
 from utils import *
 
@@ -66,8 +67,31 @@ app = FastAPI()
 async def root(item: Request):
     user_profile = await item.json()
     print(f"User Profile: {user_profile}")
+    # Integrated Data Layer
     user_profile = infer_integrated_data_layer(user_profile)
     with open("example_patient_integrated.json", "w") as write_file:
         json5.dump(user_profile, write_file, indent=4, quote_keys=True)
     print(f"Integrated Data Layer: {user_profile}")
-    return user_profile
+    # Aggregated Data Layer
+    user_profile = infer_aggregated_data_layer(user_profile)
+    with open("example_patient_aggregated.json", "w") as write_file:
+        json5.dump(user_profile, write_file, indent=4, quote_keys=True)
+    print(f"Aggregated Data Layer: {user_profile}")
+    # TTM stages
+    user_profile = add_ttm_stages(user_profile)
+    with open("example_patient_ttm.json", "w") as write_file:
+        json5.dump(user_profile, write_file, indent=4, quote_keys=True)
+    print(f"TTM Stages: {user_profile}")
+    # Similarity Needs
+    user_profile = {k: {"str": min_max_transform(v["str"], 1, 5), "stg": v["stg"]}
+                    for k, v in user_profile.items()}
+    sim_needs = sim_need(user_profile, intervention_library)
+    sim_stages = sim_stage(user_profile, intervention_library)
+    sim_totals = sim_total(sim_needs, sim_stages)
+    sim_totals_filtered = {k: v for k, v in sim_totals.items() if v >= 0.5}
+    sim_total_ordered = dict(sorted(sim_totals_filtered.items(), key=lambda x: x[1], reverse=True))
+    return sim_total_ordered
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
