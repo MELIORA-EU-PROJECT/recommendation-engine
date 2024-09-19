@@ -247,20 +247,23 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
                              f"never, >= 10 years, < 10 years, active. "
                              f"On {user_profile} got {ever_smoked}")
 
-    duration_of_smoking = user_profile["duration_of_smoking"]
-    match duration_of_smoking:
-        case "< 1 year":
-            duration_of_smoking = 5
-        case "2-5 years":
-            duration_of_smoking = 4
-        case "6-10 years":
-            duration_of_smoking = 3
-        case ">10":
-            duration_of_smoking = 1
-        case _:
-            raise ValueError(f"duration_of_smoking should be one of the following: "
-                             f"< 1 year, 2-5 years, 6-10 years, >10. "
-                             f"On {user_profile} got {duration_of_smoking}")
+    if user_profile["ever_smoked"] == "never":
+        duration_of_smoking = 5
+    else:
+        duration_of_smoking = user_profile["duration_of_smoking"]
+        match duration_of_smoking:
+            case "< 1 year":
+                duration_of_smoking = 5
+            case "2-5 years":
+                duration_of_smoking = 4
+            case "6-10 years":
+                duration_of_smoking = 3
+            case ">10":
+                duration_of_smoking = 1
+            case _:
+                raise ValueError(f"duration_of_smoking should be one of the following: "
+                                 f"< 1 year, 2-5 years, 6-10 years, >10. "
+                                 f"On {user_profile} got {duration_of_smoking}")
 
     manufactured_cigarettes = user_profile["manufactured_cigarettes"]
     match manufactured_cigarettes:
