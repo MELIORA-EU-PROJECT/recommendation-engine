@@ -1,4 +1,6 @@
 import random
+
+import json5
 import numpy as np
 
 user_profile = {}
@@ -12,7 +14,7 @@ distribution = np.round(distribution)
 distribution = distribution + 1950
 distribution = distribution[distribution < 2005]
 distribution = distribution.astype(int)
-user_profile["year_of_birth"] = np.random.choice(distribution)
+user_profile["year_of_birth"] = np.random.choice(distribution).item()
 # endregion "year_of_birth" - Lognormal Distribution
 # region "ethnic_group" - Random Choice from List
 ethnic_groups = ["white", "black", "hispanic", "asian", "mixed"]
@@ -62,14 +64,14 @@ user_profile["household_economic_status"] = random.choice(household_economic_sta
 # endregion "household_economic_status"
 # region "caregiver" - Bernoulli Distribution (30%)
 distribution = np.random.binomial(1, 0.3, 1000)
-user_profile["caregiver"] = np.random.choice(distribution) == 1
+user_profile["caregiver"] = bool(np.random.choice(distribution) == 1)
 # endregion "caregiver"
 # region "general_health" - Normal Distribution
 distribution = np.random.normal(2, 1, 1000)
 distribution = np.round(distribution)
 distribution = np.clip(distribution, 0, 4)
 distribution = distribution.astype(int)
-user_profile["general_health"] = np.random.choice(distribution)
+user_profile["general_health"] = np.random.choice(distribution).item()
 # endregion "general_health"
 # region "height" - Normal Distribution
 distribution = np.random.normal(1.7, 0.05, 1000)
@@ -85,7 +87,7 @@ user_profile["weight"] = np.random.choice(distribution)
 # endregion "weight"
 # region "diagnosis" - Bernoulli Distribution (50%)
 distribution = np.random.binomial(1, 0.5, 1000)
-user_profile["diagnosis"] = np.random.choice(distribution) == 1
+user_profile["diagnosis"] = bool(np.random.choice(distribution) == 1)
 # endregion "diagnosis"
 # region "first_diagnosis" - Lognormal Distribution for year - Uniform Distribution for month
 if user_profile["diagnosis"]:
@@ -137,17 +139,17 @@ if user_profile["treatment_status"] == "no, waiting":
 # endregion "waiting_first_treatment"
 # region "cancer_free" - Bernoulli Distribution (10%)
 distribution = np.random.binomial(1, 0.1, 1000)
-user_profile["cancer_free"] = np.random.choice(distribution) == 1
+user_profile["cancer_free"] = bool(np.random.choice(distribution) == 1)
 # endregion "cancer_free"
 # region "chronic_condition" - Bernoulli Distribution (40%)
 distribution = np.random.binomial(1, 0.4, 1000)
-user_profile["chronic_condition"] = np.random.choice(distribution) == 1
+user_profile["chronic_condition"] = bool(np.random.choice(distribution) == 1)
 # endregion "chronic_condition"
 # region "chronic_conditions"
 # endregion "chronic_conditions"
 # region "mental_condition" - Bernoulli Distribution (30%)
 distribution = np.random.binomial(1, 0.3, 1000)
-user_profile["mental_condition"] = np.random.choice(distribution) == 1
+user_profile["mental_condition"] = bool(np.random.choice(distribution) == 1)
 # endregion "mental_condition"
 # region "mental_conditions" - Random Choice from List
 mental_conditions = ["anxiety disorder", "bipolar disorder", "depression", "dissociation", "eating disorders",
@@ -213,7 +215,7 @@ user_profile["number_of_relatives_with_breast_cancer"] = random.choice(numbers_f
 # endregion "number_of_relatives_with_breast_cancer"
 # region "given_birth" - Bernoulli Distribution (50%)
 distribution = np.random.binomial(1, 0.5, 1000)
-user_profile["given_birth"] = np.random.choice(distribution) == 1
+user_profile["given_birth"] = bool(np.random.choice(distribution) == 1)
 # endregion "given_birth"
 # region "current_menstrual_status" - Random Choice from List
 menstrual_statuses = ["premenopause", "perimenopause", "menopause"]
@@ -222,13 +224,13 @@ user_profile["current_menstrual_status"] = random.choice(menstrual_statuses)
 # region "breastfeeding" - Bernoulli Distribution (80%)
 if user_profile["given_birth"]:
     distribution = np.random.binomial(1, 0.8, 1000)
-    user_profile["breastfeeding"] = np.random.choice(distribution) == 1
+    user_profile["breastfeeding"] = bool(np.random.choice(distribution) == 1)
 else:
     user_profile["breastfeeding"] = False
 # endregion "breastfeeding"
 # region "contraceptive_use" - Bernoulli Distribution (50%)
 distribution = np.random.binomial(1, 0.5, 1000)
-user_profile["contraceptive_use"] = np.random.choice(distribution) == 1
+user_profile["contraceptive_use"] = bool(np.random.choice(distribution) == 1)
 # endregion "contraceptive_use"
 # region "how_often_alcohol" - Random Choice from List
 alcohol_frequencies = ["never", "monthly or less", "2-4 times per month", "2-3 times per week",
@@ -245,7 +247,7 @@ user_profile["how_often_6_or_more_drinks"] = random.choice(how_often_6_or_more_d
 # endregion "how_often_6_or_more_drinks"
 # region "3_or_more_red_meat_weekly" - Bernoulli Distribution (70%)
 distribution = np.random.binomial(1, 0.7, 1000)
-user_profile["3_or_more_red_meat_weekly"] = np.random.choice(distribution) == 1
+user_profile["3_or_more_red_meat_weekly"] = bool(np.random.choice(distribution) == 1)
 # endregion "3_or_more_red_meat_weekly"
 # region "how_often_fruit" - Random Choice from List
 fruit_frequencies = ["I do not eat it at all", "Less than 1 serving per week", "1-2 servings per week",
@@ -413,7 +415,7 @@ if user_profile["ever_smoked"] == "active":
     distribution = distribution[distribution < 50]
     distribution = np.round(distribution)
     distribution = distribution.astype(int)
-    user_profile["manufactured_cigarettes"] = np.random.choice(distribution)
+    user_profile["manufactured_cigarettes"] = np.random.choice(distribution).item()
 else:
     user_profile["manufactured_cigarettes"] = 0
 # endregion "manufactured_cigarettes"
@@ -423,7 +425,7 @@ if user_profile["ever_smoked"] == "active":
     distribution = distribution[distribution < 50]
     distribution = np.round(distribution)
     distribution = distribution.astype(int)
-    user_profile["hand_rolled_cigarettes"] = np.random.choice(distribution)
+    user_profile["hand_rolled_cigarettes"] = np.random.choice(distribution).item()
 else:
     user_profile["hand_rolled_cigarettes"] = 0
 # endregion "hand_rolled_cigarettes"
@@ -433,7 +435,7 @@ if user_profile["ever_smoked"] == "active":
     distribution = distribution[distribution < 50]
     distribution = np.round(distribution)
     distribution = distribution.astype(int)
-    user_profile["pipes"] = np.random.choice(distribution)
+    user_profile["pipes"] = np.random.choice(distribution).item()
 else:
     user_profile["pipes"] = 0
 # endregion "pipes"
@@ -443,7 +445,7 @@ if user_profile["ever_smoked"] == "active":
     distribution = distribution[distribution < 50]
     distribution = np.round(distribution)
     distribution = distribution.astype(int)
-    user_profile["cigars"] = np.random.choice(distribution)
+    user_profile["cigars"] = np.random.choice(distribution).item()
 else:
     user_profile["cigars"] = 0
 # endregion "cigars"
@@ -453,7 +455,7 @@ if user_profile["ever_smoked"] == "active":
     distribution = distribution[distribution < 50]
     distribution = np.round(distribution)
     distribution = distribution.astype(int)
-    user_profile["water_pipe"] = np.random.choice(distribution)
+    user_profile["water_pipe"] = np.random.choice(distribution).item()
 else:
     user_profile["water_pipe"] = 0
 # endregion "water_pipe"
@@ -463,7 +465,7 @@ if user_profile["ever_smoked"] == "active":
     distribution = distribution[distribution < 50]
     distribution = np.round(distribution)
     distribution = distribution.astype(int)
-    user_profile["other_tobacco_products"] = np.random.choice(distribution)
+    user_profile["other_tobacco_products"] = np.random.choice(distribution).item()
 else:
     user_profile["other_tobacco_products"] = 0
 # endregion "other_tobacco_products"
@@ -475,12 +477,12 @@ if do_vigorous_activity:
     distribution = distribution[distribution < 5]
     distribution = np.round(distribution)
     distribution = distribution.astype(int)
-    user_profile["vigorous_days_per_week"] = np.random.choice(distribution)
+    user_profile["vigorous_days_per_week"] = np.random.choice(distribution).item()
 # endregion "vigorous_days_per_week"
 # region "vigorous_time_per_day" - Powerlaw Distribution for Hours - Lognormal Distribution for Minutes
 if "vigorous_days_per_week" in user_profile:
     knows_activity = np.random.binomial(1, 0.95, 1000)
-    knows_activity =
+    knows_activity = np.random.choice(knows_activity)
     if knows_activity:
         hours_true_minutes_false = random.randint(0, 1)
         if hours_true_minutes_false:
@@ -489,7 +491,7 @@ if "vigorous_days_per_week" in user_profile:
             distribution = distribution[distribution < 5]
             distribution = np.round(distribution)
             distribution = distribution.astype(int)
-            user_profile["vigorous_time_per_day"] = [np.random.choice(distribution), "hour"]
+            user_profile["vigorous_time_per_day"] = [np.random.choice(distribution).item(), "hour"]
         else:
             distribution = np.random.lognormal(3, 0.6, 1000)
             distribution = distribution + 1
@@ -497,7 +499,7 @@ if "vigorous_days_per_week" in user_profile:
             distribution = distribution[distribution > 10]
             distribution = np.round(distribution)
             distribution = distribution.astype(int)
-            user_profile["vigorous_time_per_day"] = [np.random.choice(distribution), "min"]
+            user_profile["vigorous_time_per_day"] = [np.random.choice(distribution).item(), "min"]
     else:
         user_profile["vigorous_time_per_day"] = "don't know"
 # endregion "vigorous_time_per_day"
@@ -509,12 +511,13 @@ if do_moderate_activity:
     distribution = distribution[distribution < 5]
     distribution = np.round(distribution)
     distribution = distribution.astype(int)
-    user_profile["moderate_days_per_week"] = np.random.choice(distribution)
+    user_profile["moderate_days_per_week"] = np.random.choice(distribution).item()
 
 # endregion "moderate_days_per_week"
 # region "moderate_time_per_day" - Powerlaw Distribution for Hours - Lognormal Distribution for Minutes
 if "moderate_days_per_week" in user_profile:
     knows_activity = np.random.binomial(1, 0.95, 1000)
+    knows_activity = np.random.choice(knows_activity)
     if knows_activity:
         hours_true_minutes_false = random.randint(0, 1)
         if hours_true_minutes_false:
@@ -523,7 +526,7 @@ if "moderate_days_per_week" in user_profile:
             distribution = distribution[distribution < 5]
             distribution = np.round(distribution)
             distribution = distribution.astype(int)
-            user_profile["moderate_time_per_day"] = [np.random.choice(distribution), "hour"]
+            user_profile["moderate_time_per_day"] = [np.random.choice(distribution).item(), "hour"]
         else:
             distribution = np.random.lognormal(3, 0.6, 1000)
             distribution = distribution + 1
@@ -531,7 +534,7 @@ if "moderate_days_per_week" in user_profile:
             distribution = distribution[distribution > 10]
             distribution = np.round(distribution)
             distribution = distribution.astype(int)
-            user_profile["moderate_time_per_day"] = [np.random.choice(distribution), "min"]
+            user_profile["moderate_time_per_day"] = [np.random.choice(distribution).item(), "min"]
     else:
         user_profile["moderate_time_per_day"] = "don't know"
 
@@ -544,12 +547,13 @@ if do_walking_activity:
     distribution = distribution[distribution < 5]
     distribution = np.round(distribution)
     distribution = distribution.astype(int)
-    user_profile["walking_days_per_week"] = np.random.choice(distribution)
+    user_profile["walking_days_per_week"] = np.random.choice(distribution).item()
 
 # endregion "walking_days_per_week"
 # region "walking_time_per_day" - Powerlaw Distribution for Hours - Lognormal Distribution for Minutes
 if "walking_days_per_week" in user_profile:
     knows_activity = np.random.binomial(1, 0.95, 1000)
+    knows_activity = np.random.choice(knows_activity)
     if knows_activity:
         hours_true_minutes_false = random.randint(0, 1)
         if hours_true_minutes_false:
@@ -558,7 +562,7 @@ if "walking_days_per_week" in user_profile:
             distribution = distribution[distribution < 5]
             distribution = np.round(distribution)
             distribution = distribution.astype(int)
-            user_profile["walking_time_per_day"] = [np.random.choice(distribution), "hour"]
+            user_profile["walking_time_per_day"] = [np.random.choice(distribution).item(), "hour"]
         else:
             distribution = np.random.lognormal(3, 0.6, 1000)
             distribution = distribution + 1
@@ -566,13 +570,14 @@ if "walking_days_per_week" in user_profile:
             distribution = distribution[distribution > 10]
             distribution = np.round(distribution)
             distribution = distribution.astype(int)
-            user_profile["walking_time_per_day"] = [np.random.choice(distribution), "min"]
+            user_profile["walking_time_per_day"] = [np.random.choice(distribution).item(), "min"]
     else:
         user_profile["walking_time_per_day"] = "don't know"
 
 # endregion "walking_time_per_day"
 # region "sitting_time_per_day" - Powerlaw Distribution for Hours - Lognormal Distribution for Minutes
 knows_activity = np.random.binomial(1, 0.95, 1000)
+knows_activity = np.random.choice(knows_activity)
 if knows_activity:
     hours_true_minutes_false = random.randint(0, 1)
     if hours_true_minutes_false:
@@ -581,7 +586,7 @@ if knows_activity:
         distribution = distribution[distribution < 5]
         distribution = np.round(distribution)
         distribution = distribution.astype(int)
-        user_profile["sitting_time_per_day"] = [np.random.choice(distribution), "hour"]
+        user_profile["sitting_time_per_day"] = [np.random.choice(distribution).item(), "hour"]
     else:
         distribution = np.random.lognormal(3, 0.6, 1000)
         distribution = distribution + 1
@@ -589,7 +594,7 @@ if knows_activity:
         distribution = distribution[distribution > 10]
         distribution = np.round(distribution)
         distribution = distribution.astype(int)
-        user_profile["sitting_time_per_day"] = [np.random.choice(distribution), "min"]
+        user_profile["sitting_time_per_day"] = [np.random.choice(distribution).item(), "min"]
 else:
     user_profile["sitting_time_per_day"] = "don't know"
 # endregion "sitting_time_per_day"
@@ -601,11 +606,12 @@ if do_hobbies_activity:
     distribution = distribution[distribution < 5]
     distribution = np.round(distribution)
     distribution = distribution.astype(int)
-    user_profile["hobbies_days_per_week"] = np.random.choice(distribution)
+    user_profile["hobbies_days_per_week"] = np.random.choice(distribution).item()
 # endregion "hobbies_days_per_week"
 # region "hobbies_time_per_day" - Powerlaw Distribution for Hours - Lognormal Distribution for Minutes
 if "hobbies_days_per_week" in user_profile:
     knows_activity = np.random.binomial(1, 0.95, 1000)
+    knows_activity = np.random.choice(knows_activity)
     if knows_activity:
         hours_true_minutes_false = random.randint(0, 1)
         if hours_true_minutes_false:
@@ -614,7 +620,7 @@ if "hobbies_days_per_week" in user_profile:
             distribution = distribution[distribution < 5]
             distribution = np.round(distribution)
             distribution = distribution.astype(int)
-            user_profile["hobbies_time_per_day"] = [np.random.choice(distribution), "hour"]
+            user_profile["hobbies_time_per_day"] = [np.random.choice(distribution).item(), "hour"]
         else:
             distribution = np.random.lognormal(3, 0.6, 1000)
             distribution = distribution + 1
@@ -622,7 +628,7 @@ if "hobbies_days_per_week" in user_profile:
             distribution = distribution[distribution > 10]
             distribution = np.round(distribution)
             distribution = distribution.astype(int)
-            user_profile["hobbies_time_per_day"] = [np.random.choice(distribution), "min"]
+            user_profile["hobbies_time_per_day"] = [np.random.choice(distribution).item(), "min"]
     else:
         user_profile["hobbies_time_per_day"] = "don't know"
 # endregion "hobbies_time_per_day"
@@ -737,6 +743,9 @@ user_profile["healthcare_professional_tailored_plan"] = random.randint(1, 5)
 import requests
 
 url = f"http://localhost:8000/"
+print(f"Sending data to {url}")
+print(f"Data: {user_profile}")
+print(f"to json: {json5.dumps(user_profile, indent=4, quote_keys=True)}")
 response = requests.post(url, json=user_profile)
 
 print(response.json())
