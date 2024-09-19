@@ -51,8 +51,11 @@ def get_recommendations(user_profile) -> dict:
 
 with open("example_patient.json", "r") as read_file:
     user_profile = json5.load(read_file)
-    # print(json5.dumps(user_profile, indent=4, quote_keys=True))
-    recommendations = get_recommendations(user_profile)
+
+    user_profile = infer_integrated_data_layer(user_profile)
+    with open("example_patient_integrated.json", "w") as write_file:
+        json5.dump(user_profile, write_file, indent=4, quote_keys=True)
+    print(json5.dumps(user_profile, indent=4, quote_keys=True))
 # from fastapi import FastAPI, Body
 # from pydantic import BaseModel
 #

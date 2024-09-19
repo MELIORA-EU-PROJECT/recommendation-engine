@@ -4,6 +4,69 @@ import numpy as np
 
 
 def infer_integrated_data_layer(user_profile: dict) -> dict:
+    # region General Health
+    general_health = user_profile["general_health"] + 1
+    user_profile["general_health"] = general_health
+    # endregion General Health
+    # region User Status
+    if "treatment_status" in user_profile:
+        treatment_status = user_profile["treatment_status"]
+        match treatment_status:
+            case "no, completed":
+                treatment_status = "survivor"
+            case "yes":
+                treatment_status = "patient"
+            case "no, waiting":
+                treatment_status = "patient"
+            case _:
+                raise ValueError(f"treatment_status should be one of the following: "
+                                 f"no, completed, yes, no, waiting. "
+                                 f"On {user_profile} got {treatment_status}")
+        user_profile["user_status"] = treatment_status
+    # endregion User Status
+    # region Mental Health
+    mental_condition = user_profile["mental_condition"]
+    if mental_condition:
+        if "mental_conditions" not in user_profile:
+            raise ValueError(
+                f"mental_conditions should be in user_profile because 'mental_condition' flag is set. Got {user_profile}")
+        mental_conditions = user_profile["mental_conditions"]
+        match len(mental_conditions):
+            case num if num <= 1:
+                mental_condition = 5
+            case num if 2 <= num <= 3:
+                mental_condition = 4
+            case num if 4 <= num <= 5:
+                mental_condition = 3
+            case num if 6 <= num <= 7:
+                mental_condition = 2
+            case num if num >= 8:
+                mental_condition = 1
+            case _:
+                raise ValueError(f"UNREACHABLE: mental_conditions: {mental_conditions}")
+    else:
+        mental_condition = 5
+
+    extra_perceived_problems = [
+        user_profile["nervousness"],
+        user_profile["worryness"],
+        user_profile["depression"],
+        user_profile["uninterest"],
+    ]
+
+    extra_perceived_problems = round(np.mean(extra_perceived_problems))
+    match extra_perceived_problems:
+        case 0:
+            extra_perceived_problems = 5
+        case 1:
+            extra_perceived_problems = 4
+        case 2:
+            extra_perceived_problems = 2
+        case 3:
+            extra_perceived_problems = 1
+
+    user_profile["mental_health"] = round(np.mean([mental_condition, extra_perceived_problems]))
+    # endregion Mental Health
     # region Alcohol consumption
     how_often_alcohol = user_profile["how_often_alcohol"]
     match how_often_alcohol:
@@ -111,49 +174,63 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
          alcohol_last_week_per_day, alcohol_6_or_more_single_occasions]))
 
     # endregion Alcohol consumption
-    # region Mental Health
-    mental_condition = user_profile["mental_condition"]
-    if mental_condition:
-        if "mental_conditions" not in user_profile:
-            raise ValueError(
-                f"mental_conditions should be in user_profile because 'mental_condition' flag is set. Got {user_profile}")
-        mental_conditions = user_profile["mental_conditions"]
-        match len(mental_conditions):
-            case num if num <= 1:
-                mental_condition = 5
-            case num if 2 <= num <= 3:
-                mental_condition = 4
-            case num if 4 <= num <= 5:
-                mental_condition = 3
-            case num if 6 <= num <= 7:
-                mental_condition = 2
-            case num if num >= 8:
-                mental_condition = 1
-            case _:
-                raise ValueError(f"UNREACHABLE: mental_conditions: {mental_conditions}")
-    else:
-        mental_condition = 5
+    # region Eating Pyramid score
+    # https://en.wikipedia.org/wiki/File:USDA_Food_Pyramid.gif
+    serving_scale = ["I do not eat it at all", "Less than 1 serving per week", "1-2 servings per week",
+                     "3-4 servings per week", "5-6 servings per week", "1 serving per day", "2-3 servings per day",
+                     "4-5 servings per day", "6 or more servings per day"]
+    # 6 + 7 + 6 + 6 + 8 + 8 + 6 + 5 + 6 = 58
 
-    extra_perceived_problems = [
-        user_profile["nervousness"],
-        user_profile["worryness"],
-        user_profile["depression"],
-        user_profile["uninterest"],
-    ]
+    _3_or_more_red_meat_weekly = user_profile["3_or_more_red_meat_weekly"]
+    how_often_fruit = user_profile["how_often_fruit"]
+    how_often_fruit = abs(serving_scale.index(how_often_fruit) - serving_scale.index("2-3 servings per day"))
 
-    extra_perceived_problems = round(np.mean(extra_perceived_problems))
-    match extra_perceived_problems:
-        case 0:
-            extra_perceived_problems = 5
-        case 1:
-            extra_perceived_problems = 4
-        case 2:
-            extra_perceived_problems = 2
-        case 3:
-            extra_perceived_problems = 1
+    how_often_vegetables = user_profile["how_often_vegetables"]
+    how_often_vegetables = abs(serving_scale.index(how_often_vegetables) - serving_scale.index("4-5 servings per day"))
 
-    user_profile["mental_health"] = round(np.mean([mental_condition, extra_perceived_problems]))
-    # endregion Mental Health
+    how_often_nuts = user_profile["how_often_nuts"]
+    how_often_nuts = abs(serving_scale.index(how_often_nuts) - serving_scale.index("2-3 servings per day"))
+
+    how_often_fish = user_profile["how_often_fish"]
+    how_often_fish = abs(serving_scale.index(how_often_fish) - serving_scale.index("2-3 servings per day"))
+
+    how_often_whole_grain = user_profile["how_often_whole_grain"]
+    how_often_whole_grain = abs(
+        serving_scale.index(how_often_whole_grain) - serving_scale.index("6 or more servings per day"))
+
+    how_often_refined_grain = user_profile["how_often_refined_grain"]
+    how_often_refined_grain = abs(
+        serving_scale.index(how_often_refined_grain) - serving_scale.index("6 or more servings per day"))
+
+    how_often_low_fat_dairy = user_profile["how_often_low_fat_dairy"]
+    how_often_low_fat_dairy = abs(
+        serving_scale.index(how_often_low_fat_dairy) - serving_scale.index("2-3 servings per day"))
+
+    how_often_high_fat_dairy = user_profile["how_often_high_fat_dairy"]
+    how_often_high_fat_dairy = serving_scale.index(how_often_high_fat_dairy) - serving_scale.index(
+        "3-4 servings per week")
+
+    how_often_sweets = user_profile["how_often_sweets"]
+    how_often_sweets = serving_scale.index(how_often_sweets) - serving_scale.index("1-2 servings per week")
+
+    aggregate_distances = how_often_fruit + how_often_vegetables + how_often_nuts + how_often_fish + how_often_whole_grain + how_often_refined_grain + how_often_low_fat_dairy + how_often_high_fat_dairy + how_often_sweets
+    match aggregate_distances:
+        case num if num <= 11:
+            aggregate_distances = 5
+        case num if 12 <= num <= 22:
+            aggregate_distances = 4
+        case num if 23 <= num <= 33:
+            aggregate_distances = 3
+        case num if 34 <= num <= 44:
+            aggregate_distances = 2
+        case num if num >= 45:
+            aggregate_distances = 1
+        case _:
+            raise ValueError(f"UNREACHABLE: aggregate_distances: {aggregate_distances}")
+
+    user_profile["eating_pyramid_score"] = aggregate_distances
+
+    # endregion Eating Pyramid score
     # region Usage of tobacco products
     ever_smoked = user_profile["ever_smoked"]
     match ever_smoked:
@@ -279,85 +356,6 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
         [ever_smoked, duration_of_smoking, manufactured_cigarettes, hand_rolled_cigarettes, pipes, cigars, water_pipe,
          other_tobacco_products]))
     # endregion Usage of tobacco products
-    # region Eating Pyramid score
-    # https://en.wikipedia.org/wiki/File:USDA_Food_Pyramid.gif
-    serving_scale = ["I do not eat it at all", "Less than 1 serving per week", "1-2 servings per week",
-                     "3-4 servings per week", "5-6 servings per week", "1 serving per day", "2-3 servings per day",
-                     "4-5 servings per day", "6 or more servings per day"]
-    # 6 + 7 + 6 + 6 + 8 + 8 + 6 + 5 + 6 = 58
-
-    _3_or_more_red_meat_weekly = user_profile["3_or_more_red_meat_weekly"]
-    how_often_fruit = user_profile["how_often_fruit"]
-    how_often_fruit = abs(serving_scale.index(how_often_fruit) - serving_scale.index("2-3 servings per day"))
-
-    how_often_vegetables = user_profile["how_often_vegetables"]
-    how_often_vegetables = abs(serving_scale.index(how_often_vegetables) - serving_scale.index("4-5 servings per day"))
-
-    how_often_nuts = user_profile["how_often_nuts"]
-    how_often_nuts = abs(serving_scale.index(how_often_nuts) - serving_scale.index("2-3 servings per day"))
-
-    how_often_fish = user_profile["how_often_fish"]
-    how_often_fish = abs(serving_scale.index(how_often_fish) - serving_scale.index("2-3 servings per day"))
-
-    how_often_whole_grain = user_profile["how_often_whole_grain"]
-    how_often_whole_grain = abs(
-        serving_scale.index(how_often_whole_grain) - serving_scale.index("6 or more servings per day"))
-
-    how_often_refined_grain = user_profile["how_often_refined_grain"]
-    how_often_refined_grain = abs(
-        serving_scale.index(how_often_refined_grain) - serving_scale.index("6 or more servings per day"))
-
-    how_often_low_fat_dairy = user_profile["how_often_low_fat_dairy"]
-    how_often_low_fat_dairy = abs(
-        serving_scale.index(how_often_low_fat_dairy) - serving_scale.index("2-3 servings per day"))
-
-    how_often_high_fat_dairy = user_profile["how_often_high_fat_dairy"]
-    how_often_high_fat_dairy = serving_scale.index(how_often_high_fat_dairy) - serving_scale.index(
-        "3-4 servings per week")
-
-    how_often_sweets = user_profile["how_often_sweets"]
-    how_often_sweets = serving_scale.index(how_often_sweets) - serving_scale.index("1-2 servings per week")
-
-    aggregate_distances = how_often_fruit + how_often_vegetables + how_often_nuts + how_often_fish + how_often_whole_grain + how_often_refined_grain + how_often_low_fat_dairy + how_often_high_fat_dairy + how_often_sweets
-    match aggregate_distances:
-        case num if num <= 11:
-            aggregate_distances = 5
-        case num if 12 <= num <= 22:
-            aggregate_distances = 4
-        case num if 23 <= num <= 33:
-            aggregate_distances = 3
-        case num if 34 <= num <= 44:
-            aggregate_distances = 2
-        case num if num >= 45:
-            aggregate_distances = 1
-        case _:
-            raise ValueError(f"UNREACHABLE: aggregate_distances: {aggregate_distances}")
-
-    user_profile["eating_pyramid_score"] = aggregate_distances
-
-    # endregion Eating Pyramid score
-    # region Proximity to exercise facilities
-    distances_to_facilities = [
-        user_profile["park_distance"],
-        user_profile["open_gym_distance"],
-        user_profile["gym_distance"],
-        user_profile["pool_distance"],
-    ]
-    for i, distance in enumerate(distances_to_facilities):
-        match distance:
-            case "< 10 min":
-                distances_to_facilities[i] = 5
-            case "10-30 min":
-                distances_to_facilities[i] = 3
-            case "> 30 min":
-                distances_to_facilities[i] = 1
-            case _:
-                raise ValueError(f"distance should be one of the following: "
-                                 f"< 10 min, 10-30 min, > 30 min. "
-                                 f"On {user_profile} got {distance}")
-
-    user_profile["proximity_to_exercise_facilities"] = round(np.mean(distances_to_facilities))
-    # endregion Proximity to exercise facilities
     # region Physical activity level
     # region vigorous activity
     # https://www.ncbi.nlm.nih.gov/books/NBK566048/
@@ -489,6 +487,28 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
         np.mean([vigorous_activity_level, moderate_activity_level, walking_level, sitting_level]))
     user_profile["physical_activity_level"] = physical_activity_score
     # endregion Physical activity level
+    # region Proximity to exercise facilities
+    distances_to_facilities = [
+        user_profile["park_distance"],
+        user_profile["open_gym_distance"],
+        user_profile["gym_distance"],
+        user_profile["pool_distance"],
+    ]
+    for i, distance in enumerate(distances_to_facilities):
+        match distance:
+            case "< 10 min":
+                distances_to_facilities[i] = 5
+            case "10-30 min":
+                distances_to_facilities[i] = 3
+            case "> 30 min":
+                distances_to_facilities[i] = 1
+            case _:
+                raise ValueError(f"distance should be one of the following: "
+                                 f"< 10 min, 10-30 min, > 30 min. "
+                                 f"On {user_profile} got {distance}")
+
+    user_profile["proximity_to_exercise_facilities"] = round(np.mean(distances_to_facilities))
+    # endregion Proximity to exercise facilities
     # region Limitation to increase physical activity
     limiting_factors = [user_profile["lack_of_time_for_physical_activity"],
                         user_profile["lack_of_motivation_short_term"],
@@ -549,7 +569,7 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
     # endregion Limitation to improve diet quality
     # region Enhancing factors to improve diet quality
     enhancing_factors = [user_profile["low_cost_of_healthy_food"],
-                         user_profile["accesability_of_good_quality_food"],
+                         user_profile["accessibility_of_good_quality_food"],
                          user_profile["reduction_to_costs_of_healthy_food"],
                          user_profile["help_in_food_preparation"],
                          user_profile["support_from_family"],
