@@ -750,7 +750,7 @@ user_profile["alcohol_6_or_more_single_occasions"] = random.choice(alcohol_6_or_
 # 4 PAPERS ON CAUSALITY
 # CREATE A DUMMY GRAPH AND TRY TO INTEGRATE IT IN THE PROGRAM
 # DOWHY framework,GraphViz,
-# write a simple explantation of dag integration in the TTM
+# write a simple explanation of dag integration in the TTM
 import requests
 
 url = f"http://localhost:8000/"
