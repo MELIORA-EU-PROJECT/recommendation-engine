@@ -632,13 +632,18 @@ if "hobbies_days_per_week" in user_profile:
     else:
         user_profile["hobbies_time_per_day"] = "don't know"
 # endregion "hobbies_time_per_day"
-# region "park_distance" 🔴
+# region "park_distance" - Random Choice from List ✅
+distances = ["< 10 min", "10-30 min", "> 30 min"]
+user_profile["park_distance"] = random.choice(distances)
 # endregion "park_distance"
-# region "open_gym_distance" 🔴
+# region "open_gym_distance" - Random Choice from List ✅
+user_profile["open_gym_distance"] = random.choice(distances)
 # endregion "open_gym_distance"
-# region "gym_distance" 🔴
+# region "gym_distance" - Random Choice from List ✅
+user_profile["gym_distance"] = random.choice(distances)
 # endregion "gym_distance"
-# region "pool_distance" 🔴
+# region "pool_distance" - Random Choice from List ✅
+user_profile["pool_distance"] = random.choice(distances)
 # endregion "pool_distance"
 # region "lack_of_time_for_physical_activity" - Uniform Distribution ✅
 user_profile["lack_of_time_for_physical_activity"] = random.randint(1, 5)
@@ -727,11 +732,17 @@ user_profile["improvement_of_energy_physical_activity"] = random.randint(1, 5)
 # region "healthcare_professional_tailored_plan" - Uniform Distribution ✅
 user_profile["healthcare_professional_tailored_plan"] = random.randint(1, 5)
 # endregion "healthcare_professional_tailored_plan"
-# region "alcohol_last_week" 🔴
+# region "alcohol_last_week" - Random Choice from List ✅
+alcohol_last_week_choices = ["none", "1", "2-3", "4 or more"]
+user_profile["alcohol_last_week"] = random.choice(alcohol_last_week_choices)
 # endregion "alcohol_last_week"
-# region "alcohol_last_week_per_day" 🔴
+# region "alcohol_last_week_per_day" - Random Choice from List ✅
+alcohol_last_week_per_day_choices = ["1-2", "3-4", "5-6", "7-9", "10 or more"]
+user_profile["alcohol_last_week_per_day"] = random.choice(alcohol_last_week_per_day_choices)
 # endregion "alcohol_last_week_per_day"
-# region "alcohol_6_or_more_single_occasions" 🔴
+# region "alcohol_6_or_more_single_occasions" - Random Choice from List ✅
+alcohol_6_or_more_single_occasions_choices = ["none", "1", "2-3", "4-5", "daily or almost daily"]
+user_profile["alcohol_6_or_more_single_occasions"] = random.choice(alcohol_6_or_more_single_occasions_choices)
 # endregion "alcohol_6_or_more_single_occasions"
 
 # TODO PAPER
@@ -748,4 +759,5 @@ print(f"Data: {user_profile}")
 print(f"to json: {json5.dumps(user_profile, indent=4, quote_keys=True)}")
 response = requests.post(url, json=user_profile)
 
-print(response.json())
+json_response = response.json()
+print(f"Response: {json5.dumps(json_response, indent=4, quote_keys=True)}")
