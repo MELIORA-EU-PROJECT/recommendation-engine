@@ -2,9 +2,9 @@
 Copyright © 2024 Nikos Gournakis
 All rights reserved
 """
-from typing import Dict, Any
 
 import json5
+
 from utils import *
 
 # @formatter:off
@@ -49,22 +49,25 @@ def get_recommendations(user_profile) -> dict:
     return sim_total_ordered
 
 
-with open("example_patient.json", "r") as read_file:
-    user_profile = json5.load(read_file)
+# with open("example_patient.json", "r") as read_file:
+#     user_profile = json5.load(read_file)
+#
+#     user_profile = infer_integrated_data_layer(user_profile)
+#     with open("example_patient_integrated.json", "w") as write_file:
+#         json5.dump(user_profile, write_file, indent=4, quote_keys=True)
+#     print(json5.dumps(user_profile, indent=4, quote_keys=True))
 
+from fastapi import FastAPI, Request
+
+app = FastAPI()
+
+
+@app.post("/")
+async def root(item: Request):
+    user_profile = await item.json()
+    print(f"User Profile: {user_profile}")
     user_profile = infer_integrated_data_layer(user_profile)
     with open("example_patient_integrated.json", "w") as write_file:
         json5.dump(user_profile, write_file, indent=4, quote_keys=True)
-    print(json5.dumps(user_profile, indent=4, quote_keys=True))
-# from fastapi import FastAPI, Body
-# from pydantic import BaseModel
-#
-# app = FastAPI()
-#
-#
-# @app.post("/")
-# async def root(item: BaseModel):
-#     user_profile = item.model_dump()
-#     print(f"User Profile: {user_profile}")
-#     recommendations = get_recommendations(user_profile)
-#     return recommendations
+    print(f"Integrated Data Layer: {user_profile}")
+    return user_profile
