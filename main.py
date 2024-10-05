@@ -16,8 +16,27 @@ intervention_library = {"Twitter_Post_About_Quiting_Smoking": {"beh": ["cease_sm
                         "Instagram_Reel_About_Reducing_Alcohol_Intake": {"beh": ["reduce_alcohol_consumption"], "stg": [2,3,4], "opr": "max"},
                         "TikTok_About_Reducing_Alcohol_Intake": {"beh": ["reduce_alcohol_consumption"], "stg": [5], "opr": "max"},
                         "Youtube_Short_About_Quiting_Smoking": {"beh": ["cease_smoking"], "stg": [1,2], "opr": "max"},
-                        "Youtube_Video_About_Improving_Life_Quality": {"beh": ["cease_smoking","reduce_alcohol_consumption","improve_diet_quality","increase_physical_activity","improve_mental_health"], "stg": [1,2,3], "opr": "min"},}
+                        "Youtube_Video_About_Improving_Life_Quality": {"beh": ["cease_smoking","reduce_alcohol_consumption","improve_diet_quality","increase_physical_activity","improve_mental_health"], "stg": [1,2,3], "opr": "min"},
+                        "9 Proven Benefits of Physical Activity": {"beh": ["increase_physical_activity"], "stg": [1,2,3], "opr": "min"},
+                        "Do I need to walk 10,000 steps per day?": {"beh": ["increase_physical_activity"], "stg": [1], "opr": "min"},
+                        "Staying active to lower your risk of breast cancer: A simple guide to WHO’s physical activity recommendations" : {"beh": ["increase_physical_activity","improve_mental_health"], "stg": [4,5], "opr": "min"},
+                        "Staying active to lower your risk of breast cancer: A simple guide to greek physical activity recommendations" : {"beh": ["increase_physical_activity","improve_mental_health"], "stg": [4,5], "opr": "min"},
+                        "Staying active with breast cancer: Simple tips to keep you moving" : {"beh": ["increase_physical_activity"], "stg": [5], "opr": "min"},
+                        "Tips for a more active lifestyle" : {"beh": ["increase_physical_activity","improve_mental_health"], "stg": [1,2,3], "opr": "min"},
+                        "What are the different types of physical activity?" : {"beh": ["increase_physical_activity"], "stg": [1], "opr": "min"},
+                        "Tobacco": {"beh": ["cease_smoking"], "stg": [1,2,3], "opr": "max", "ref":"https://www.who.int/news-room/fact-sheets/detail/tobacco"},
+                        "Quitting tobacco": {"beh": ["cease_smoking"], "stg": [4,5], "opr": "max","ref":"https://www.who.int/activities/quitting-tobacco"},
+                        "Smoking is the leading cause of chronic obstructive pulmonary disease": {"beh": ["cease_smoking"], "stg": [2,3,4,5], "opr": "max", "ref":"https://www.who.int/news/item/15-11-2023-smoking-is-the-leading-cause-of-chronic-obstructive-pulmonary-disease"},
+                        "No level of alcohol consumption is safe for our health": {"beh": ["reduce_alcohol_consumption"], "stg": [1,2,3,4,5], "opr": "max", "ref":"https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health"},
+                        "5 tips for a healthy diet this New Year" : {"beh": ["improve_diet_quality","reduce_alcohol_consumption"], "stg": [1,2,3], "opr": "min","ref":"https://www.who.int/news-room/feature-stories/detail/5-tips-for-a-healthy-diet-this-new-year"},
+                        "Healthy diet": {"beh": ["improve_diet_quality"], "stg": [1,2,3,4,5], "opr": "min","ref":"https://www.who.int/news-room/fact-sheets/detail/healthy-diet"},
+                        "Promoting healthy diets": {"beh": ["improve_diet_quality"], "stg": [3,4,5], "opr": "min","ref":"https://www.who.int/westernpacific/activities/promoting-healthy-diets"},
+                        "Mental disorders": {"beh": ["improve_mental_health"], "stg": [1,2,3,4,5], "opr": "min","ref":"https://www.who.int/news-room/fact-sheets/detail/mental-disorders"},
+                        "World Mental Health Report": {"beh": ["improve_mental_health"], "stg": [3,4,5], "opr": "min","ref":"https://www.who.int/teams/mental-health-and-substance-use/world-mental-health-report"},
+                        "Determinants of health": {"beh": ["seek_medical_help"], "stg": [1,2,3,4,5], "opr": "min","ref":"https://www.who.int/news-room/questions-and-answers/item/determinants-of-health"},
+                        }
 # @formatter:on
+
 
 def diff_user_profile(new_user_profile: dict, old_user_profile: dict) -> dict:
     return_dict = {}
