@@ -14,6 +14,12 @@ fastapi dev main.py
 python data_generator.py
 ```
 
+## Endpoints
+
+- `/` :
+    - `GET` : Health check, returns "Hello World"
+    - `POST` : Pass a user profile in the body and response is a recommendation + debugging info
+
 ## Files and Explanations
 
 - `main.py` : The main file of the server. It contains the FastAPI server and the endpoints. This file also contains the
