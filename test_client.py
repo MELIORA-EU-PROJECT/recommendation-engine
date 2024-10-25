@@ -1,7 +1,7 @@
 import json5
 import requests
 
-url = f"http://localhost:3000/"
+url = f"http://localhost:1564/"
 
 with open("example_patients/alcohol_physical.json", "r") as f:
     data = json5.load(f)

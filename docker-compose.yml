@@ -1,7 +1,7 @@
 services:
-    recommendation_engine:
-        image: meliora_recommendation_engine_prototype
-        build:
-            dockerfile: Dockerfile
-        ports:
-            - "3000:3000"
+  recommendation_engine:
+    image: meliora_recommendation_engine_prototype
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "1564:1564"

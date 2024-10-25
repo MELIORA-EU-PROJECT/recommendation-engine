@@ -11,4 +11,4 @@ RUN pip install requests
 
 COPY *.py .
 
-ENTRYPOINT ["fastapi", "dev", "main.py", "--port", "3000","--host","0.0.0.0"]
+ENTRYPOINT ["fastapi", "dev", "main.py", "--port", "1564","--host","0.0.0.0"]
