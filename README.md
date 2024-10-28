@@ -2,23 +2,34 @@
 
 ## Author : Nikos Gournakis
 
-## Quick Start
+## Quick Start - Server
 
-`python main.py`
+```
+fastapi dev main.py
+```
 
-## Description
-This is a very simple prototype of my approach to a rule based system.
-The system is based on a set of rules that are defined in the `Rules_Config.py` file.
-To define a new rule you need to add the name in the `Rules enum` and then add the implementations
-of the rule in the rules dictionary, where the key is the name that you just inserted in the enum and the
-value is a `Rule` object. Each rule object is a simple predicate. Calling the `Rule` object will apply the rule
-to the given `UserProfile`.
+## Quick Start - Client
 
-The second part of the system are the goal states defined in the `Goals_Config.py` file.
-To define a new goal you need to add the name in the `Goals enum` and then add the implementations
-of the goal in the `goal_states` dictionary, where the key is the name that you just inserted in the enum and the
-value is a `Goal` object. Each goal can have rules and negation rules that define the achieving of the Goal.
-Also, the `Goal` object can extend the rules of another goal by using passing the enum value of the goal that you want to extend
-and the extending rules as a tuple for the rules param. Also, a `Goal` can have multiple sets of rules that can be used to achieve the goal,
-this can be done by passing a list of lists of rules in the rules param.
-Calling the `Goal` object will apply the rules and negation rules to the given `UserProfile` and return if the goal is achieved or not.
+```
+python data_generator.py
+```
+
+## Endpoints
+
+- `/` :
+    - `GET` : Health check, returns "Hello World"
+    - `POST` : Pass a user profile in the body and response is a recommendation + debugging info
+
+## Files and Explanations
+
+- `main.py` : The main file of the server. It contains the FastAPI server and the endpoints. This file also contains the
+  `intervention library` at the top, which is a crucial part of the system.
+- `data_generator.py` : The client that generates random user profiles and sends it to the server. Each user feature is
+  annotated with the distribution logic it follows.
+- `utils.py` : Contains the logic of the steps of the recommendation engine. Most important functions are `
+  infer_integrated_data_layer`, `infer_aggregated_data_layer` and `add_ttm_stages`.
+  See [Recommendation Engine Paper](https://www.notion.so/A-Comprehensive-User-Modeling-Framework-and-a-Recommender-System-for-Personalizing-Well-Being-Relate-72bef7df897f4432bbf6e38fc6bac3bb?pvs=4)
+  and its appendices.
+- `rest of the python files` : These are scratch files used for experimentation and testing.
+- `example_patient.json` : An example of the data model used for the user profiles.
+- `rest of the json files` : These are incremental files showing how each stage affects the user profile.
