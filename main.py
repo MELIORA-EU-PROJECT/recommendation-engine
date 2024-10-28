@@ -5,7 +5,6 @@ All rights reserved
 import logging
 
 import json5
-import uvicorn
 from utils import *
 
 # @formatter:off
