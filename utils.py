@@ -1,6 +1,17 @@
 import math
 import numpy as np
 
+from enum import Enum
+
+
+class Goal(Enum):
+    INCREASE_PHYSICAL_ACTIVITY = "increase_physical_activity"
+    REDUCE_ALCOHOL_CONSUMPTION = "reduce_alcohol_consumption"
+    CEASE_SMOKING = "cease_smoking"
+    IMPROVE_DIET_QUALITY = "improve_diet_quality"
+    IMPROVE_MENTAL_HEALTH = "improve_mental_health"
+    SEEK_MEDICAL_HELP = "seek_medical_help"
+
 
 def infer_integrated_data_layer(user_profile: dict) -> dict:
     # region General Health
@@ -681,22 +692,24 @@ def infer_aggregated_data_layer(user_profile: dict) -> dict:
 def add_ttm_stages(user_profile: dict) -> dict:
     return_dict = {}
     # region "increase_physical_activity"
-    return_dict["increase_physical_activity"] = {"str": user_profile["increase_physical_activity"], "stg": 4}
+    return_dict[Goal.INCREASE_PHYSICAL_ACTIVITY.value] = {"str": user_profile["increase_physical_activity"],
+                                                          "ttm_stages": 4}
     # endregion
     # region "improve_diet_quality"
-    return_dict["improve_diet_quality"] = {"str": user_profile["improve_diet_quality"], "stg": 4}
+    return_dict[Goal.IMPROVE_DIET_QUALITY.value] = {"str": user_profile["improve_diet_quality"], "ttm_stages": 4}
     # endregion
     # region "reduce_alcohol_consumption"
-    return_dict["reduce_alcohol_consumption"] = {"str": user_profile["reduce_alcohol_consumption"], "stg": 4}
+    return_dict[Goal.REDUCE_ALCOHOL_CONSUMPTION.value] = {"str": user_profile["reduce_alcohol_consumption"],
+                                                          "ttm_stages": 4}
     # endregion
     # region "cease_smoking"
-    return_dict["cease_smoking"] = {"str": user_profile["cease_smoking"], "stg": 4}
+    return_dict[Goal.CEASE_SMOKING.value] = {"str": user_profile["cease_smoking"], "ttm_stages": 4}
     # endregion
     # region "improve_mental_health"
-    return_dict["improve_mental_health"] = {"str": user_profile["improve_mental_health"], "stg": 4}
+    return_dict[Goal.IMPROVE_MENTAL_HEALTH.value] = {"str": user_profile["improve_mental_health"], "ttm_stages": 4}
     # endregion
     # region "seek_medical_help"
-    return_dict["seek_medical_help"] = {"str": user_profile["seek_medical_help"], "stg": 4}
+    return_dict[Goal.SEEK_MEDICAL_HELP.value] = {"str": user_profile["seek_medical_help"], "ttm_stages": 4}
     # endregion
     return return_dict
 
@@ -730,14 +743,15 @@ def sim_need(user_profile: dict, intervention_library: dict):
 
         # |b_str - 1|
         distances = []
-        for behavior in intervention_properties["beh"]:
+        for behavior in intervention_properties["goals"]:
+            behavior = behavior.value
             if behavior in user_profile:
                 distances.append(abs(user_profile[behavior]["str"] - 1))
 
         if len(distances) == 0:
             raise ValueError(
                 f"There seems to be a mismatch of behaviours between the user profile and the intervention library.\n"
-                f"Intervention: {intervention_title}, Behaviours: {intervention_properties['beh']}\n"
+                f"Intervention: {intervention_title}, Behaviours: {intervention_properties['goals']}\n"
                 f"User profile: {user_profile}\n"
                 f"Make sure that the behaviours in the intervention library are present in the user profile.")
         if intervention_operator == "min":
@@ -756,18 +770,18 @@ def sim_stage(user_profile: dict, intervention_library: dict):
     sim_stage_dict = {}
     for intervention_title, intervention_properties in intervention_library.items():
         relevant_behaviors_stages = []
-        for behavior in intervention_properties["beh"]:
+        for behavior in intervention_properties["goals"]:
             if behavior in user_profile:
-                relevant_behaviors_stages.append(user_profile[behavior]["stg"])
+                relevant_behaviors_stages.append(user_profile[behavior]["ttm_stages"])
 
-        for stage in intervention_properties["stg"]:
+        for stage in intervention_properties["ttm_stages"]:
             if stage in relevant_behaviors_stages:
                 sim_stage_dict[intervention_title] = 1.0
 
         min_distance = math.inf
         if intervention_title not in sim_stage_dict:
             for i in relevant_behaviors_stages:
-                for j in intervention_properties["stg"]:
+                for j in intervention_properties["ttm_stages"]:
                     if abs(i - j) < min_distance:
                         min_distance = abs(i - j)
             sim_stage_dict[intervention_title] = 1 - 0.25 * min_distance

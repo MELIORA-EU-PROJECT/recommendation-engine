@@ -5,35 +5,39 @@ All rights reserved
 import logging
 
 import json5
+import uvicorn
+
 from utils import *
 
 # @formatter:off
 # TODO: Add more items
-intervention_library = {"Twitter_Post_About_Quiting_Smoking": {"beh": ["cease_smoking"], "stg": [1,2,3], "opr": "max"},
-                        "Youtube_Video_About_Quiting_Smoking": {"beh": ["cease_smoking"], "stg": [2,3], "opr": "max"},
-                        "News_Article_About_Diet_And_Exercise": {"beh": ["improve_diet_quality", "increase_physical_activity"], "stg": [2, 3], "opr": "min"},
-                        "Instagram_Reel_About_Reducing_Alcohol_Intake": {"beh": ["reduce_alcohol_consumption"], "stg": [2,3,4], "opr": "max"},
-                        "TikTok_About_Reducing_Alcohol_Intake": {"beh": ["reduce_alcohol_consumption"], "stg": [5], "opr": "max"},
-                        "Youtube_Short_About_Quiting_Smoking": {"beh": ["cease_smoking"], "stg": [1,2], "opr": "max"},
-                        "Youtube_Video_About_Improving_Life_Quality": {"beh": ["cease_smoking","reduce_alcohol_consumption","improve_diet_quality","increase_physical_activity","improve_mental_health"], "stg": [1,2,3], "opr": "min"},
-                        "9 Proven Benefits of Physical Activity": {"beh": ["increase_physical_activity"], "stg": [1,2,3], "opr": "min"},
-                        "Do I need to walk 10,000 steps per day?": {"beh": ["increase_physical_activity"], "stg": [1], "opr": "min"},
-                        "Staying active to lower your risk of breast cancer: A simple guide to WHO’s physical activity recommendations" : {"beh": ["increase_physical_activity","improve_mental_health"], "stg": [4,5], "opr": "min"},
-                        "Staying active to lower your risk of breast cancer: A simple guide to greek physical activity recommendations" : {"beh": ["increase_physical_activity","improve_mental_health"], "stg": [4,5], "opr": "min"},
-                        "Staying active with breast cancer: Simple tips to keep you moving" : {"beh": ["increase_physical_activity"], "stg": [5], "opr": "min"},
-                        "Tips for a more active lifestyle" : {"beh": ["increase_physical_activity","improve_mental_health"], "stg": [1,2,3], "opr": "min"},
-                        "What are the different types of physical activity?" : {"beh": ["increase_physical_activity"], "stg": [1], "opr": "min"},
-                        "Tobacco": {"beh": ["cease_smoking"], "stg": [1,2,3], "opr": "max", "ref":"https://www.who.int/news-room/fact-sheets/detail/tobacco"},
-                        "Quitting tobacco": {"beh": ["cease_smoking"], "stg": [4,5], "opr": "max","ref":"https://www.who.int/activities/quitting-tobacco"},
-                        "Smoking is the leading cause of chronic obstructive pulmonary disease": {"beh": ["cease_smoking"], "stg": [2,3,4,5], "opr": "max", "ref":"https://www.who.int/news/item/15-11-2023-smoking-is-the-leading-cause-of-chronic-obstructive-pulmonary-disease"},
-                        "No level of alcohol consumption is safe for our health": {"beh": ["reduce_alcohol_consumption"], "stg": [1,2,3,4,5], "opr": "max", "ref":"https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health"},
-                        "5 tips for a healthy diet this New Year" : {"beh": ["improve_diet_quality","reduce_alcohol_consumption"], "stg": [1,2,3], "opr": "min","ref":"https://www.who.int/news-room/feature-stories/detail/5-tips-for-a-healthy-diet-this-new-year"},
-                        "Healthy diet": {"beh": ["improve_diet_quality"], "stg": [1,2,3,4,5], "opr": "min","ref":"https://www.who.int/news-room/fact-sheets/detail/healthy-diet"},
-                        "Promoting healthy diets": {"beh": ["improve_diet_quality"], "stg": [3,4,5], "opr": "min","ref":"https://www.who.int/westernpacific/activities/promoting-healthy-diets"},
-                        "Mental disorders": {"beh": ["improve_mental_health"], "stg": [1,2,3,4,5], "opr": "min","ref":"https://www.who.int/news-room/fact-sheets/detail/mental-disorders"},
-                        "World Mental Health Report": {"beh": ["improve_mental_health"], "stg": [3,4,5], "opr": "min","ref":"https://www.who.int/teams/mental-health-and-substance-use/world-mental-health-report"},
-                        "Determinants of health": {"beh": ["seek_medical_help"], "stg": [1,2,3,4,5], "opr": "min","ref":"https://www.who.int/news-room/questions-and-answers/item/determinants-of-health"},
+intervention_library = {"Twitter_Post_About_Quiting_Smoking": {"goals": [Goal.CEASE_SMOKING], "ttm_stages": [1,2,3], "opr": "max"},
+                        "Youtube_Video_About_Quiting_Smoking": {"goals": [Goal.CEASE_SMOKING], "ttm_stages": [2,3], "opr": "max"},
+                        "News_Article_About_Diet_And_Exercise": {"goals": [Goal.IMPROVE_DIET_QUALITY,Goal.INCREASE_PHYSICAL_ACTIVITY], "ttm_stages": [2, 3], "opr": "min"},
+                        "Instagram_Reel_About_Reducing_Alcohol_Intake": {"goals": [Goal.REDUCE_ALCOHOL_CONSUMPTION], "ttm_stages": [2,3,4], "opr": "max"},
+                        "TikTok_About_Reducing_Alcohol_Intake": {"goals": [Goal.REDUCE_ALCOHOL_CONSUMPTION], "ttm_stages": [5], "opr": "max"},
+                        "Youtube_Short_About_Quiting_Smoking": {"goals": [Goal.CEASE_SMOKING], "ttm_stages": [1,2], "opr": "max"},
+                        "Youtube_Video_About_Improving_Life_Quality": {"goals": [Goal.CEASE_SMOKING,Goal.REDUCE_ALCOHOL_CONSUMPTION,Goal.IMPROVE_DIET_QUALITY,Goal.INCREASE_PHYSICAL_ACTIVITY,Goal.IMPROVE_MENTAL_HEALTH], "ttm_stages": [1,2,3], "opr": "min"},
+                        "9 Proven Benefits of Physical Activity": {"goals": [Goal.INCREASE_PHYSICAL_ACTIVITY], "ttm_stages": [1,2,3], "opr": "min"},
+                        "Do I need to walk 10,000 steps per day?": {"goals": [Goal.INCREASE_PHYSICAL_ACTIVITY], "ttm_stages": [1], "opr": "min"},
+                        "Staying active to lower your risk of breast cancer: A simple guide to WHO’s physical activity recommendations" : {"goals": [Goal.INCREASE_PHYSICAL_ACTIVITY,Goal.IMPROVE_MENTAL_HEALTH], "ttm_stages": [4,5], "opr": "min"},
+                        "Staying active to lower your risk of breast cancer: A simple guide to greek physical activity recommendations" : {"goals": [Goal.INCREASE_PHYSICAL_ACTIVITY,Goal.IMPROVE_MENTAL_HEALTH], "ttm_stages": [4,5], "opr": "min"},
+                        "Staying active with breast cancer: Simple tips to keep you moving" : {"goals": [Goal.INCREASE_PHYSICAL_ACTIVITY], "ttm_stages": [5], "opr": "min"},
+                        "Tips for a more active lifestyle" : {"goals": [Goal.INCREASE_PHYSICAL_ACTIVITY,Goal.IMPROVE_MENTAL_HEALTH], "ttm_stages": [1,2,3], "opr": "min"},
+                        "What are the different types of physical activity?" : {"goals": [Goal.INCREASE_PHYSICAL_ACTIVITY], "ttm_stages": [1], "opr": "min"},
+                        "Tobacco": {"goals": [Goal.CEASE_SMOKING], "ttm_stages": [1,2,3], "opr": "max", "ref":"https://www.who.int/news-room/fact-sheets/detail/tobacco"},
+                        "Quitting tobacco": {"goals": [Goal.CEASE_SMOKING], "ttm_stages": [4,5], "opr": "max","ref":"https://www.who.int/activities/quitting-tobacco"},
+                        "Smoking is the leading cause of chronic obstructive pulmonary disease": {"goals": [Goal.CEASE_SMOKING], "ttm_stages": [2,3,4,5], "opr": "max", "ref":"https://www.who.int/news/item/15-11-2023-smoking-is-the-leading-cause-of-chronic-obstructive-pulmonary-disease"},
+                        "No level of alcohol consumption is safe for our health": {"goals": [Goal.REDUCE_ALCOHOL_CONSUMPTION], "ttm_stages": [1,2,3,4,5], "opr": "max", "ref":"https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health"},
+                        "5 tips for a healthy diet this New Year" : {"goals": [Goal.IMPROVE_DIET_QUALITY,Goal.REDUCE_ALCOHOL_CONSUMPTION], "ttm_stages": [1,2,3], "opr": "min","ref":"https://www.who.int/news-room/feature-stories/detail/5-tips-for-a-healthy-diet-this-new-year"},
+                        "Healthy diet": {"goals": [Goal.IMPROVE_DIET_QUALITY], "ttm_stages": [1,2,3,4,5], "opr": "min","ref":"https://www.who.int/news-room/fact-sheets/detail/healthy-diet"},
+                        "Promoting healthy diets": {"goals": [Goal.IMPROVE_DIET_QUALITY], "ttm_stages": [3,4,5], "opr": "min","ref":"https://www.who.int/westernpacific/activities/promoting-healthy-diets"},
+                        "Mental disorders": {"goals": [Goal.IMPROVE_MENTAL_HEALTH], "ttm_stages": [1,2,3,4,5], "opr": "min","ref":"https://www.who.int/news-room/fact-sheets/detail/mental-disorders"},
+                        "World Mental Health Report": {"goals": [Goal.IMPROVE_MENTAL_HEALTH], "ttm_stages": [3,4,5], "opr": "min","ref":"https://www.who.int/teams/mental-health-and-substance-use/world-mental-health-report"},
+                        "Determinants of health": {"goals": [Goal.SEEK_MEDICAL_HELP], "ttm_stages": [1,2,3,4,5], "opr": "min","ref":"https://www.who.int/news-room/questions-and-answers/item/determinants-of-health"},
                         }
+# intervention_library_mini_courses = {"":}
+
 # @formatter:on
 
 
@@ -87,7 +91,7 @@ async def root(item: Request):
     ttm_layer_profile = diff_user_profile(ttm_user_profile, old_user_profile)
     print(f"Diff User Profile: {json5.dumps(ttm_layer_profile, indent=4, quote_keys=True)}")
     # Similarity Needs
-    ttm_user_profile = {k: {"str": min_max_transform(v["str"], 1, 5), "stg": v["stg"]}
+    ttm_user_profile = {k: {"str": min_max_transform(v["str"], 1, 5), "stg": v["ttm_stages"]}
                         for k, v in ttm_user_profile.items()}
     sim_needs = sim_need(ttm_user_profile, intervention_library)
     sim_stages = sim_stage(ttm_user_profile, intervention_library)
@@ -102,3 +106,6 @@ async def root(item: Request):
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
