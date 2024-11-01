@@ -14,6 +14,7 @@ class Objective(Enum):
     IMPROVE_MENTAL_HEALTH = "improve_mental_health"
     SEEK_MEDICAL_HELP = "seek_medical_help"
 
+
 # @formatter:off
 # TODO: Add more items
 intervention_library = {"Twitter_Post_About_Quiting_Smoking": {"goals": [Objective.CEASE_SMOKING], "ttm_stages": [1,2,3], "opr": "max"},
@@ -833,6 +834,7 @@ def sim_total(sim_needs, sim_stages):
 
     return sim_total_dict
 
+
 def diff_user_profile(new_user_profile: dict, old_user_profile: dict) -> dict:
     return_dict = {}
     for new_key, new_value in new_user_profile.items():
@@ -881,6 +883,18 @@ def get_recommendations(user_profile):
     sim_totals = sim_total(sim_needs, sim_stages)
     sim_totals_filtered = {k: v for k, v in sim_totals.items() if v["sim_total"] >= 0.5}
     sim_total_ordered = dict(sorted(sim_totals_filtered.items(), key=lambda x: x[1]["sim_total"], reverse=True))
-    return {"recommendations": sim_total_ordered, "user_profile": ttm_user_profile,
-            "diffs": {"integrated": integrated_layer_profile, "aggregated": agregated_layer_profile,
-                      "ttm": ttm_layer_profile}}
+    for item_title, item_properties in sim_total_ordered.items():
+        sim_total_ordered[item_title]["goals"] = [g.value for g in item_properties["goals"]]
+    results = {"recommendations": sim_total_ordered, "user_profile": ttm_user_profile,
+               "diffs": {"integrated": integrated_layer_profile, "aggregated": agregated_layer_profile,
+                         "ttm": ttm_layer_profile}}
+    print(f"Recommendations: {json5.dumps(results, indent=4, quote_keys=True)}")
+    return results
+
+
+def filter_recommendations(recommendations: dict, objective: str):
+    return_dict = {}
+    for intervention_title, intervention_properties in recommendations.items():
+        if objective in intervention_properties["goals"]:
+            return_dict[intervention_title] = intervention_properties
+    return return_dict

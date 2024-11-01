@@ -45,7 +45,12 @@ async def mini_course(item: Request, index: int = 0):
     print(f"Mini Course: {json5.dumps(mini_course_obj, indent=4, quote_keys=True)}")
     if index < 0 or index >= len(mini_course_obj["goals"]):
         return {"error": "Index out of bounds"}
-    return mini_course_obj["goals"][index]
+
+    mini_course_objective = mini_course_obj["goals"][index]["objective"]
+    recommendations = get_recommendations(user_profile)["recommendations"]
+    filtered_recommendations = filter_recommendations(recommendations, mini_course_objective)
+    print(f"Filtered Recommendations: {json5.dumps(filtered_recommendations, indent=4, quote_keys=True)}")
+    return filtered_recommendations
 
 
 # Only for debugging
