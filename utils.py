@@ -4,7 +4,7 @@ import numpy as np
 from enum import Enum
 
 
-class Goal(Enum):
+class Objective(Enum):
     INCREASE_PHYSICAL_ACTIVITY = "increase_physical_activity"
     REDUCE_ALCOHOL_CONSUMPTION = "reduce_alcohol_consumption"
     CEASE_SMOKING = "cease_smoking"
@@ -692,24 +692,24 @@ def infer_aggregated_data_layer(user_profile: dict) -> dict:
 def add_ttm_stages(user_profile: dict) -> dict:
     return_dict = {}
     # region "increase_physical_activity"
-    return_dict[Goal.INCREASE_PHYSICAL_ACTIVITY.value] = {"str": user_profile["increase_physical_activity"],
-                                                          "ttm_stages": 4}
+    return_dict[Objective.INCREASE_PHYSICAL_ACTIVITY.value] = {"str": user_profile["increase_physical_activity"],
+                                                               "ttm_stages": 4}
     # endregion
     # region "improve_diet_quality"
-    return_dict[Goal.IMPROVE_DIET_QUALITY.value] = {"str": user_profile["improve_diet_quality"], "ttm_stages": 4}
+    return_dict[Objective.IMPROVE_DIET_QUALITY.value] = {"str": user_profile["improve_diet_quality"], "ttm_stages": 4}
     # endregion
     # region "reduce_alcohol_consumption"
-    return_dict[Goal.REDUCE_ALCOHOL_CONSUMPTION.value] = {"str": user_profile["reduce_alcohol_consumption"],
-                                                          "ttm_stages": 4}
+    return_dict[Objective.REDUCE_ALCOHOL_CONSUMPTION.value] = {"str": user_profile["reduce_alcohol_consumption"],
+                                                               "ttm_stages": 4}
     # endregion
     # region "cease_smoking"
-    return_dict[Goal.CEASE_SMOKING.value] = {"str": user_profile["cease_smoking"], "ttm_stages": 4}
+    return_dict[Objective.CEASE_SMOKING.value] = {"str": user_profile["cease_smoking"], "ttm_stages": 4}
     # endregion
     # region "improve_mental_health"
-    return_dict[Goal.IMPROVE_MENTAL_HEALTH.value] = {"str": user_profile["improve_mental_health"], "ttm_stages": 4}
+    return_dict[Objective.IMPROVE_MENTAL_HEALTH.value] = {"str": user_profile["improve_mental_health"], "ttm_stages": 4}
     # endregion
     # region "seek_medical_help"
-    return_dict[Goal.SEEK_MEDICAL_HELP.value] = {"str": user_profile["seek_medical_help"], "ttm_stages": 4}
+    return_dict[Objective.SEEK_MEDICAL_HELP.value] = {"str": user_profile["seek_medical_help"], "ttm_stages": 4}
     # endregion
     return return_dict
 
@@ -771,6 +771,7 @@ def sim_stage(user_profile: dict, intervention_library: dict):
     for intervention_title, intervention_properties in intervention_library.items():
         relevant_behaviors_stages = []
         for behavior in intervention_properties["goals"]:
+            behavior = behavior.value
             if behavior in user_profile:
                 relevant_behaviors_stages.append(user_profile[behavior]["ttm_stages"])
 
