@@ -24,8 +24,8 @@ python data_generator.py
     - `POST` : Pass a user profile in the body and response is a list of recommendations
 - `/mini_course`
     - `POST` : Pass a user profile and a mini course in the body and a query parameter `index`, indicating which goal in
-      the mini course to recommend for. Response FOR NOW is just the goal of the mini course on the index given. Look at
-      the file `example_endpoint_mini_course.json` for an example of the body.
+      the mini course to recommend for. It responds with all the recommendations that match the goal of the mini course
+      on the index given. Look at the file `example_endpoint_mini_course.json` for an example of the body.
 
 ## Files and Explanations
 
