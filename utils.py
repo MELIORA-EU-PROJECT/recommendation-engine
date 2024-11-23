@@ -575,8 +575,7 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
                         user_profile["safety_concerns"],
                         user_profile["uncomfortability"],
                         user_profile["accuracy_of_physical_activity_information"]]
-
-    user_profile["limitation_to_increase_physical_activity"] = round(np.mean(limiting_factors))
+    user_profile["limitation_to_increase_physical_activity"] = 5 - round(np.mean(limiting_factors))
     # endregion Limitation to increase physical activity
     # region Enhancing factors to increase physical activity
     enhancing_factors = [user_profile["support_from_family_physical_activity"],
@@ -610,7 +609,7 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
                         user_profile["lack_of_motivation"],
                         user_profile["lack_of_healthy_food_preventing_disease"]]
 
-    user_profile["limitation_to_improve_diet_quality"] = round(np.mean(limiting_factors))
+    user_profile["limitation_to_improve_diet_quality"] = 5 - round(np.mean(limiting_factors))
     # endregion Limitation to improve diet quality
     # region Enhancing factors to improve diet quality
     enhancing_factors = [user_profile["low_cost_of_healthy_food"],
