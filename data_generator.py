@@ -753,8 +753,8 @@ user_profile["alcohol_6_or_more_single_occasions"] = random.choice(alcohol_6_or_
 # write a simple explanation of dag integration in the TTM
 import requests
 
-url = f"http://localhost:8000"
-# url = f"http://144.76.87.115:1564/"
+# url = f"http://localhost:8000"
+url = f"http://144.76.87.115:1564/debug_recommend"
 print(f"Sending data to {url}")
 print(f"Data: {user_profile}")
 print(f"to json: {json5.dumps(user_profile, indent=4, quote_keys=True)}")
