@@ -1,7 +1,7 @@
+import glob
+
 import requests
 import html2text
-
-LLAMA_URL = "http://localhost:11434/api/generate"
 
 article = """
 <article class="sf-detail-body-container sf-detail-body-wrapper activity--detail dynamic-content dynamic-content__article">
@@ -86,12 +86,13 @@ WHO
 """
 
 
-def main():
+def extract_beh_stages(article: str) -> [[str], [int]]:
     article_ = html2text.html2text(article)
-    print(article_)
+    # print(article_)
 
+    LLAMA_URL = "http://localhost:11434/api/generate"
     res = requests.post(LLAMA_URL, json={
-        "model": "autocategorize",
+        "model": "autocategorize_simple",
         "prompt": article_,
         "stream": False,
     })
@@ -105,11 +106,37 @@ def main():
     stages_token = "\"ttm_stages\": "
     stages_start = llama_res.find(stages_token)
     stages_end = llama_res.find("\n", stages_start)
-    print(f"Behaviours: {llama_res[beh_start + len(beh_token):beh_end]}")
-    print(f"Stages: {llama_res[stages_start + len(stages_token):stages_end]}")
+    behaviours = llama_res[beh_start + len(beh_token):beh_end]
+    stages = llama_res[stages_start + len(stages_token):stages_end]
+    print(f"Behaviours: {behaviours}")
+    print(f"Stages: {stages}")
+    return behaviours, stages
+
+
+def main():
+    articles = glob.glob("articles/*.html")
+    print(articles)
+
+    results = []
+    for article in articles:
+        with open(article, "r") as f:
+            title = article.split("/")[-1].split(".")[0]
+            article_ = f.read()
+            behaviours, stages = extract_beh_stages(article_)
+            results.append((title, behaviours, stages))
+
+    for title, behaviours, stages in results:
+        print(f"Title: {title}")
+        print(f"Behaviours: {behaviours}")
+        print(f"Stages: {stages}")
+        print("-" * 50)
+
+    print(f"Number of articles: {len(articles)}")
+    print(f"Number of results: {len(results)}")
 
 
 def test():
+    LLAMA_URL = "http://localhost:11434/api/generate"
     res = requests.post(LLAMA_URL, json={
         "model": "autocategorize",
         # "prompt": "What is your name",
