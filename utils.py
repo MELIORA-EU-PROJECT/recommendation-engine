@@ -43,6 +43,222 @@ intervention_library = {"Twitter_Post_About_Quiting_Smoking": {"goals": [Objecti
                         "Determinants of health": {"goals": [Objective.SEEK_MEDICAL_HELP], "ttm_stages": [1,2,3,4,5], "opr": "min","ref":"https://www.who.int/news-room/questions-and-answers/item/determinants-of-health"},
                         }
 # @formatter:on
+mini_course_physical_activity = {
+    "mini_course_id": "123",
+    "title": "Physical Activity Mini Course",
+    "objectives": [Objective.INCREASE_PHYSICAL_ACTIVITY],
+    "goals": [{
+        "description": "Increase the daily number of steps",
+        "day": 4,
+        "category": "physical_activity",
+        # "indicator":,
+        "target": {
+            "goal": 10000,
+            "units": "steps per day",
+            "condition": "gte"
+        },
+        "motivational_tips": [
+            {
+                "stage": "Fully achieved",
+                "tip_text": "Congratulations! You have achieved your goal. Walking more next week will be even better!",
+                "tip_videos": None
+            },
+            {
+                "stage": "Partially achieved",
+                "tip_text": "You are doing great! Keep it up!",
+                "tip_videos": None
+            },
+            {
+                "stage": "Not achieved at all",
+                "tip_text": "It's never too late to start walking more. Start with small steps and increase gradually.",
+                "tip_videos": None
+            }
+        ]
+
+    }],
+    "educational_materials": [
+        {1: ["Not Implemented Yet"],
+         2: ["Not Implemented Yet"],
+         3: ["Not Implemented Yet"],
+         4: ["64d29f7e92cb40a5c4567d12"],
+         5: ["Not Implemented Yet"],
+         6: ["Not Implemented Yet"],
+         7: ["Not Implemented Yet"],
+         }],
+    "language": "Greek",
+    "end_of_week_mini_quiz": {
+        "day": 7,
+        "questions": [
+            {
+                "question": "What is the recommended daily number of steps?",
+                "possible_answers": [
+                    "5000",
+                    "10000",
+                    "15000"
+                ],
+                "correct_answer": [1]
+            },
+            {
+                "question": "How many minutes of moderate physical activity are recommended per week?",
+                "possible_answers": [
+                    "150",
+                    "450"
+                    "300",
+                ],
+                "correct_answer": [2]
+            }
+        ]
+    },
+    "default_schedule": [
+        {
+        "day": 1,
+        "order": [
+            {
+                "time": "08:00",
+                "type": "goal"
+            },
+            {
+                "time": "12:00",
+                "type": "educational_material"
+            }
+        ]
+    },
+        {
+            "day": 2,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+                {
+                    "time": "12:00",
+                    "type": "educational_material"
+                }
+            ]
+        }, {
+            "day": 3,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+                {
+                    "time": "12:00",
+                    "type": "educational_material"
+                }
+            ]
+        }, {
+            "day": 4,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+                {
+                    "time": "12:00",
+                    "type": "educational_material"
+                }
+            ]
+        }, {
+            "day": 5,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+                {
+                    "time": "12:00",
+                    "type": "educational_material"
+                }
+            ]
+        }, {
+            "day": 6,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+                {
+                    "time": "12:00",
+                    "type": "educational_material"
+                }
+            ]
+        }, {
+            "day": 7,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+                {
+                    "time": "12:00",
+                    "type": "educational_material"
+                },
+                {
+                    "time": "18:00",
+                    "type": "end_of_week_mini_quiz"
+                }
+            ]
+        }, {
+            "day": 8,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+            ]
+        }, {
+            "day": 9,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+            ]
+        }, {
+            "day": 10,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+            ]
+        }, {
+            "day": 11,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+            ]
+        }, {
+            "day": 12,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+            ]
+        }, {
+            "day": 13,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+            ]
+        }, {
+            "day": 14,
+            "order": [
+                {
+                    "time": "12:00",
+                    "type": "end_of_week_mini_quiz"
+                }
+            ]
+        },
+    ]
+}
+mini_course_library = {mini_course_physical_activity["mini_course_id"]: mini_course_physical_activity}
 
 
 def infer_integrated_data_layer(user_profile: dict) -> dict:
@@ -897,3 +1113,7 @@ def filter_recommendations(recommendations: dict, objective: str):
         if objective in intervention_properties["goals"]:
             return_dict[intervention_title] = intervention_properties
     return return_dict
+
+
+def get_day_by_user_id(user_id: int):
+    return {"day": 4}

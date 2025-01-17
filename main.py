@@ -22,12 +22,37 @@ async def root(item: Request):
 
 @app.post("/recommend")
 async def recommend(item: Request):
+    # TODO: implement 0 result handling
     user_profile = await item.json()
     print(f"User Profile: {json5.dumps(user_profile, indent=4, quote_keys=True)}")
     full_recommendations = get_recommendations(user_profile)
     recommendations = {k: v["sim_total"] for k, v in full_recommendations["recommendations"].items()}
     full_recommendations["recommendations"] = recommendations
     return full_recommendations
+
+
+@app.get("/{user_id}/day")
+async def get_day(user_id: str):
+    try:
+        user_id = int(user_id)
+    except ValueError:
+        return {"error": "User ID must be an integer"}
+    return get_day_by_user_id(user_id)
+
+
+@app.get("/mini_course/{mini_course_id}/{day}")
+async def get_mini_course_day(mini_course_id: str, day: str):
+    try:
+        day = int(day)
+    except ValueError:
+        return {"error": "Day must be an integer"}
+
+    if mini_course_id not in mini_course_library:
+        return {"error": "Mini course not found"}
+
+    mini_course = mini_course_library[mini_course_id]
+
+    return {"schedule": mini_course["default_schedule"][day]}
 
 
 @app.get("/")
