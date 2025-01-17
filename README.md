@@ -22,6 +22,12 @@ python data_generator.py
     - `POST` : Pass a user profile in the body and response is a list of recommendations + debugging info
 - `/recommend` :
     - `POST` : Pass a user profile in the body and response is a list of recommendations
+- `/{user_id}/day` :
+    - `GET` : Pass a user id as a path parameter. The response is the user's current day according to the active mini
+      course.
+- `/mini_course/{mini_course_id}/{day}` :
+    - `GET` : Pass a mini course id as a path parameter. Pass a day as a query parameter. The response is the schedule
+      of the mini course at the given day.
 - `/mini_course`
     - `POST` : Pass a user profile and a mini course in the body and a query parameter `index`, indicating which goal in
       the mini course to recommend for. It responds with all the recommendations that match the goal of the mini course
