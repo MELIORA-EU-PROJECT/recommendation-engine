@@ -52,7 +52,18 @@ async def get_mini_course_day(mini_course_id: str, day: str):
 
     mini_course = mini_course_library[mini_course_id]
 
-    return {"schedule": mini_course["default_schedule"][day]}
+    all_educational_material = [mini_course["educational_materials"][i][day] for i in
+                                range(len(mini_course["educational_materials"]))]
+
+    final_educational_material = []
+    for list_ in all_educational_material:
+        for item in list_:
+            final_educational_material.append(item)
+
+    return {
+        "schedule": mini_course["default_schedule"][day],
+        "educational_material": final_educational_material
+    }
 
 
 @app.get("/")

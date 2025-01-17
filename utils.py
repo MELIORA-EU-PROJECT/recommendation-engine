@@ -84,7 +84,8 @@ mini_course_physical_activity = {
          5: ["Not Implemented Yet"],
          6: ["Not Implemented Yet"],
          7: ["Not Implemented Yet"],
-         }],
+         },
+    ],
     "language": "Greek",
     "end_of_week_mini_quiz": {
         "day": 7,
@@ -111,18 +112,18 @@ mini_course_physical_activity = {
     },
     "default_schedule": [
         {
-        "day": 1,
-        "order": [
-            {
-                "time": "08:00",
-                "type": "goal"
-            },
-            {
-                "time": "12:00",
-                "type": "educational_material"
-            }
-        ]
-    },
+            "day": 1,
+            "order": [
+                {
+                    "time": "08:00",
+                    "type": "goal"
+                },
+                {
+                    "time": "12:00",
+                    "type": "educational_material"
+                }
+            ]
+        },
         {
             "day": 2,
             "order": [
