@@ -10,10 +10,12 @@ from utils import *
 
 from fastapi import FastAPI, Request, Response
 
+from dotenv import load_dotenv
 from colorama import init as colorama_init
 from colorama import Fore, Style
 
 colorama_init()
+load_dotenv()
 
 app = FastAPI()
 

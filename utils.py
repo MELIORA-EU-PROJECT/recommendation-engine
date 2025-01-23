@@ -1,4 +1,5 @@
 import math
+import os
 
 import json5
 import numpy as np
@@ -1128,7 +1129,7 @@ def create_user_profile(userId: str):
 	url_ids = "https://datacollection.risa.eu/onboarding/onboardingQuestionnaire/ids"
 
 	headers = {
-		"Authorization": "Basic bWVsaW9yYTpqeEtFd08wVjR2N2kweG8="
+		"Authorization": os.getenv("BASIC_AUTHORIZATION_ONBOARDING_QUESTIONNAIRE")
 	}
 
 	response = requests.get(url_ids, headers=headers)

@@ -2,3 +2,4 @@ __pycache__
 example_patient_*.json
 evaluation_res
 .env
+.idea
