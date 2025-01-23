@@ -1,4 +1,6 @@
 import glob
+from colorama import init as colorama_init
+from colorama import Fore, Back, Style
 
 import requests
 import html2text
@@ -86,35 +88,80 @@ WHO
 """
 
 
-def extract_beh_stages(article: str) -> [[str], [int]]:
+def extract_beh_stages(article: str, title: str) -> [[str], [int]]:
     article_ = html2text.html2text(article)
     # print(article_)
 
     LLAMA_URL = "http://localhost:11434/api/generate"
-    res = requests.post(LLAMA_URL, json={
-        "model": "autocategorize_simple",
-        "prompt": article_,
-        "stream": False,
-    })
+    behaviours = []
+    stages = []
 
-    llama_res: str = res.json()["response"]
-    print(llama_res)
-    beh_token = "\"behaviours\": "
-    beh_start = llama_res.find(beh_token)
-    beh_end = llama_res.find("\n", beh_start)
+    NUM_OF_RETRIES = 5
+    retries = 0
+    while True:
+        if retries > NUM_OF_RETRIES:
+            print(f"{Fore.RED}Failed to extract behaviours for article: {title}{Style.RESET_ALL}")
+            behaviours = []
+            stages = []
+            break
 
-    stages_token = "\"ttm_stages\": "
-    stages_start = llama_res.find(stages_token)
-    stages_end = llama_res.find("\n", stages_start)
-    behaviours = llama_res[beh_start + len(beh_token):beh_end]
-    stages = llama_res[stages_start + len(stages_token):stages_end]
+        res = requests.post(LLAMA_URL, json={
+            "model": "autocategorize_simple",
+            # "model": "testing_mistral",
+            "prompt": article_,
+            "stream": False,
+            # "options": {
+            #     "main_gpu": 0,
+            # }
+        })
+        llama_res: str = res.json()["response"]
+        print(f"llama_res=!{llama_res}!")
+        beh_token = "behaviours\": "
+        beh_start = llama_res.find(beh_token)
+        beh_end = llama_res.find("\n", beh_start)
+
+        stages_token = "\"ttm_stages\": "
+        stages_start = llama_res.find(stages_token)
+        stages_end = llama_res.find("\n", stages_start)
+
+        try:
+            behaviours = llama_res[beh_start + len(beh_token):beh_end]
+            print(f"Behaviours before eval: !{behaviours}!")
+            behaviours = eval(behaviours)
+        except Exception as e:
+            print(f"{Fore.RED}Error: {e}")
+            print(f"Failed to extract behaviours, retrying for article: {title}{Style.RESET_ALL}")
+            retries += 1
+            continue
+
+        try:
+            if stages_end != -1:
+                stages = llama_res[stages_start + len(stages_token):stages_end]
+            else:
+                stages = llama_res[stages_start + len(stages_token):].strip()
+            print(f"Stages before eval: !{stages}!")
+            stages = eval(stages)
+
+        except Exception as e:
+            print(f"{Fore.RED}Error: {e}")
+            print(f"Failed to extract behaviours, retrying for article: {title}{Style.RESET_ALL}")
+            retries += 1
+            continue
+
+        break
+
+    print(f"{Fore.GREEN}Title: {title}")
     print(f"Behaviours: {behaviours}")
-    print(f"Stages: {stages}")
+    print(f"Stages: {stages}{Style.RESET_ALL}")
     return behaviours, stages
 
 
 def main():
     articles = glob.glob("articles/*.html")
+    blacklist = ["articles/5 heart-healthy food swaps.html",
+                 "articles/5 protein-packed foods for healthy, meatless meals.html",
+                 "articles/runner's diet.html"]
+    articles = [article for article in articles if article not in blacklist]
     print(articles)
 
     results = []
@@ -122,7 +169,7 @@ def main():
         with open(article, "r") as f:
             title = article.split("/")[-1].split(".")[0]
             article_ = f.read()
-            behaviours, stages = extract_beh_stages(article_)
+            behaviours, stages = extract_beh_stages(article_, title)
             results.append((title, behaviours, stages))
 
     for title, behaviours, stages in results:
@@ -131,8 +178,18 @@ def main():
         print(f"Stages: {stages}")
         print("-" * 50)
 
+    failed_to_extract = []
+    for title, behaviours, stages in results:
+        if len(behaviours) == 0 and len(stages) == 0:
+            failed_to_extract.append(title)
+
+    for title in failed_to_extract:
+        print(f"Title: {title}")
+        print("-" * 50)
+
     print(f"Number of articles: {len(articles)}")
     print(f"Number of results: {len(results)}")
+    print(f"Number of articles that failed extraction: {len(failed_to_extract)}")
 
 
 def test():
@@ -148,5 +205,6 @@ def test():
 
 
 if __name__ == "__main__":
+    colorama_init()
     main()
     # test()
