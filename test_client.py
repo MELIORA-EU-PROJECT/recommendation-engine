@@ -2,7 +2,8 @@ import json5
 import requests
 
 # url = f"http://localhost:1564/"
-url = f"http://144.76.87.115:1564/debug_recommend"
+# url = f"http://144.76.87.115:1564/debug_recommend"
+url = f"http://144.76.87.115:1564/recommend"
 
 # with open("example_patients/alcohol_physical.json", "r") as f:
 # with open("example_patients/sim_stage_showcase.json", "r") as f:
