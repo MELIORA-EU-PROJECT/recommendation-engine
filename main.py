@@ -8,7 +8,7 @@ import uvicorn
 
 from utils import *
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Response
 
 from colorama import init as colorama_init
 from colorama import Fore, Style
@@ -34,22 +34,28 @@ def read_root():
 	return {"Hello": "World"}
 
 
-@app.post("/recommend",
-		  summary="Get recommendations for a user profile (main endpoint)",
-		  responses={
-			  200: {
-				  "description": "Recommendations for the user profile given",
-				  "content": {
-					  "application/json": {
-						  "example": {
-						  }
-					  }
-				  }
-			  }
-		  })
-async def recommend(item: Request):
+@app.get("/recommend/{userId}",
+		 summary="Get recommendations for a user profile (main endpoint)",
+		 responses={
+			 200: {
+				 "description": "Recommendations for the user profile given",
+				 "content": {
+					 "application/json": {
+						 "example": {
+						 }
+					 }
+				 }
+			 }
+		 })
+async def recommend(userId: str, response: Response):
 	# TODO: implement 0 result handling
-	user_profile = await item.json()
+	user_profile = create_user_profile(userId)
+
+	# TODO: handle missing userId and Database-connection errors differently
+	if not user_profile:
+		response.status_code = 500
+		return {"error": "There was an error retrieving the user profile"}
+
 	print(f"User Profile: {json5.dumps(user_profile, indent=4, quote_keys=True)}")
 	full_recommendations = get_recommendations(user_profile)
 	recommendations = {k: v["sim_total"] for k, v in full_recommendations["recommendations"].items()}
@@ -57,9 +63,16 @@ async def recommend(item: Request):
 	return full_recommendations
 
 
-@app.post("/debug_recommend")
-async def root(item: Request):
-	user_profile = await item.json()
+@app.get("/debug_recommend/{userId}", )
+async def root(userId: str, response: Response):
+	# TODO: implement 0 result handling
+	user_profile = create_user_profile(userId)
+
+	# TODO: handle missing userId and Database-connection errors differently
+	if not user_profile:
+		response.status_code = 500
+		return {"error": "There was an error retrieving the user profile"}
+
 	print(f"User Profile: {json5.dumps(user_profile, indent=4, quote_keys=True)}")
 	return get_recommendations(user_profile)
 

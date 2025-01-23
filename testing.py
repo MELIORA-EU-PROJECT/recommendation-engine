@@ -1,7 +1,7 @@
 import requests
 import json5
 
-
+from utils import create_user_profile
 
 # url = "https://datacollection.risa.eu/onboarding/participantsBaseline/all"
 create_user_profile("EL553569TEST")
