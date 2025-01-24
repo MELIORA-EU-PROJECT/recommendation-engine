@@ -444,7 +444,7 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 					 "4-5 servings per day", "6 or more servings per day"]
 	# 6 + 7 + 6 + 6 + 8 + 8 + 6 + 5 + 6 = 58
 
-	_3_or_more_red_meat_weekly = user_profile["3_or_more_red_meat_weekly"]
+	three_or_more_red_meat_weekly = user_profile["three_or_more_red_meat_weekly"]
 	how_often_fruit = user_profile["how_often_fruit"]
 	how_often_fruit = abs(serving_scale.index(how_often_fruit) - serving_scale.index("2-3 servings per day"))
 
@@ -476,7 +476,7 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 	how_often_sweets = user_profile["how_often_sweets"]
 	how_often_sweets = serving_scale.index(how_often_sweets) - serving_scale.index("1-2 servings per week")
 
-	aggregate_distances = how_often_fruit + how_often_vegetables + how_often_nuts + how_often_fish + how_often_whole_grain + how_often_refined_grain + how_often_low_fat_dairy + how_often_high_fat_dairy + how_often_sweets
+	aggregate_distances = three_or_more_red_meat_weekly + how_often_fruit + how_often_vegetables + how_often_nuts + how_often_fish + how_often_whole_grain + how_often_refined_grain + how_often_low_fat_dairy + how_often_high_fat_dairy + how_often_sweets
 	match aggregate_distances:
 		case num if num <= 11:
 			aggregate_distances = 5
@@ -1105,7 +1105,8 @@ def get_recommendations(user_profile):
 	sim_total_ordered = dict(sorted(sim_totals_filtered.items(), key=lambda x: x[1]["sim_total"], reverse=True))
 	for item_title, item_properties in sim_total_ordered.items():
 		sim_total_ordered[item_title]["goals"] = [g.value for g in item_properties["goals"]]
-	results = {"recommendations": sim_total_ordered, "user_profile": ttm_user_profile,
+	recommendations = [{"title": k, "info": v} for k, v in sim_total_ordered.items()]
+	results = {"recommendations": recommendations, "user_profile": ttm_user_profile,
 			   "diffs": {"integrated": integrated_layer_profile, "aggregated": agregated_layer_profile,
 						 "ttm": ttm_layer_profile}}
 	print(f"Recommendations: {json5.dumps(results, indent=4, quote_keys=True)}")
