@@ -1292,7 +1292,7 @@ def create_user_profile(userId: str):
 				elif option["option"] == "feeling_down":
 					user_profile["depression"] = value
 				elif option["option"] == "little_interest":
-					user_profile["interest_loss"] = value
+					user_profile["uninterest"] = value
 				else:
 					raise ValueError(f"Invalid recent_problems_frequency option: {option['option']}")
 	if "symptoms_experienced_last_week" in temp_user_profile:
@@ -1355,175 +1355,182 @@ def create_user_profile(userId: str):
 	if "typical_daily_alcohol_intake" in temp_user_profile:
 		if temp_user_profile["typical_daily_alcohol_intake"] is not None:
 			user_profile["drinks_per_session"] = temp_user_profile["typical_daily_alcohol_intake"][0]["answer"]
+		else:
+			user_profile["drinks_per_session"] = "1-2"
 	if "frequent_heavy_drinking" in temp_user_profile:
 		if temp_user_profile["frequent_heavy_drinking"] is not None:
 			user_profile["how_often_6_or_more_drinks"] = temp_user_profile["frequent_heavy_drinking"][0]["answer"]
+		else:
+			user_profile["how_often_6_or_more_drinks"] = "never"
 	if "eats_red_meat_weekly" in temp_user_profile:
 		if temp_user_profile["eats_red_meat_weekly"] is not None:
-			user_profile["3_or_more_red_meat_weekly"] = True if temp_user_profile["eats_red_meat_weekly"][0][
-																	"answer"] == "yes" else False
+			user_profile["three_or_more_red_meat_weekly"] = True if temp_user_profile["eats_red_meat_weekly"][0][
+																		"answer"] == "yes" else False
 	if "fresh_fruit_consumption" in temp_user_profile:
-		if temp_user_profile["fresh_fruit_consumption"] is not None:
+		if temp_user_profile["fresh_fruit_consumption"][0] is not None:
 			value = ""
-			if temp_user_profile["answer"] is None:
+			if temp_user_profile["fresh_fruit_consumption"][0]["answer"] is None:
 				value = temp_user_profile["option"]
-			elif temp_user_profile["answer"] == "not_eat_at_all":
+			elif temp_user_profile["fresh_fruit_consumption"][0]["answer"] == "not_eat_at_all":
 				value = "I do not eat it at all"
-			elif temp_user_profile["answer"] == "less_than_1s_per_week":
+			elif temp_user_profile["fresh_fruit_consumption"][0]["answer"] == "less_than_1s_per_week":
 				value = "Less than 1 serving per week"
-			elif temp_user_profile["answer"] == "1-2_per_week":
+			elif temp_user_profile["fresh_fruit_consumption"][0]["answer"] == "1-2_per_week":
 				value = "1-2 servings per week"
-			elif temp_user_profile["answer"] == "3-4_per_week":
+			elif temp_user_profile["fresh_fruit_consumption"][0]["answer"] == "3-4_per_week":
 				value = "3-4 servings per week"
-			elif temp_user_profile["answer"] == "5-6_per_week":
+			elif temp_user_profile["fresh_fruit_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
 
 			user_profile["how_often_fruit"] = value
 	if "vegetable_consumption" in temp_user_profile:
-		if temp_user_profile["vegetable_consumption"] is not None:
+		if temp_user_profile["vegetable_consumption"][0] is not None:
 
 			value = ""
-			if temp_user_profile["answer"] is None:
+			if temp_user_profile["vegetable_consumption"][0]["answer"] is None:
 				value = temp_user_profile["option"]
-			elif temp_user_profile["answer"] == "not_eat_at_all":
+			elif temp_user_profile["vegetable_consumption"][0]["answer"] == "not_eat_at_all":
 				value = "I do not eat it at all"
-			elif temp_user_profile["answer"] == "less_than_1s_per_week":
+			elif temp_user_profile["vegetable_consumption"][0]["answer"] == "less_than_1s_per_week":
 				value = "Less than 1 serving per week"
-			elif temp_user_profile["answer"] == "1-2_per_week":
+			elif temp_user_profile["vegetable_consumption"][0]["answer"] == "1-2_per_week":
 				value = "1-2 servings per week"
-			elif temp_user_profile["answer"] == "3-4_per_week":
+			elif temp_user_profile["vegetable_consumption"][0]["answer"] == "3-4_per_week":
 				value = "3-4 servings per week"
-			elif temp_user_profile["answer"] == "5-6_per_week":
+			elif temp_user_profile["vegetable_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
 
 			user_profile["how_often_vegetables"] = value
 	if "legumes_nuts_seeds_consumption" in temp_user_profile:
-		if temp_user_profile["legumes_nuts_seeds_consumption"] is not None:
+		if temp_user_profile["legumes_nuts_seeds_consumption"][0] is not None:
 			value = ""
-			if temp_user_profile["answer"] is None:
+			if temp_user_profile["legumes_nuts_seeds_consumption"][0]["answer"] is None:
 				value = temp_user_profile["option"]
-			elif temp_user_profile["answer"] == "not_eat_at_all":
+			elif temp_user_profile["legumes_nuts_seeds_consumption"][0]["answer"] == "not_eat_at_all":
 				value = "I do not eat it at all"
-			elif temp_user_profile["answer"] == "less_than_1s_per_week":
+			elif temp_user_profile["legumes_nuts_seeds_consumption"][0]["answer"] == "less_than_1s_per_week":
 				value = "Less than 1 serving per week"
-			elif temp_user_profile["answer"] == "1-2_per_week":
+			elif temp_user_profile["legumes_nuts_seeds_consumption"][0]["answer"] == "1-2_per_week":
 				value = "1-2 servings per week"
-			elif temp_user_profile["answer"] == "3-4_per_week":
+			elif temp_user_profile["legumes_nuts_seeds_consumption"][0]["answer"] == "3-4_per_week":
 				value = "3-4 servings per week"
-			elif temp_user_profile["answer"] == "5-6_per_week":
+			elif temp_user_profile["legumes_nuts_seeds_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
 
 			user_profile["how_often_nuts"] = value
 	if "fish_seafood_consumption" in temp_user_profile:
-		if temp_user_profile["fish_seafood_consumption"] is not None:
+		if temp_user_profile["fish_seafood_consumption"][0] is not None:
 			value = ""
-			if temp_user_profile["answer"] is None:
+			if temp_user_profile["fish_seafood_consumption"][0]["answer"] is None:
 				value = temp_user_profile["option"]
-			elif temp_user_profile["answer"] == "not_eat_at_all":
+			elif temp_user_profile["fish_seafood_consumption"][0]["answer"] == "not_eat_at_all":
 				value = "I do not eat it at all"
-			elif temp_user_profile["answer"] == "less_than_1s_per_week":
+			elif temp_user_profile["fish_seafood_consumption"][0]["answer"] == "less_than_1s_per_week":
 				value = "Less than 1 serving per week"
-			elif temp_user_profile["answer"] == "1-2_per_week":
+			elif temp_user_profile["fish_seafood_consumption"][0]["answer"] == "1-2_per_week":
 				value = "1-2 servings per week"
-			elif temp_user_profile["answer"] == "3-4_per_week":
+			elif temp_user_profile["fish_seafood_consumption"][0]["answer"] == "3-4_per_week":
 				value = "3-4 servings per week"
-			elif temp_user_profile["answer"] == "5-6_per_week":
+			elif temp_user_profile["fish_seafood_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
 
 			user_profile["how_often_fish"] = value
 	if "whole_grains_consumption" in temp_user_profile:
-		if temp_user_profile["whole_grains_consumption"] is not None:
+		if temp_user_profile["whole_grains_consumption"][0] is not None:
 
 			value = ""
-			if temp_user_profile["answer"] is None:
+			if temp_user_profile["whole_grains_consumption"][0]["answer"] is None:
 				value = temp_user_profile["option"]
-			elif temp_user_profile["answer"] == "not_eat_at_all":
+			elif temp_user_profile["whole_grains_consumption"][0]["answer"] == "not_eat_at_all":
 				value = "I do not eat it at all"
-			elif temp_user_profile["answer"] == "less_than_1s_per_week":
+			elif temp_user_profile["whole_grains_consumption"][0]["answer"] == "less_than_1s_per_week":
 				value = "Less than 1 serving per week"
-			elif temp_user_profile["answer"] == "1-2_per_week":
+			elif temp_user_profile["whole_grains_consumption"][0]["answer"] == "1-2_per_week":
 				value = "1-2 servings per week"
-			elif temp_user_profile["answer"] == "3-4_per_week":
+			elif temp_user_profile["whole_grains_consumption"][0]["answer"] == "3-4_per_week":
 				value = "3-4 servings per week"
-			elif temp_user_profile["answer"] == "5-6_per_week":
+			elif temp_user_profile["whole_grains_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
 
 			user_profile["how_often_whole_grain"] = value
 	if "refined_grains_consumption" in temp_user_profile:
-		if temp_user_profile["refined_grains_consumption"] is not None:
+		if temp_user_profile["refined_grains_consumption"][0] is not None:
 
 			value = ""
-			if temp_user_profile["answer"] is None:
+			if temp_user_profile["refined_grains_consumption"][0]["answer"] is None:
 				value = temp_user_profile["option"]
-			elif temp_user_profile["answer"] == "not_eat_at_all":
+			elif temp_user_profile["refined_grains_consumption"][0]["answer"] == "not_eat_at_all":
 				value = "I do not eat it at all"
-			elif temp_user_profile["answer"] == "less_than_1s_per_week":
+			elif temp_user_profile["refined_grains_consumption"][0]["answer"] == "less_than_1s_per_week":
 				value = "Less than 1 serving per week"
-			elif temp_user_profile["answer"] == "1-2_per_week":
+			elif temp_user_profile["refined_grains_consumption"][0]["answer"] == "1-2_per_week":
 				value = "1-2 servings per week"
-			elif temp_user_profile["answer"] == "3-4_per_week":
+			elif temp_user_profile["refined_grains_consumption"][0]["answer"] == "3-4_per_week":
 				value = "3-4 servings per week"
-			elif temp_user_profile["answer"] == "5-6_per_week":
+			elif temp_user_profile["refined_grains_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
 
 			user_profile["how_often_refined_grain"] = value
 	if "low_fat_dairy_consumption" in temp_user_profile:
-		if temp_user_profile["low_fat_dairy_consumption"] is not None:
+		if temp_user_profile["low_fat_dairy_consumption"][0] is not None:
 
 			value = ""
-			if temp_user_profile["answer"] is None:
+			if temp_user_profile["low_fat_dairy_consumption"][0]["answer"] is None:
 				value = temp_user_profile["option"]
-			elif temp_user_profile["answer"] == "not_eat_at_all":
+			elif temp_user_profile["low_fat_dairy_consumption"][0]["answer"] == "not_eat_at_all":
 				value = "I do not eat it at all"
-			elif temp_user_profile["answer"] == "less_than_1s_per_week":
+			elif temp_user_profile["low_fat_dairy_consumption"][0]["answer"] == "less_than_1s_per_week":
 				value = "Less than 1 serving per week"
-			elif temp_user_profile["answer"] == "1-2_per_week":
+			elif temp_user_profile["low_fat_dairy_consumption"][0]["answer"] == "1-2_per_week":
 				value = "1-2 servings per week"
-			elif temp_user_profile["answer"] == "3-4_per_week":
+			elif temp_user_profile["low_fat_dairy_consumption"][0]["answer"] == "3-4_per_week":
 				value = "3-4 servings per week"
-			elif temp_user_profile["answer"] == "5-6_per_week":
+			elif temp_user_profile["low_fat_dairy_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
 
 			user_profile["how_often_low_fat_dairy"] = value
 	if "high_fat_dairy_saturated_fats_consumption" in temp_user_profile:
-		if temp_user_profile["high_fat_dairy_saturated_fats_consumption"] is not None:
+		if temp_user_profile["high_fat_dairy_saturated_fats_consumption"][0] is not None:
 
 			value = ""
-			if temp_user_profile["answer"] is None:
+			if temp_user_profile["high_fat_dairy_saturated_fats_consumption"][0]["answer"] is None:
 				value = temp_user_profile["option"]
-			elif temp_user_profile["answer"] == "not_eat_at_all":
+			elif temp_user_profile["high_fat_dairy_saturated_fats_consumption"][0]["answer"] == "not_eat_at_all":
 				value = "I do not eat it at all"
-			elif temp_user_profile["answer"] == "less_than_1s_per_week":
+			elif temp_user_profile["high_fat_dairy_saturated_fats_consumption"][0]["answer"] == "less_than_1s_per_week":
 				value = "Less than 1 serving per week"
-			elif temp_user_profile["answer"] == "1-2_per_week":
+			elif temp_user_profile["high_fat_dairy_saturated_fats_consumption"][0]["answer"] == "1-2_per_week":
 				value = "1-2 servings per week"
-			elif temp_user_profile["answer"] == "3-4_per_week":
+			elif temp_user_profile["high_fat_dairy_saturated_fats_consumption"][0]["answer"] == "3-4_per_week":
 				value = "3-4 servings per week"
-			elif temp_user_profile["answer"] == "5-6_per_week":
+			elif temp_user_profile["high_fat_dairy_saturated_fats_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
 
 			user_profile["how_often_high_fat_dairy"] = value
 	if "sweets_consumption" in temp_user_profile:
-		if temp_user_profile["sweets_consumption"] is not None:
+		if temp_user_profile["sweets_consumption"][0] is not None:
 
 			value = ""
-			if temp_user_profile["answer"] is None:
+			if temp_user_profile["sweets_consumption"][0]["answer"] is None:
 				value = temp_user_profile["option"]
-			elif temp_user_profile["answer"] == "not_eat_at_all":
+			elif temp_user_profile["sweets_consumption"][0]["answer"] == "not_eat_at_all":
 				value = "I do not eat it at all"
-			elif temp_user_profile["answer"] == "less_than_1s_per_week":
+			elif temp_user_profile["sweets_consumption"][0]["answer"] == "less_than_1s_per_week":
 				value = "Less than 1 serving per week"
-			elif temp_user_profile["answer"] == "1-2_per_week":
+			elif temp_user_profile["sweets_consumption"][0]["answer"] == "1-2_per_week":
 				value = "1-2 servings per week"
-			elif temp_user_profile["answer"] == "3-4_per_week":
+			elif temp_user_profile["sweets_consumption"][0]["answer"] == "3-4_per_week":
 				value = "3-4 servings per week"
-			elif temp_user_profile["answer"] == "5-6_per_week":
+			elif temp_user_profile["sweets_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
 
 			user_profile["how_often_sweets"] = value
 	if "dietary_restriction_factors" in temp_user_profile:
 		if temp_user_profile["dietary_restriction_factors"] is not None:
 			for option in temp_user_profile["dietary_restriction_factors"]:
+				if option["option"] is None:
+					continue
+
 				if option["answer"] == "definitely_limiting":
 					value = 1
 				elif option["answer"] == "somewhat_limiting":
@@ -1627,27 +1634,27 @@ def create_user_profile(userId: str):
 				elif option["option"] == "role_modeling_healthy_diet":
 					user_profile["role_model"] = value
 	if "tobacco_use_history" in temp_user_profile:
-		if temp_user_profile["tobacco_use_history"] is not None:
-			if temp_user_profile["tobacco_use_history"] == "never_smoked":
+		if temp_user_profile["tobacco_use_history"][0] is not None:
+			if temp_user_profile["tobacco_use_history"][0]["answer"] == "never_smoked":
 				user_profile["ever_smoked"] = "never"
-			elif temp_user_profile["tobacco_use_history"] == "former_smoker_gte_10":
+			elif temp_user_profile["tobacco_use_history"][0]["answer"] == "former_smoker_gte_10":
 				user_profile["ever_smoked"] = ">= 10 years"
-			elif temp_user_profile["tobacco_use_history"] == "former_smoker_lt_10":
+			elif temp_user_profile["tobacco_use_history"][0]["answer"] == "former_smoker_lt_10":
 				user_profile["ever_smoked"] = "< 10 years"
-			elif temp_user_profile["tobacco_use_history"] == "active_smoker":
+			elif temp_user_profile["tobacco_use_history"][0]["answer"] == "active_smoker":
 				user_profile["ever_smoked"] = "active"
 			else:
 				raise ValueError(f"Invalid tobacco_use_history value: {temp_user_profile['tobacco_use_history']}")
 	if "tobacco_use_duration" in temp_user_profile:
-		if temp_user_profile["tobacco_use_duration"] is not None:
-			if temp_user_profile["tobacco_use_duration"] == "less_than_1":
-				user_profile["smoking_duration"] = "< 1 year"
-			elif temp_user_profile["tobacco_use_duration"] == "2_to_5":
-				user_profile["smoking_duration"] = "2-5 years"
-			elif temp_user_profile["tobacco_use_duration"] == "6_to_10":
-				user_profile["smoking_duration"] = "6-10 years"
-			elif temp_user_profile["tobacco_use_duration"] == "more_than_10_years":
-				user_profile["smoking_duration"] = "> 10 years"
+		if temp_user_profile["tobacco_use_duration"][0] is not None:
+			if temp_user_profile["tobacco_use_duration"][0]["answer"] == "less_than_1":
+				user_profile["duration_of_smoking"] = "< 1 year"
+			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "2_to_5":
+				user_profile["duration_of_smoking"] = "2-5 years"
+			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "6_to_10":
+				user_profile["duration_of_smoking"] = "6-10 years"
+			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "more_than_10_years":
+				user_profile["duration_of_smoking"] = ">10"
 			else:
 				raise ValueError(f"Invalid tobacco_use_duration value: {temp_user_profile['tobacco_use_duration']}")
 	if "daily_tobacco_use" in temp_user_profile:
@@ -1716,7 +1723,7 @@ def create_user_profile(userId: str):
 
 				user_profile["moderate_time_per_day"] = [value, "min"]
 	if "walking_days_10_min" in temp_user_profile:
-		if temp_user_profile["walking_days_10_min"] is not None:
+		if temp_user_profile["walking_days_10_min"][0] is not None:
 			value = 0
 			if temp_user_profile["walking_days_10_min"][0]["answer"] is not None:
 				value = int(temp_user_profile["walking_days_10_min"][0]["answer"])
@@ -1869,7 +1876,11 @@ def create_user_profile(userId: str):
 					user_profile["improvement_of_energy_physical_activity"] = value
 				elif option["option"] == "tailored_healthcare_support":
 					user_profile["healthcare_professional_tailored_plan"] = value
-
+	user_profile["alcohol_last_week"] = "none"
+	user_profile["alcohol_last_week_per_day"] = "1-2"
+	user_profile["alcohol_6_or_more_single_occasions"] = "none"
 	print(f"Final User Profile")
 	print(json5.dumps(user_profile, indent=4, quote_keys=True))
+	with open("questionnaire_output.json", "w") as f:
+		json5.dump(user_profile, f, indent=4, quote_keys=True)
 	return user_profile
