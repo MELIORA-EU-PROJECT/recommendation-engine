@@ -628,7 +628,7 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 	if "vigorous_days_per_week" in user_profile:
 		vigorous_days_per_week = user_profile["vigorous_days_per_week"]
 		vigorous_time_per_day = user_profile["vigorous_time_per_day"]
-		if vigorous_time_per_day is list:
+		if isinstance(vigorous_time_per_day, list):
 			vigorous_time_per_day, time_unit = vigorous_time_per_day
 			if time_unit == "hour":
 				vigorous_time_per_day = vigorous_time_per_day * 60
@@ -660,7 +660,7 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 	if "moderate_days_per_week" in user_profile:
 		moderate_days_per_week = user_profile["moderate_days_per_week"]
 		moderate_time_per_day = user_profile["moderate_time_per_day"]
-		if moderate_time_per_day is list:
+		if isinstance(moderate_time_per_day, list):
 			moderate_time_per_day, time_unit = moderate_time_per_day
 			if time_unit == "hour":
 				moderate_time_per_day = moderate_time_per_day * 60
@@ -693,7 +693,7 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 	if "walking_days_per_week" in user_profile:
 		walking_days_per_week = user_profile["walking_days_per_week"]
 		walking_time_per_day = user_profile["walking_time_per_day"]
-		if walking_time_per_day is list:
+		if isinstance(walking_time_per_day, list):
 			walking_time_per_day, time_unit = walking_time_per_day
 			if time_unit == "hour":
 				walking_time_per_day = walking_time_per_day * 60
@@ -726,7 +726,7 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 	# region sitting
 	# https://csepguidelines.ca/#:~:text=Do%20you%20know%20how%20much,periods%20of%20sitting%20where%20possible.
 	sitting_time_per_day = user_profile["sitting_time_per_day"]
-	if sitting_time_per_day is list:
+	if isinstance(sitting_time_per_day, list):
 		sitting_time_per_day, time_unit = sitting_time_per_day
 		if time_unit == "hour":
 			sitting_time_per_day = sitting_time_per_day * 60
