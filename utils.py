@@ -1071,7 +1071,7 @@ def get_recommendations(user_profile):
 	# Integrated Data Layer
 	old_user_profile = user_profile.copy()
 	user_profile = infer_integrated_data_layer(user_profile)
-	with open("example_patient_integrated.json", "w") as write_file:
+	with open("scrap/example_patient_integrated.json", "w") as write_file:
 		json5.dump(user_profile, write_file, indent=4, quote_keys=True)
 	print(f"Integrated Data Layer: {json5.dumps(user_profile, indent=4, quote_keys=True)}")
 	# Diff User Profile
@@ -1080,7 +1080,7 @@ def get_recommendations(user_profile):
 	# Aggregated Data Layer
 	old_user_profile = user_profile
 	user_profile = infer_aggregated_data_layer(user_profile)
-	with open("example_patient_aggregated.json", "w") as write_file:
+	with open("scrap/example_patient_aggregated.json", "w") as write_file:
 		json5.dump(user_profile, write_file, indent=4, quote_keys=True)
 	print(f"Aggregated Data Layer: {json5.dumps(user_profile, indent=4, quote_keys=True)}")
 	# Diff User Profile
@@ -1089,7 +1089,7 @@ def get_recommendations(user_profile):
 	# TTM stages
 	old_user_profile = user_profile
 	ttm_user_profile = add_ttm_stages(user_profile)
-	with open("example_patient_ttm.json", "w") as write_file:
+	with open("scrap/example_patient_ttm.json", "w") as write_file:
 		json5.dump(ttm_user_profile, write_file, indent=4, quote_keys=True)
 	print(f"TTM Stages: {json5.dumps(ttm_user_profile, indent=4, quote_keys=True)}")
 	# Diff User Profile
@@ -1881,6 +1881,6 @@ def create_user_profile(userId: str):
 	user_profile["alcohol_6_or_more_single_occasions"] = "none"
 	print(f"Final User Profile")
 	print(json5.dumps(user_profile, indent=4, quote_keys=True))
-	with open("questionnaire_output.json", "w") as f:
+	with open("scrap/questionnaire_output.json", "w") as f:
 		json5.dump(user_profile, f, indent=4, quote_keys=True)
 	return user_profile
