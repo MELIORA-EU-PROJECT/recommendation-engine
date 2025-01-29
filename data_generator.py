@@ -253,10 +253,10 @@ def generate_user_profile():
     how_often_6_or_more_drinks = ["never", "less than monthly", "monthly", "weekly", "daily or almost daily"]
     user_profile["how_often_6_or_more_drinks"] = random.choice(how_often_6_or_more_drinks)
     # endregion "how_often_6_or_more_drinks"
-    # region "3_or_more_red_meat_weekly" - Bernoulli Distribution (70%) ✅
+    # region "three_or_more_red_meat_weekly" - Bernoulli Distribution (70%) ✅
     distribution = np.random.binomial(1, 0.7, 1000)
-    user_profile["3_or_more_red_meat_weekly"] = bool(np.random.choice(distribution) == 1)
-    # endregion "3_or_more_red_meat_weekly"
+    user_profile["three_or_more_red_meat_weekly"] = bool(np.random.choice(distribution) == 1)
+    # endregion "three_or_more_red_meat_weekly"
     # region "how_often_fruit" - Random Choice from List ✅
     fruit_frequencies = ["I do not eat it at all", "Less than 1 serving per week", "1-2 servings per week",
                          "3-4 servings per week", "5-6 servings per week", "1 serving per day", "2-3 servings per day",

@@ -17,13 +17,13 @@ def get_most_important_behaviour_change_need(aggregate_profile: dict):
 	return rv
 
 
-def check_matching_recommendations(behaviours: list, recommendations: dict):
+def check_matching_recommendations(behaviours: list, recommendations: list):
 	total_recs = 0
 	matching_recs = 0
-	for v in recommendations.values():
+	for v in recommendations:
 		total_recs += 1
 		for behaviour in behaviours:
-			if behaviour in v["goals"]:
+			if behaviour in v["info"]["goals"]:
 				matching_recs += 1
 				break
 
@@ -31,7 +31,8 @@ def check_matching_recommendations(behaviours: list, recommendations: dict):
 
 
 def main():
-	url = f"http://144.76.87.115:1564/v1/debug_recommend"
+	# url = f"http://144.76.87.115:1564/v1/debug_recommend"
+	url = f"http://localhost:8000/v1/debug_recommend"
 	number_of_profiles = 1000
 	total_recommendations = 0
 	matching_recommendations = 0

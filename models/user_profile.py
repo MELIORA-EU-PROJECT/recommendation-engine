@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Union, Optional
 
 from pydantic import BaseModel
 
@@ -36,6 +36,7 @@ class UserProfileSchema(BaseModel):
 	cancer_free: bool
 	chronic_condition: bool
 	mental_condition: bool
+	mental_conditions: Optional[List[str]] = None
 	nervousness: int
 	worryness: int
 	depression: int
@@ -101,17 +102,20 @@ class UserProfileSchema(BaseModel):
 	improvement_of_energy: int
 	role_model: int
 	ever_smoked: str
+	duration_of_smoking: Optional[str] = None
 	manufactured_cigarettes: int
 	hand_rolled_cigarettes: int
 	pipes: int
 	cigars: int
 	water_pipe: int
 	other_tobacco_products: int
-	moderate_days_per_week: int
-	moderate_time_per_day: List[Union[int, str]]
-	sitting_time_per_day: List[Union[int, str]]
-	hobbies_days_per_week: int
-	hobbies_time_per_day: List[Union[int, str]]
+	vigorously_days_per_week: Optional[int] = None
+	vigorously_time_per_day: Optional[List[Union[int, str]]] | str = None
+	moderate_days_per_week: Optional[int] = None
+	moderate_time_per_day: Optional[List[Union[int, str]]] | str = None
+	sitting_time_per_day: Optional[List[Union[int, str]]] | str = None
+	hobbies_days_per_week: Optional[int] = None
+	hobbies_time_per_day: Optional[List[Union[int, str]]] | str = None
 	park_distance: str
 	open_gym_distance: str
 	gym_distance: str
