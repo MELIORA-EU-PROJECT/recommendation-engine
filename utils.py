@@ -1,5 +1,6 @@
 import math
 import os
+import random
 
 import json5
 import numpy as np
@@ -1884,3 +1885,25 @@ def create_user_profile(userId: str):
 	with open("scrap/questionnaire_output.json", "w") as f:
 		json5.dump(user_profile, f, indent=4, quote_keys=True)
 	return user_profile
+
+
+def get_random_tips():
+	url = f"http://144.76.87.115:5004/v1/api/tips"
+	headers = {
+		"Authorization": "Basic bWVsaW9yYTpqeEtFd08wVjR2N2kweG8="
+	}
+
+	# full_url = f"{url}?language=English"
+	levels = ["beginner", "intermediate", "advanced"]
+	level = np.random.choice(levels)
+	full_url = f"{url}?user_level={level}"
+	print(f"Full URL: {full_url}")
+	response = requests.get(full_url, headers=headers)
+	tips = response.json()
+	len_tips = len(tips)
+	print(f"Tips length: {len_tips}")
+	print(f"Tips: {json5.dumps(tips, indent=4, quote_keys=True)}")
+	number_of_tips = random.randint(len_tips // 2 + 1, len_tips)
+	random_tips = np.random.choice(tips, number_of_tips, replace=False).tolist()
+	print(f"Random tip: {random_tips}")
+	return random_tips

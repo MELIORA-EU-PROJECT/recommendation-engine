@@ -685,6 +685,11 @@ async def get_mini_course_day(miniCourseId: str, day: str, response: Response):
 	}
 
 
+@app.get("/tip_recommend/{userId}")
+async def recommend_tip(userId: str):
+	return {"tips": get_random_tips()}
+
+
 # Only for debugging
 if __name__ == "__main__":
 	uvicorn.run(app, host="0.0.0.0", port=8000)
