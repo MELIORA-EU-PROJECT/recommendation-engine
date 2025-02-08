@@ -685,9 +685,53 @@ async def get_mini_course_day(miniCourseId: str, day: str, response: Response):
 	}
 
 
-@app.get("/tip_recommend/{userId}")
-async def recommend_tip(userId: str):
-	return {"tips": get_random_tips()}
+@app.get("/v1/physical_activity_level",
+		 summary="Get the physical activity level for a user profile",
+		 response_model=int,
+		 tags=["v1"],
+		 responses={
+			 200: {
+				 "description": "The physical activity level for the user profile",
+				 "content": {
+					 "application/json": {
+						 "example": 2
+					 }
+				 }
+			 }
+		 })
+async def get_physical_activity_levelV1(item: UserProfileSchema):
+	user_profile = item.model_dump()
+	return get_physical_activity_level_by_user_id(user_profile)
+
+
+@app.get("/v2/physical_activity_level/{userId}",
+		 summary="Get the physical activity level for a userId",
+		 response_model=int,
+		 tags=["v2"],
+		 responses={
+			 200: {
+				 "description": "The physical activity level for the user profile",
+				 "content": {
+					 "application/json": {
+						 "example": 2
+					 }
+				 }
+			 }
+		 }
+		 )
+async def get_physical_activity_levelV2(userId: str):
+	user_profile = create_user_profile(userId)
+	return get_physical_activity_level_by_user_id(user_profile)
+
+
+@app.get("/tip_recommend/{PA_level}")
+async def recommend_tip(PA_level: int):
+	if PA_level <= 2:
+		return {"tips": get_random_tips("beginner")}
+	elif PA_level <= 4:
+		return {"tips": get_random_tips("intermediate")}
+	else:
+		return {"tips": get_random_tips("advanced")}
 
 
 # Only for debugging

@@ -276,7 +276,7 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 	if "treatment_status" in user_profile:
 		treatment_status = user_profile["treatment_status"]
 		match treatment_status:
-			case "no, completed":
+			case "no_i_have_completed":
 				treatment_status = "survivor"
 			case "yes":
 				treatment_status = "patient"
@@ -336,7 +336,7 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 	match how_often_alcohol:
 		case "never":
 			how_often_alcohol = 5
-		case "monthly or less":
+		case "monthly_or_less":
 			how_often_alcohol = 4
 		case "2-4 times per month":
 			how_often_alcohol = 3
@@ -1601,7 +1601,9 @@ def create_user_profile(userId: str):
 				elif option["answer"] == "definitely_enhancing":
 					value = 5
 				else:
-					raise ValueError(f"Invalid dietary_support_factors value: {option['answer']}")
+					# TODO: fix values
+					print(f"Invalid dietary_support_factors value: {option['answer']}")
+					value = 3
 
 				if option["option"] is None:
 					continue
@@ -1652,7 +1654,7 @@ def create_user_profile(userId: str):
 				user_profile["duration_of_smoking"] = "< 1 year"
 			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "2_to_5":
 				user_profile["duration_of_smoking"] = "2-5 years"
-			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "6_to_10":
+			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "6-10_years":
 				user_profile["duration_of_smoking"] = "6-10 years"
 			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "more_than_10_years":
 				user_profile["duration_of_smoking"] = ">10"
@@ -1795,7 +1797,9 @@ def create_user_profile(userId: str):
 				elif option["answer"] == "definitely_not_limiting":
 					value = 5
 				else:
-					raise ValueError(f"Invalid physical_activity_limitations value: {option['answer']}")
+					# TODO: fix values
+					print(f"Invalid physical_activity_limitations value: {option['answer']}")
+					value = 3
 
 				if option["option"] is None:
 					continue
@@ -1887,15 +1891,13 @@ def create_user_profile(userId: str):
 	return user_profile
 
 
-def get_random_tips():
+def get_random_tips(level):
 	url = f"http://144.76.87.115:5004/v1/api/tips"
 	headers = {
 		"Authorization": "Basic bWVsaW9yYTpqeEtFd08wVjR2N2kweG8="
 	}
 
 	# full_url = f"{url}?language=English"
-	levels = ["beginner", "intermediate", "advanced"]
-	level = np.random.choice(levels)
 	full_url = f"{url}?user_level={level}"
 	print(f"Full URL: {full_url}")
 	response = requests.get(full_url, headers=headers)
@@ -1907,3 +1909,11 @@ def get_random_tips():
 	random_tips = np.random.choice(tips, number_of_tips, replace=False).tolist()
 	print(f"Random tip: {random_tips}")
 	return random_tips
+
+
+def get_physical_activity_level_by_user_id(user_profile: dict) -> int:
+	user_profile = infer_integrated_data_layer(user_profile)
+	with open("scrap/example_patient_integrated.json", "w") as write_file:
+		json5.dump(user_profile, write_file, indent=4, quote_keys=True)
+	print(f"Integrated Data Layer: {json5.dumps(user_profile, indent=4, quote_keys=True)}")
+	return user_profile["physical_activity_level"]
