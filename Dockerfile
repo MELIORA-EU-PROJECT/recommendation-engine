@@ -13,6 +13,6 @@ RUN pip install colorama
 COPY *.py .
 COPY ./models ./models
 COPY .env .
-
+RUN mkdir ./scrap
 
 ENTRYPOINT ["fastapi", "dev", "main.py", "--port", "1564","--host","0.0.0.0"]
