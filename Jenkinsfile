@@ -32,12 +32,12 @@ pipeline {
                 }
             }
         }
-        stage('Logs') {
-             steps {
-                script {
-                    sh 'docker logs -f recommendation-engine-recommendation_engine-1'
-                }
-             }
-       }
+//         stage('Logs') {
+//             steps {
+//                 script {
+//                     sh 'docker logs -f recommendation-engine-recommendation_engine-1'
+//                 }
+//             }
+//        }
     }
 }
