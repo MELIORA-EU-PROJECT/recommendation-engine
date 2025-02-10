@@ -278,6 +278,8 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 		match treatment_status:
 			case "no_i_have_completed":
 				treatment_status = "survivor"
+			case "no, completed":
+				treatment_status = "survivor"
 			case "yes":
 				treatment_status = "patient"
 			case "no, waiting":
