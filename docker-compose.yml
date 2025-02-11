@@ -3,5 +3,7 @@ services:
     image: meliora_recommendation_engine_prototype
     build:
       dockerfile: Dockerfile
+    labels:
+      io.portainer.accesscontrol.teams: HUA
     ports:
       - "1564:1564"
