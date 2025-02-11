@@ -1128,7 +1128,7 @@ def get_day_by_user_id(user_id: int):
 	return {"day": 4}
 
 
-def create_user_profile(userId: str):
+def create_user_profile(userId: str, questionIds: list = None):
 	url = f"https://datacollection.risa.eu/onboarding/participantsBaseline/{userId}"
 	url_ids = "https://datacollection.risa.eu/onboarding/onboardingQuestionnaire/ids"
 
@@ -1136,12 +1136,13 @@ def create_user_profile(userId: str):
 		"Authorization": os.getenv("BASIC_AUTHORIZATION_ONBOARDING_QUESTIONNAIRE")
 	}
 
-	response = requests.get(url_ids, headers=headers)
-	question_ids = response.json()
-	print(f"IDs: {question_ids}")
+	if questionIds is None:
+		response = requests.get(url_ids, headers=headers)
+		questionIds = response.json()
+		print(f"IDs: {questionIds}")
 
 	temp_user_profile = {}
-	for question_id in question_ids:
+	for question_id in questionIds:
 		response = requests.get(f"{url}/{question_id}", headers=headers)
 		if response.status_code != 200:
 			print(f"Question: {question_id}, {Fore.YELLOW}{response.status_code}{Style.RESET_ALL}")

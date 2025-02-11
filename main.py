@@ -720,7 +720,16 @@ async def get_physical_activity_levelV1(item: UserProfileSchema):
 		 }
 		 )
 async def get_physical_activity_levelV2(userId: str):
-	user_profile = create_user_profile(userId)
+	questions = ["vigorous_activity_days",
+				 "vigorous_activity_duration",
+				 "moderate_activity_days",
+				 "moderate_activity_duration",
+				 "walking_days_10_min",
+				 "walking_duration",
+				 "sitting_time_weekday",
+				 "activity_days_10_min",
+				 "leisure_activity_duration"]
+	user_profile = create_user_profile(userId, questions)
 	return get_physical_activity_level(user_profile)
 
 
