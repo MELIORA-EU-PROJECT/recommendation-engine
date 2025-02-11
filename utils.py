@@ -340,16 +340,14 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 			how_often_alcohol = 5
 		case "monthly_or_less":
 			how_often_alcohol = 4
-		case "2-4 times per month":
+		case "2-4_times_per_month":
 			how_often_alcohol = 3
-		case "2-3 times per week":
+		case "2-3_times_per_week":
 			how_often_alcohol = 2
-		case "4 or more times per week":
+		case "4_or_more_per_week":
 			how_often_alcohol = 1
 		case _:
-			raise ValueError(f"how_often_alcohol should be one of the following: "
-							 f"never, monthly or less, 2-4 times per month, 2-3 times per week, 4 or more times per week. "
-							 f"On {user_profile} got {how_often_alcohol}")
+			raise ValueError(f"how_often_alcohol on {user_profile} got {how_often_alcohol}")
 
 	drinks_per_session = user_profile["drinks_per_session"]
 	match drinks_per_session:
@@ -364,27 +362,24 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 		case "10 or more":
 			drinks_per_session = 1
 		case _:
-			raise ValueError(f"drinks_per_session should be one of the following: "
-							 f"10 or more, 7-9, 5-6, 3-4, 1-2. "
-							 f"On {user_profile} got {drinks_per_session}")
+			raise ValueError(f"drinks_per_session on {user_profile} got {drinks_per_session}")
 
 	how_often_6_or_more_drinks = user_profile["how_often_6_or_more_drinks"]
 	match how_often_6_or_more_drinks:
 		case "never":
 			how_often_6_or_more_drinks = 5
-		case "less than monthly":
+		case "less_than_monthly":
 			how_often_6_or_more_drinks = 4
 		case "monthly":
 			how_often_6_or_more_drinks = 3
 		case "weekly":
 			how_often_6_or_more_drinks = 2
-		case "daily or almost daily":
+		case "daily_or_almost_daily":
 			how_often_6_or_more_drinks = 1
 		case _:
-			raise ValueError(f"how_often_6_or_more_drinks should be one of the following: "
-							 f"never, less than monthly, monthly, weekly, daily or almost daily. "
-							 f"On {user_profile} got {how_often_6_or_more_drinks}")
+			raise ValueError(f"how_often_6_or_more_drinks on {user_profile} got {how_often_6_or_more_drinks}")
 
+	# TODO
 	alcohol_last_week = user_profile["alcohol_last_week"]
 
 	match alcohol_last_week:
@@ -1387,6 +1382,14 @@ def create_user_profile(userId: str, questionIds: list = None):
 				value = "3-4 servings per week"
 			elif temp_user_profile["fresh_fruit_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
+			elif temp_user_profile["fresh_fruit_consumption"][0]["answer"] == "1_per_day":
+				value = "1 serving per day"
+			elif temp_user_profile["fresh_fruit_consumption"][0]["answer"] == "2-3_per_day":
+				value = "2-3 servings per day"
+			elif temp_user_profile["fresh_fruit_consumption"][0]["answer"] == "4-5_per_day":
+				value = "4-5 servings per day"
+			elif temp_user_profile["fresh_fruit_consumption"][0]["answer"] == "more_than_6_per_day":
+				value = "6 or more servings per day"
 
 			user_profile["how_often_fruit"] = value
 	if "vegetable_consumption" in temp_user_profile:
@@ -1405,6 +1408,14 @@ def create_user_profile(userId: str, questionIds: list = None):
 				value = "3-4 servings per week"
 			elif temp_user_profile["vegetable_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
+			elif temp_user_profile["vegetable_consumption"][0]["answer"] == "1_per_day":
+				value = "1 serving per day"
+			elif temp_user_profile["vegetable_consumption"][0]["answer"] == "2-3_per_day":
+				value = "2-3 servings per day"
+			elif temp_user_profile["vegetable_consumption"][0]["answer"] == "4-5_per_day":
+				value = "4-5 servings per day"
+			elif temp_user_profile["vegetable_consumption"][0]["answer"] == "more_than_6_per_day":
+				value = "6 or more servings per day"
 
 			user_profile["how_often_vegetables"] = value
 	if "legumes_nuts_seeds_consumption" in temp_user_profile:
@@ -1422,6 +1433,14 @@ def create_user_profile(userId: str, questionIds: list = None):
 				value = "3-4 servings per week"
 			elif temp_user_profile["legumes_nuts_seeds_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
+			elif temp_user_profile["legumes_nuts_seeds_consumption"][0]["answer"] == "1_per_day":
+				value = "1 serving per day"
+			elif temp_user_profile["legumes_nuts_seeds_consumption"][0]["answer"] == "2-3_per_day":
+				value = "2-3 servings per day"
+			elif temp_user_profile["legumes_nuts_seeds_consumption"][0]["answer"] == "4-5_per_day":
+				value = "4-5 servings per day"
+			elif temp_user_profile["legumes_nuts_seeds_consumption"][0]["answer"] == "more_than_6_per_day":
+				value = "6 or more servings per day"
 
 			user_profile["how_often_nuts"] = value
 	if "fish_seafood_consumption" in temp_user_profile:
@@ -1439,6 +1458,14 @@ def create_user_profile(userId: str, questionIds: list = None):
 				value = "3-4 servings per week"
 			elif temp_user_profile["fish_seafood_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
+			elif temp_user_profile["fish_seafood_consumption"][0]["answer"] == "1_per_day":
+				value = "1 serving per day"
+			elif temp_user_profile["fish_seafood_consumption"][0]["answer"] == "2-3_per_day":
+				value = "2-3 servings per day"
+			elif temp_user_profile["fish_seafood_consumption"][0]["answer"] == "4-5_per_day":
+				value = "4-5 servings per day"
+			elif temp_user_profile["fish_seafood_consumption"][0]["answer"] == "more_than_6_per_day":
+				value = "6 or more servings per day"
 
 			user_profile["how_often_fish"] = value
 	if "whole_grains_consumption" in temp_user_profile:
@@ -1457,6 +1484,14 @@ def create_user_profile(userId: str, questionIds: list = None):
 				value = "3-4 servings per week"
 			elif temp_user_profile["whole_grains_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
+			elif temp_user_profile["whole_grains_consumption"][0]["answer"] == "1_per_day":
+				value = "1 serving per day"
+			elif temp_user_profile["whole_grains_consumption"][0]["answer"] == "2-3_per_day":
+				value = "2-3 servings per day"
+			elif temp_user_profile["whole_grains_consumption"][0]["answer"] == "4-5_per_day":
+				value = "4-5 servings per day"
+			elif temp_user_profile["whole_grains_consumption"][0]["answer"] == "more_than_6_per_day":
+				value = "6 or more servings per day"
 
 			user_profile["how_often_whole_grain"] = value
 	if "refined_grains_consumption" in temp_user_profile:
@@ -1475,6 +1510,14 @@ def create_user_profile(userId: str, questionIds: list = None):
 				value = "3-4 servings per week"
 			elif temp_user_profile["refined_grains_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
+			elif temp_user_profile["refined_grains_consumption"][0]["answer"] == "1_per_day":
+				value = "1 serving per day"
+			elif temp_user_profile["refined_grains_consumption"][0]["answer"] == "2-3_per_day":
+				value = "2-3 servings per day"
+			elif temp_user_profile["refined_grains_consumption"][0]["answer"] == "4-5_per_day":
+				value = "4-5 servings per day"
+			elif temp_user_profile["refined_grains_consumption"][0]["answer"] == "more_than_6_per_day":
+				value = "6 or more servings per day"
 
 			user_profile["how_often_refined_grain"] = value
 	if "low_fat_dairy_consumption" in temp_user_profile:
@@ -1493,6 +1536,14 @@ def create_user_profile(userId: str, questionIds: list = None):
 				value = "3-4 servings per week"
 			elif temp_user_profile["low_fat_dairy_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
+			elif temp_user_profile["low_fat_dairy_consumption"][0]["answer"] == "1_per_day":
+				value = "1 serving per day"
+			elif temp_user_profile["low_fat_dairy_consumption"][0]["answer"] == "2-3_per_day":
+				value = "2-3 servings per day"
+			elif temp_user_profile["low_fat_dairy_consumption"][0]["answer"] == "4-5_per_day":
+				value = "4-5 servings per day"
+			elif temp_user_profile["low_fat_dairy_consumption"][0]["answer"] == "more_than_6_per_day":
+				value = "6 or more servings per day"
 
 			user_profile["how_often_low_fat_dairy"] = value
 	if "high_fat_dairy_saturated_fats_consumption" in temp_user_profile:
@@ -1511,6 +1562,14 @@ def create_user_profile(userId: str, questionIds: list = None):
 				value = "3-4 servings per week"
 			elif temp_user_profile["high_fat_dairy_saturated_fats_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
+			elif temp_user_profile["high_fat_dairy_saturated_fats_consumption"][0]["answer"] == "1_per_day":
+				value = "1 serving per day"
+			elif temp_user_profile["high_fat_dairy_saturated_fats_consumption"][0]["answer"] == "2-3_per_day":
+				value = "2-3 servings per day"
+			elif temp_user_profile["high_fat_dairy_saturated_fats_consumption"][0]["answer"] == "4-5_per_day":
+				value = "4-5 servings per day"
+			elif temp_user_profile["high_fat_dairy_saturated_fats_consumption"][0]["answer"] == "more_than_6_per_day":
+				value = "6 or more servings per day"
 
 			user_profile["how_often_high_fat_dairy"] = value
 	if "sweets_consumption" in temp_user_profile:
@@ -1529,6 +1588,14 @@ def create_user_profile(userId: str, questionIds: list = None):
 				value = "3-4 servings per week"
 			elif temp_user_profile["sweets_consumption"][0]["answer"] == "5-6_per_week":
 				value = "5-6 servings per week"
+			elif temp_user_profile["sweets_consumption"][0]["answer"] == "1_per_day":
+				value = "1 serving per day"
+			elif temp_user_profile["sweets_consumption"][0]["answer"] == "2-3_per_day":
+				value = "2-3 servings per day"
+			elif temp_user_profile["sweets_consumption"][0]["answer"] == "4-5_per_day":
+				value = "4-5 servings per day"
+			elif temp_user_profile["sweets_consumption"][0]["answer"] == "more_than_6_per_day":
+				value = "6 or more servings per day"
 
 			user_profile["how_often_sweets"] = value
 	if "dietary_restriction_factors" in temp_user_profile:
@@ -1647,7 +1714,7 @@ def create_user_profile(userId: str, questionIds: list = None):
 				user_profile["ever_smoked"] = "never"
 			elif temp_user_profile["tobacco_use_history"][0]["answer"] == "former_smoker_gte_10":
 				user_profile["ever_smoked"] = ">= 10 years"
-			elif temp_user_profile["tobacco_use_history"][0]["answer"] == "former_smoker_lt_10":
+			elif temp_user_profile["tobacco_use_history"][0]["answer"] == "former_smoker_lte_10":
 				user_profile["ever_smoked"] = "< 10 years"
 			elif temp_user_profile["tobacco_use_history"][0]["answer"] == "active_smoker":
 				user_profile["ever_smoked"] = "active"
@@ -1657,7 +1724,7 @@ def create_user_profile(userId: str, questionIds: list = None):
 		if temp_user_profile["tobacco_use_duration"][0] is not None:
 			if temp_user_profile["tobacco_use_duration"][0]["answer"] == "less_than_1":
 				user_profile["duration_of_smoking"] = "< 1 year"
-			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "2_to_5":
+			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "2-5_years":
 				user_profile["duration_of_smoking"] = "2-5 years"
 			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "6-10_years":
 				user_profile["duration_of_smoking"] = "6-10 years"
