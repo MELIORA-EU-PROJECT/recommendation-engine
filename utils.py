@@ -282,12 +282,12 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 				treatment_status = "survivor"
 			case "yes":
 				treatment_status = "patient"
-			case "no, waiting":
+			case "no_i_haven't_started":
 				treatment_status = "patient"
+			case "other":
+				treatment_status = "other"
 			case _:
-				raise ValueError(f"treatment_status should be one of the following: "
-								 f"no, completed, yes, no, waiting. "
-								 f"On {user_profile} got {treatment_status}")
+				raise ValueError(f"treatment_status on {user_profile} got {treatment_status}")
 		user_profile["user_status"] = treatment_status
 	# endregion User Status
 	# region Mental Health
@@ -1324,7 +1324,7 @@ def create_user_profile(userId: str):
 	if "quality_of_life" in temp_user_profile:
 		if temp_user_profile["quality_of_life"] is not None:
 			value = temp_user_profile["quality_of_life"][0]["answer"]
-			if value == "very_poorpoor":
+			if value == "very_poor":
 				user_profile["quality_of_life"] = 0
 			elif value == "poor":
 				user_profile["quality_of_life"] = 1
@@ -1332,6 +1332,8 @@ def create_user_profile(userId: str):
 				user_profile["quality_of_life"] = 2
 			elif value == "good":
 				user_profile["quality_of_life"] = 3
+			elif value == "very_good":
+				user_profile["quality_of_life"] = 4
 			else:
 				raise ValueError(f"Invalid quality_of_life value: {value}")
 	if "first_degree_breast_cancer" in temp_user_profile:
@@ -1913,9 +1915,136 @@ def get_random_tips(level):
 	return random_tips
 
 
-def get_physical_activity_level_by_user_id(user_profile: dict) -> int:
-	user_profile = infer_integrated_data_layer(user_profile)
-	with open("scrap/example_patient_integrated.json", "w") as write_file:
-		json5.dump(user_profile, write_file, indent=4, quote_keys=True)
-	print(f"Integrated Data Layer: {json5.dumps(user_profile, indent=4, quote_keys=True)}")
+def get_physical_activity_level(user_profile: dict) -> int:
+	# region Physical activity level
+	# region vigorous activity
+	# https://www.ncbi.nlm.nih.gov/books/NBK566048/
+	if "vigorous_days_per_week" in user_profile:
+		vigorous_days_per_week = user_profile["vigorous_days_per_week"]
+		vigorous_time_per_day = user_profile["vigorous_time_per_day"]
+		if isinstance(vigorous_time_per_day, list):
+			vigorous_time_per_day, time_unit = vigorous_time_per_day
+			if time_unit == "hour":
+				vigorous_time_per_day = vigorous_time_per_day * 60
+
+			vigorous_time_per_day = vigorous_time_per_day * vigorous_days_per_week
+
+			match vigorous_time_per_day:
+				case num if num <= 90:
+					vigorous_time_per_day = 1
+				case num if 91 <= num <= 105:
+					vigorous_time_per_day = 2
+				case num if 106 <= num <= 120:
+					vigorous_time_per_day = 3
+				case num if 121 <= num <= 135:
+					vigorous_time_per_day = 4
+				case num if num >= 136:
+					vigorous_time_per_day = 5
+				case _:
+					raise ValueError(f"UNREACHABLE: vigorous_time_per_day: {vigorous_time_per_day}")
+		else:
+			vigorous_time_per_day = 3
+	else:
+		vigorous_time_per_day = 1
+
+	vigorous_activity_level = vigorous_time_per_day
+	user_profile["vigorous_activity"] = vigorous_activity_level
+	# endregion vigorous activity
+	# region moderate activity
+	if "moderate_days_per_week" in user_profile:
+		moderate_days_per_week = user_profile["moderate_days_per_week"]
+		moderate_time_per_day = user_profile["moderate_time_per_day"]
+		if isinstance(moderate_time_per_day, list):
+			moderate_time_per_day, time_unit = moderate_time_per_day
+			if time_unit == "hour":
+				moderate_time_per_day = moderate_time_per_day * 60
+
+			moderate_time_per_day = moderate_time_per_day * moderate_days_per_week
+
+			match moderate_time_per_day:
+				case num if num <= 180:
+					moderate_time_per_day = 1
+				case num if 181 <= num <= 210:
+					moderate_time_per_day = 2
+				case num if 211 <= num <= 240:
+					moderate_time_per_day = 3
+				case num if 241 <= num <= 270:
+					moderate_time_per_day = 4
+				case num if num >= 271:
+					moderate_time_per_day = 5
+				case _:
+					raise ValueError(f"UNREACHABLE: moderate_time_per_day: {moderate_time_per_day}")
+		else:
+			moderate_time_per_day = 3
+	else:
+		moderate_time_per_day = 1
+
+	moderate_activity_level = moderate_time_per_day
+	user_profile["moderate_activity"] = moderate_activity_level
+	# endregion moderate activity
+	# region walking
+	# https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/walking/art-20046261#:~:text=You%20might%20start%20with%20five,most%20days%20of%20the%20week.
+	if "walking_days_per_week" in user_profile:
+		walking_days_per_week = user_profile["walking_days_per_week"]
+		walking_time_per_day = user_profile["walking_time_per_day"]
+		if isinstance(walking_time_per_day, list):
+			walking_time_per_day, time_unit = walking_time_per_day
+			if time_unit == "hour":
+				walking_time_per_day = walking_time_per_day * 60
+
+			walking_time_per_day = walking_time_per_day * walking_days_per_week
+
+			# min 210 minutes per week
+			# max 420 minutes per week
+			match walking_time_per_day:
+				case num if num <= 252:
+					walking_time_per_day = 1
+				case num if 253 <= num <= 294:
+					walking_time_per_day = 2
+				case num if 296 <= num <= 336:
+					walking_time_per_day = 3
+				case num if 337 <= num <= 378:
+					walking_time_per_day = 4
+				case num if num >= 379:
+					walking_time_per_day = 5
+				case _:
+					raise ValueError(f"UNREACHABLE: walking_time_per_day: {walking_time_per_day}")
+		else:
+			walking_time_per_day = 3
+	else:
+		walking_time_per_day = 1
+
+	walking_level = walking_time_per_day
+	user_profile["walking"] = walking_level
+	# endregion walking
+	# region sitting
+	# https://csepguidelines.ca/#:~:text=Do%20you%20know%20how%20much,periods%20of%20sitting%20where%20possible.
+	sitting_time_per_day = user_profile["sitting_time_per_day"]
+	if isinstance(sitting_time_per_day, list):
+		sitting_time_per_day, time_unit = sitting_time_per_day
+		if time_unit == "hour":
+			sitting_time_per_day = sitting_time_per_day * 60
+
+		# min 0 minutes per day
+		# max 8 hours per day
+		match sitting_time_per_day:
+			case num if num <= 96:
+				sitting_time_per_day = 5
+			case num if 97 <= num <= 192:
+				sitting_time_per_day = 4
+			case num if 193 <= num <= 288:
+				sitting_time_per_day = 3
+			case num if 289 <= num <= 384:
+				sitting_time_per_day = 2
+			case num if num >= 385:
+				sitting_time_per_day = 1
+	else:
+		sitting_time_per_day = 3
+	sitting_level = sitting_time_per_day
+	user_profile["sitting"] = sitting_level
+	# endregion sitting
+	physical_activity_score = round(
+		np.mean([vigorous_activity_level, moderate_activity_level, walking_level, sitting_level]))
+	user_profile["physical_activity_level"] = physical_activity_score
+	# endregion Physical activity level
 	return user_profile["physical_activity_level"]

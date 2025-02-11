@@ -701,7 +701,7 @@ async def get_mini_course_day(miniCourseId: str, day: str, response: Response):
 		 })
 async def get_physical_activity_levelV1(item: UserProfileSchema):
 	user_profile = item.model_dump()
-	return get_physical_activity_level_by_user_id(user_profile)
+	return get_physical_activity_level(user_profile)
 
 
 @app.get("/v2/physical_activity_level/{userId}",
@@ -721,7 +721,7 @@ async def get_physical_activity_levelV1(item: UserProfileSchema):
 		 )
 async def get_physical_activity_levelV2(userId: str):
 	user_profile = create_user_profile(userId)
-	return get_physical_activity_level_by_user_id(user_profile)
+	return get_physical_activity_level(user_profile)
 
 
 @app.get("/tip_recommend/{PA_level}")
