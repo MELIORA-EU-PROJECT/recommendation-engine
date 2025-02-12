@@ -1798,7 +1798,7 @@ def create_user_profile(userId: str, questionIds: list = None):
 
 				user_profile["moderate_time_per_day"] = [value, "min"]
 	if "walking_days_10_min" in temp_user_profile:
-		if temp_user_profile["walking_days_10_min"][0] is not None:
+		if temp_user_profile["walking_days_10_min"] is not None:
 			value = 0
 			if temp_user_profile["walking_days_10_min"][0]["answer"] is not None:
 				value = int(temp_user_profile["walking_days_10_min"][0]["answer"])

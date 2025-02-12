@@ -589,6 +589,7 @@ async def mini_course(item: Request, index: int = 0):
 				 }}
 		 })
 async def get_day(userId: str, response: Response):
+	print(f"User ID: {userId}")
 	try:
 		userId = int(userId)
 	except ValueError:
@@ -651,6 +652,8 @@ async def get_day(userId: str, response: Response):
 			 }
 		 })
 async def get_mini_course_day(miniCourseId: str, day: str, response: Response):
+	print(f"Mini Course ID: {miniCourseId}")
+	print(f"Day: {day}")
 	try:
 		day = int(day)
 	except ValueError:
@@ -706,7 +709,6 @@ async def get_physical_activity_levelV1(item: UserProfileSchema):
 
 @app.get("/v2/physical_activity_level/{userId}",
 		 summary="Get the physical activity level for a userId",
-		 response_model=int,
 		 tags=["v2"],
 		 responses={
 			 200: {
@@ -719,7 +721,8 @@ async def get_physical_activity_levelV1(item: UserProfileSchema):
 			 }
 		 }
 		 )
-async def get_physical_activity_levelV2(userId: str):
+async def get_physical_activity_levelV2(userId: str, response: Response):
+	print(f"User ID: {userId}")
 	questions = ["vigorous_activity_days",
 				 "vigorous_activity_duration",
 				 "moderate_activity_days",
@@ -730,11 +733,16 @@ async def get_physical_activity_levelV2(userId: str):
 				 "activity_days_10_min",
 				 "leisure_activity_duration"]
 	user_profile = create_user_profile(userId, questions)
+
+	if len(user_profile.keys()) < len(questions) + 3:
+		response.status_code = 404
+		return {"error": "User ID was not found or user has not answered physical activity questions"}
 	return get_physical_activity_level(user_profile)
 
 
 @app.get("/tip_recommend/{PA_level}")
 async def recommend_tip(PA_level: int):
+	print(f"PA Level: {PA_level}")
 	if PA_level <= 2:
 		return {"tips": get_random_tips("beginner")}
 	elif PA_level <= 4:
