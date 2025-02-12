@@ -1761,9 +1761,14 @@ def create_user_profile(userId: str, questionIds: list = None):
 
 				value = 0
 				if option["answer"] is not None:
-					value = int(option["answer"])
+					try:
+						value = int(option["answer"])
+					except:
+						value = 0
 
 				user_profile["vigorous_days_per_week"] = value
+				if value == 0:
+					user_profile["vigorous_time_per_day"] = [0, "min"]
 	if "vigorous_activity_duration" in temp_user_profile:
 		if temp_user_profile["vigorous_activity_duration"] is not None:
 			for option in temp_user_profile["vigorous_activity_duration"]:
@@ -1772,7 +1777,10 @@ def create_user_profile(userId: str, questionIds: list = None):
 
 				value = 0
 				if option["answer"] is not None:
-					value = int(option["answer"])
+					try:
+						value = int(option["answer"])
+					except:
+						value = 0
 
 				user_profile["vigorous_time_per_day"] = [value, "min"]
 	if "moderate_activity_days" in temp_user_profile:
@@ -1783,9 +1791,14 @@ def create_user_profile(userId: str, questionIds: list = None):
 
 				value = 0
 				if option["answer"] is not None:
-					value = int(option["answer"])
+					try:
+						value = int(option["answer"])
+					except:
+						value = 0
 
 				user_profile["moderate_days_per_week"] = value
+				if value == 0:
+					user_profile["moderate_time_per_day"] = [0, "min"]
 	if "moderate_activity_duration" in temp_user_profile:
 		if temp_user_profile["moderate_activity_duration"] is not None:
 			for option in temp_user_profile["moderate_activity_duration"]:
@@ -1794,21 +1807,32 @@ def create_user_profile(userId: str, questionIds: list = None):
 
 				value = 0
 				if option["answer"] is not None:
-					value = int(option["answer"])
+					try:
+						value = int(option["answer"])
+					except:
+						value = 0
 
 				user_profile["moderate_time_per_day"] = [value, "min"]
 	if "walking_days_10_min" in temp_user_profile:
 		if temp_user_profile["walking_days_10_min"] is not None:
 			value = 0
 			if temp_user_profile["walking_days_10_min"][0]["answer"] is not None:
-				value = int(temp_user_profile["walking_days_10_min"][0]["answer"])
+				try:
+					value = int(temp_user_profile["walking_days_10_min"][0]["answer"])
+				except:
+					value = 0
 
 			user_profile["walking_days_per_week"] = value
+			if value == 0:
+				user_profile["walking_time_per_day"] = [0, "min"]
 	if "walking_duration" in temp_user_profile:
 		if temp_user_profile["walking_duration"] is not None:
 			value = 0
 			if temp_user_profile["walking_duration"][0]["answer"] is not None:
-				value = int(temp_user_profile["walking_duration"][0]["answer"])
+				try:
+					value = int(temp_user_profile["walking_duration"][0]["answer"])
+				except:
+					value = 0
 
 			user_profile["walking_time_per_day"] = [value, "min"]
 	# if "steps_per_day" in temp_user_profile:
@@ -1817,21 +1841,32 @@ def create_user_profile(userId: str, questionIds: list = None):
 		if temp_user_profile["sitting_time_weekday"] is not None:
 			value = 0
 			if temp_user_profile["sitting_time_weekday"][0]["answer"] is not None:
-				value = int(temp_user_profile["sitting_time_weekday"][0]["answer"])
+				try:
+					value = int(temp_user_profile["sitting_time_weekday"][0]["answer"])
+				except:
+					value = 0
 
 			user_profile["sitting_time_per_day"] = [value, "min"]
 	if "activity_days_10_min" in temp_user_profile:
 		if temp_user_profile["activity_days_10_min"] is not None:
 			value = 0
 			if temp_user_profile["activity_days_10_min"][0]["answer"] is not None:
-				value = int(temp_user_profile["activity_days_10_min"][0]["answer"])
+				try:
+					value = int(temp_user_profile["activity_days_10_min"][0]["answer"])
+				except:
+					value = 0
 
 			user_profile["hobbies_days_per_week"] = value
+			if value == 0:
+				user_profile["hobbies_time_per_day"] = [0, "min"]
 	if "leisure_activity_duration" in temp_user_profile:
 		if temp_user_profile["leisure_activity_duration"] is not None:
 			value = 0
 			if temp_user_profile["leisure_activity_duration"][0]["answer"] is not None:
-				value = int(temp_user_profile["leisure_activity_duration"][0]["answer"])
+				try:
+					value = int(temp_user_profile["leisure_activity_duration"][0]["answer"])
+				except:
+					value = 0
 
 			user_profile["hobbies_time_per_day"] = [value, "min"]
 	if "walk_time_to_location" in temp_user_profile:
@@ -2087,27 +2122,31 @@ def get_physical_activity_level(user_profile: dict) -> int:
 	# endregion walking
 	# region sitting
 	# https://csepguidelines.ca/#:~:text=Do%20you%20know%20how%20much,periods%20of%20sitting%20where%20possible.
-	sitting_time_per_day = user_profile["sitting_time_per_day"]
-	if isinstance(sitting_time_per_day, list):
-		sitting_time_per_day, time_unit = sitting_time_per_day
-		if time_unit == "hour":
-			sitting_time_per_day = sitting_time_per_day * 60
+	if "sitting_time_per_day" in user_profile:
+		sitting_time_per_day = user_profile["sitting_time_per_day"]
+		if isinstance(sitting_time_per_day, list):
+			sitting_time_per_day, time_unit = sitting_time_per_day
+			if time_unit == "hour":
+				sitting_time_per_day = sitting_time_per_day * 60
 
-		# min 0 minutes per day
-		# max 8 hours per day
-		match sitting_time_per_day:
-			case num if num <= 96:
-				sitting_time_per_day = 5
-			case num if 97 <= num <= 192:
-				sitting_time_per_day = 4
-			case num if 193 <= num <= 288:
-				sitting_time_per_day = 3
-			case num if 289 <= num <= 384:
-				sitting_time_per_day = 2
-			case num if num >= 385:
-				sitting_time_per_day = 1
+			# min 0 minutes per day
+			# max 8 hours per day
+			match sitting_time_per_day:
+				case num if num <= 96:
+					sitting_time_per_day = 5
+				case num if 97 <= num <= 192:
+					sitting_time_per_day = 4
+				case num if 193 <= num <= 288:
+					sitting_time_per_day = 3
+				case num if 289 <= num <= 384:
+					sitting_time_per_day = 2
+				case num if num >= 385:
+					sitting_time_per_day = 1
+		else:
+			sitting_time_per_day = 3
 	else:
-		sitting_time_per_day = 3
+		sitting_time_per_day = 1
+
 	sitting_level = sitting_time_per_day
 	user_profile["sitting"] = sitting_level
 	# endregion sitting

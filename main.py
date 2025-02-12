@@ -13,7 +13,7 @@ from models.user_profile import UserProfileSchema
 from models.util_models import DebugResponse, DayResponse
 from utils import *
 
-from fastapi import FastAPI, Request, Response
+from fastapi import FastAPI, Request, Response, HTTPException
 
 from dotenv import load_dotenv
 from colorama import init as colorama_init
@@ -734,9 +734,9 @@ async def get_physical_activity_levelV2(userId: str, response: Response):
 				 "leisure_activity_duration"]
 	user_profile = create_user_profile(userId, questions)
 
-	if len(user_profile.keys()) < len(questions) + 3:
-		response.status_code = 404
-		return {"error": "User ID was not found or user has not answered physical activity questions"}
+	if len(user_profile.keys()) == 3:
+		raise HTTPException(status_code=404,
+							detail="User not found or user hasn't answered any physical activity question")
 	return get_physical_activity_level(user_profile)
 
 
