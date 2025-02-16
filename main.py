@@ -744,12 +744,15 @@ async def get_physical_activity_levelV2(userId: str, response: Response):
 @app.get("/tip_recommend/{PA_level}")
 async def recommend_tip(PA_level: int):
 	print(f"PA Level: {PA_level}")
-	if PA_level <= 2:
-		return {"tips": get_random_tips("beginner")}
-	elif PA_level <= 4:
-		return {"tips": get_random_tips("intermediate")}
-	else:
-		return {"tips": get_random_tips("advanced")}
+	match PA_level:
+		case 1:
+			return {"tips": get_random_tips("beginner")}
+		case 2:
+			return {"tips": get_random_tips("intermediate")}
+		case 3:
+			return {"tips": get_random_tips("advanced")}
+		case _:
+			raise HTTPException(status_code=400, detail="PA Level not found")
 
 
 # Only for debugging
