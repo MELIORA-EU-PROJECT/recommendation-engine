@@ -731,7 +731,8 @@ async def get_physical_activity_levelV2(userId: str, response: Response):
 				 "walking_duration",
 				 "sitting_time_weekday",
 				 "activity_days_10_min",
-				 "leisure_activity_duration"]
+				 "leisure_activity_duration",
+				 "steps_per_day"]
 	user_profile = create_user_profile(userId, questions)
 
 	if len(user_profile.keys()) == 3:

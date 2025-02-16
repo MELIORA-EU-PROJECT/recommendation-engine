@@ -9,6 +9,7 @@ from enum import Enum
 
 import requests
 from colorama import Fore, Style
+from fastapi import HTTPException
 
 
 class Objective(Enum):
@@ -18,6 +19,12 @@ class Objective(Enum):
 	IMPROVE_DIET_QUALITY = "improve_diet_quality"
 	IMPROVE_MENTAL_HEALTH = "improve_mental_health"
 	SEEK_MEDICAL_HELP = "seek_medical_help"
+
+
+class PALevel(Enum):
+	LOW = 1
+	MEDIUM = 2
+	HIGH = 3
 
 
 # @formatter:off
@@ -1835,8 +1842,12 @@ def create_user_profile(userId: str, questionIds: list = None):
 					value = 0
 
 			user_profile["walking_time_per_day"] = [value, "min"]
-	# if "steps_per_day" in temp_user_profile:
-	#     if temp_user_profile["steps_per_day"] is not None:
+	if "steps_per_day" in temp_user_profile:
+		if temp_user_profile["steps_per_day"] is not None:
+			try:
+				user_profile["steps_per_day"] = int(temp_user_profile["steps_per_day"][0]["answer"])
+			except:
+				user_profile["steps_per_day"] = 0
 	if "sitting_time_weekday" in temp_user_profile:
 		if temp_user_profile["sitting_time_weekday"] is not None:
 			value = 0
@@ -2018,10 +2029,10 @@ def get_random_tips(level):
 	return random_tips
 
 
-def get_physical_activity_level(user_profile: dict) -> int:
+def get_physical_activity_level(user_profile: dict) -> PALevel:
+	total_mins = 0
 	# region Physical activity level
 	# region vigorous activity
-	# https://www.ncbi.nlm.nih.gov/books/NBK566048/
 	if "vigorous_days_per_week" in user_profile:
 		vigorous_days_per_week = user_profile["vigorous_days_per_week"]
 		vigorous_time_per_day = user_profile["vigorous_time_per_day"]
@@ -2030,28 +2041,8 @@ def get_physical_activity_level(user_profile: dict) -> int:
 			if time_unit == "hour":
 				vigorous_time_per_day = vigorous_time_per_day * 60
 
-			vigorous_time_per_day = vigorous_time_per_day * vigorous_days_per_week
+			total_mins += vigorous_time_per_day * vigorous_days_per_week
 
-			match vigorous_time_per_day:
-				case num if num <= 90:
-					vigorous_time_per_day = 1
-				case num if 91 <= num <= 105:
-					vigorous_time_per_day = 2
-				case num if 106 <= num <= 120:
-					vigorous_time_per_day = 3
-				case num if 121 <= num <= 135:
-					vigorous_time_per_day = 4
-				case num if num >= 136:
-					vigorous_time_per_day = 5
-				case _:
-					raise ValueError(f"UNREACHABLE: vigorous_time_per_day: {vigorous_time_per_day}")
-		else:
-			vigorous_time_per_day = 3
-	else:
-		vigorous_time_per_day = 1
-
-	vigorous_activity_level = vigorous_time_per_day
-	user_profile["vigorous_activity"] = vigorous_activity_level
 	# endregion vigorous activity
 	# region moderate activity
 	if "moderate_days_per_week" in user_profile:
@@ -2062,31 +2053,10 @@ def get_physical_activity_level(user_profile: dict) -> int:
 			if time_unit == "hour":
 				moderate_time_per_day = moderate_time_per_day * 60
 
-			moderate_time_per_day = moderate_time_per_day * moderate_days_per_week
+			total_mins += moderate_time_per_day * moderate_days_per_week
 
-			match moderate_time_per_day:
-				case num if num <= 180:
-					moderate_time_per_day = 1
-				case num if 181 <= num <= 210:
-					moderate_time_per_day = 2
-				case num if 211 <= num <= 240:
-					moderate_time_per_day = 3
-				case num if 241 <= num <= 270:
-					moderate_time_per_day = 4
-				case num if num >= 271:
-					moderate_time_per_day = 5
-				case _:
-					raise ValueError(f"UNREACHABLE: moderate_time_per_day: {moderate_time_per_day}")
-		else:
-			moderate_time_per_day = 3
-	else:
-		moderate_time_per_day = 1
-
-	moderate_activity_level = moderate_time_per_day
-	user_profile["moderate_activity"] = moderate_activity_level
 	# endregion moderate activity
 	# region walking
-	# https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/walking/art-20046261#:~:text=You%20might%20start%20with%20five,most%20days%20of%20the%20week.
 	if "walking_days_per_week" in user_profile:
 		walking_days_per_week = user_profile["walking_days_per_week"]
 		walking_time_per_day = user_profile["walking_time_per_day"]
@@ -2095,63 +2065,26 @@ def get_physical_activity_level(user_profile: dict) -> int:
 			if time_unit == "hour":
 				walking_time_per_day = walking_time_per_day * 60
 
-			walking_time_per_day = walking_time_per_day * walking_days_per_week
-
-			# min 210 minutes per week
-			# max 420 minutes per week
-			match walking_time_per_day:
-				case num if num <= 252:
-					walking_time_per_day = 1
-				case num if 253 <= num <= 294:
-					walking_time_per_day = 2
-				case num if 296 <= num <= 336:
-					walking_time_per_day = 3
-				case num if 337 <= num <= 378:
-					walking_time_per_day = 4
-				case num if num >= 379:
-					walking_time_per_day = 5
-				case _:
-					raise ValueError(f"UNREACHABLE: walking_time_per_day: {walking_time_per_day}")
-		else:
-			walking_time_per_day = 3
-	else:
-		walking_time_per_day = 1
-
-	walking_level = walking_time_per_day
-	user_profile["walking"] = walking_level
+			total_mins += walking_time_per_day * walking_days_per_week
 	# endregion walking
-	# region sitting
-	# https://csepguidelines.ca/#:~:text=Do%20you%20know%20how%20much,periods%20of%20sitting%20where%20possible.
-	if "sitting_time_per_day" in user_profile:
-		sitting_time_per_day = user_profile["sitting_time_per_day"]
-		if isinstance(sitting_time_per_day, list):
-			sitting_time_per_day, time_unit = sitting_time_per_day
-			if time_unit == "hour":
-				sitting_time_per_day = sitting_time_per_day * 60
-
-			# min 0 minutes per day
-			# max 8 hours per day
-			match sitting_time_per_day:
-				case num if num <= 96:
-					sitting_time_per_day = 5
-				case num if 97 <= num <= 192:
-					sitting_time_per_day = 4
-				case num if 193 <= num <= 288:
-					sitting_time_per_day = 3
-				case num if 289 <= num <= 384:
-					sitting_time_per_day = 2
-				case num if num >= 385:
-					sitting_time_per_day = 1
-		else:
-			sitting_time_per_day = 3
-	else:
-		sitting_time_per_day = 1
-
-	sitting_level = sitting_time_per_day
-	user_profile["sitting"] = sitting_level
-	# endregion sitting
-	physical_activity_score = round(
-		np.mean([vigorous_activity_level, moderate_activity_level, walking_level, sitting_level]))
-	user_profile["physical_activity_level"] = physical_activity_score
 	# endregion Physical activity level
-	return user_profile["physical_activity_level"]
+	print(f"Total minutes: {total_mins}")
+	if total_mins == 0:
+		try:
+			steps = user_profile["steps_per_day"]
+		except KeyError:
+			raise HTTPException(status_code=404,
+								detail="User not found or user hasn't answered any physical activity question")
+		if steps < 4000:
+			return PALevel.LOW
+		elif steps < 6000:
+			return PALevel.MEDIUM
+		else:
+			return PALevel.HIGH
+
+	if total_mins < 90:
+		return PALevel.LOW
+	elif total_mins < 150:
+		return PALevel.MEDIUM
+	else:
+		return PALevel.HIGH
