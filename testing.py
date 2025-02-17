@@ -4,6 +4,7 @@ import json5
 # url = f"https://datacollection.risa.eu/onboarding/onboardingQuestionnaire/all"
 # url = f"http://144.76.87.115:5004/v1/api/motivational-tips"
 url = f"http://localhost:8000/v2/physical_activity_level/"
+url = f"http://localhost:8000/v2/recommend/"
 users = ["EL498546TEST", "EL731238TEST", "EL122068TEST", "EL488249TEST", "EL935243TEST", "EL333170TEST", "EL553569TEST",
 		 "EL603224TEST"]
 headers = {

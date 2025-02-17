@@ -517,8 +517,13 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 
 	if user_profile["ever_smoked"] == "never":
 		duration_of_smoking = 5
+		user_profile["usage_of_tobacco_products"] = round(np.mean([ever_smoked, duration_of_smoking]))
 	else:
-		duration_of_smoking = user_profile["duration_of_smoking"]
+		# TODO: this happens when user doesn't know how much she's smoked??
+		try:
+			duration_of_smoking = user_profile["duration_of_smoking"]
+		except:
+			duration_of_smoking = "6-10 years"
 		match duration_of_smoking:
 			case "< 1 year":
 				duration_of_smoking = 5
@@ -533,99 +538,130 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 								 f"< 1 year, 2-5 years, 6-10 years, >10. "
 								 f"On {user_profile} got {duration_of_smoking}")
 
-	manufactured_cigarettes = user_profile["manufactured_cigarettes"]
-	match manufactured_cigarettes:
-		case 0:
-			manufactured_cigarettes = 5
-		case num if 1 <= num <= 2:
-			manufactured_cigarettes = 4
-		case num if 3 <= num <= 5:
-			manufactured_cigarettes = 3
-		case num if 6 <= num <= 10:
-			manufactured_cigarettes = 2
-		case num if num >= 11:
-			manufactured_cigarettes = 1
-		case _:
-			raise ValueError(f"UNREACHABLE: manufactured_cigarettes: {manufactured_cigarettes}")
+		# TODO: might be incorrect
+		try:
+			manufactured_cigarettes = user_profile["manufactured_cigarettes"]
+		except:
+			manufactured_cigarettes = 0
 
-	hand_rolled_cigarettes = user_profile["hand_rolled_cigarettes"]
-	match hand_rolled_cigarettes:
-		case 0:
-			hand_rolled_cigarettes = 5
-		case num if 1 <= num <= 2:
-			hand_rolled_cigarettes = 4
-		case num if 3 <= num <= 5:
-			hand_rolled_cigarettes = 3
-		case num if 6 <= num <= 10:
-			hand_rolled_cigarettes = 2
-		case num if num >= 11:
-			hand_rolled_cigarettes = 1
-		case _:
-			raise ValueError(f"UNREACHABLE: hand_rolled_cigarettes: {hand_rolled_cigarettes}")
+		match manufactured_cigarettes:
+			case 0:
+				manufactured_cigarettes = 5
+			case num if 1 <= num <= 2:
+				manufactured_cigarettes = 4
+			case num if 3 <= num <= 5:
+				manufactured_cigarettes = 3
+			case num if 6 <= num <= 10:
+				manufactured_cigarettes = 2
+			case num if num >= 11:
+				manufactured_cigarettes = 1
+			case _:
+				raise ValueError(f"UNREACHABLE: manufactured_cigarettes: {manufactured_cigarettes}")
 
-	pipes = user_profile["pipes"]
-	match pipes:
-		case 0:
-			pipes = 5
-		case num if 1 <= num <= 2:
-			pipes = 4
-		case num if 3 <= num <= 5:
-			pipes = 3
-		case num if 6 <= num <= 10:
-			pipes = 2
-		case num if num >= 11:
-			pipes = 1
-		case _:
-			raise ValueError(f"UNREACHABLE: pipes: {pipes}")
+		# TODO: might be incorrect
+		try:
+			hand_rolled_cigarettes = user_profile["hand_rolled_cigarettes"]
+		except:
+			hand_rolled_cigarettes = 0
 
-	cigars = user_profile["cigars"]
-	match cigars:
-		case 0:
-			cigars = 5
-		case 1:
-			cigars = 4
-		case 2:
-			cigars = 3
-		case 3:
-			cigars = 2
-		case num if num >= 4:
-			cigars = 1
-		case _:
-			raise ValueError(f"UNREACHABLE: cigars: {cigars}")
+		match hand_rolled_cigarettes:
+			case 0:
+				hand_rolled_cigarettes = 5
+			case num if 1 <= num <= 2:
+				hand_rolled_cigarettes = 4
+			case num if 3 <= num <= 5:
+				hand_rolled_cigarettes = 3
+			case num if 6 <= num <= 10:
+				hand_rolled_cigarettes = 2
+			case num if num >= 11:
+				hand_rolled_cigarettes = 1
+			case _:
+				raise ValueError(f"UNREACHABLE: hand_rolled_cigarettes: {hand_rolled_cigarettes}")
 
-	water_pipe = user_profile["water_pipe"]
-	match water_pipe:
-		case 0:
-			water_pipe = 5
-		case num if 1 <= num <= 2:
-			water_pipe = 4
-		case num if 3 <= num <= 5:
-			water_pipe = 3
-		case num if 6 <= num <= 10:
-			water_pipe = 2
-		case num if num >= 11:
-			water_pipe = 1
-		case _:
-			raise ValueError(f"UNREACHABLE: water_pipe: {water_pipe}")
+		# TODO: might be incorrect
+		try:
+			pipes = user_profile["pipes"]
+		except:
+			pipes = 0
 
-	other_tobacco_products = user_profile["other_tobacco_products"]
-	match other_tobacco_products:
-		case 0:
-			other_tobacco_products = 5
-		case num if 1 <= num <= 2:
-			other_tobacco_products = 4
-		case num if 3 <= num <= 5:
-			other_tobacco_products = 3
-		case num if 6 <= num <= 10:
-			other_tobacco_products = 2
-		case num if num >= 11:
-			other_tobacco_products = 1
-		case _:
-			raise ValueError(f"UNREACHABLE: other_tobacco_products: {other_tobacco_products}")
+		match pipes:
+			case 0:
+				pipes = 5
+			case num if 1 <= num <= 2:
+				pipes = 4
+			case num if 3 <= num <= 5:
+				pipes = 3
+			case num if 6 <= num <= 10:
+				pipes = 2
+			case num if num >= 11:
+				pipes = 1
+			case _:
+				raise ValueError(f"UNREACHABLE: pipes: {pipes}")
 
-	user_profile["usage_of_tobacco_products"] = round(np.mean(
-		[ever_smoked, duration_of_smoking, manufactured_cigarettes, hand_rolled_cigarettes, pipes, cigars, water_pipe,
-		 other_tobacco_products]))
+		# TODO: might be incorrect
+		try:
+			cigars = user_profile["cigars"]
+		except:
+			cigars = 0
+
+		match cigars:
+			case 0:
+				cigars = 5
+			case 1:
+				cigars = 4
+			case 2:
+				cigars = 3
+			case 3:
+				cigars = 2
+			case num if num >= 4:
+				cigars = 1
+			case _:
+				raise ValueError(f"UNREACHABLE: cigars: {cigars}")
+
+		# TODO: might be incorrect
+		try:
+			water_pipe = user_profile["water_pipe"]
+		except:
+			water_pipe = 0
+
+		match water_pipe:
+			case 0:
+				water_pipe = 5
+			case num if 1 <= num <= 2:
+				water_pipe = 4
+			case num if 3 <= num <= 5:
+				water_pipe = 3
+			case num if 6 <= num <= 10:
+				water_pipe = 2
+			case num if num >= 11:
+				water_pipe = 1
+			case _:
+				raise ValueError(f"UNREACHABLE: water_pipe: {water_pipe}")
+
+		# TODO: might be incorrect
+		try:
+			other_tobacco_products = user_profile["other_tobacco_products"]
+		except:
+			other_tobacco_products = 0
+
+		match other_tobacco_products:
+			case 0:
+				other_tobacco_products = 5
+			case num if 1 <= num <= 2:
+				other_tobacco_products = 4
+			case num if 3 <= num <= 5:
+				other_tobacco_products = 3
+			case num if 6 <= num <= 10:
+				other_tobacco_products = 2
+			case num if num >= 11:
+				other_tobacco_products = 1
+			case _:
+				raise ValueError(f"UNREACHABLE: other_tobacco_products: {other_tobacco_products}")
+
+		user_profile["usage_of_tobacco_products"] = round(np.mean(
+			[ever_smoked, duration_of_smoking, manufactured_cigarettes, hand_rolled_cigarettes, pipes, cigars,
+			 water_pipe,
+			 other_tobacco_products]))
 	# endregion Usage of tobacco products
 	# region Physical activity level
 	# region vigorous activity
@@ -730,29 +766,32 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 	# endregion walking
 	# region sitting
 	# https://csepguidelines.ca/#:~:text=Do%20you%20know%20how%20much,periods%20of%20sitting%20where%20possible.
-	sitting_time_per_day = user_profile["sitting_time_per_day"]
-	if isinstance(sitting_time_per_day, list):
-		sitting_time_per_day, time_unit = sitting_time_per_day
-		if time_unit == "hour":
-			sitting_time_per_day = sitting_time_per_day * 60
+	if "sitting_time_per_day" in user_profile:
+		sitting_time_per_day = user_profile["sitting_time_per_day"]
+		if isinstance(sitting_time_per_day, list):
+			sitting_time_per_day, time_unit = sitting_time_per_day
+			if time_unit == "hour":
+				sitting_time_per_day = sitting_time_per_day * 60
 
-		# min 0 minutes per day
-		# max 8 hours per day
-		match sitting_time_per_day:
-			case num if num <= 96:
-				sitting_time_per_day = 5
-			case num if 97 <= num <= 192:
-				sitting_time_per_day = 4
-			case num if 193 <= num <= 288:
-				sitting_time_per_day = 3
-			case num if 289 <= num <= 384:
-				sitting_time_per_day = 2
-			case num if num >= 385:
-				sitting_time_per_day = 1
+			# min 0 minutes per day
+			# max 8 hours per day
+			match sitting_time_per_day:
+				case num if num <= 96:
+					sitting_time_per_day = 5
+				case num if 97 <= num <= 192:
+					sitting_time_per_day = 4
+				case num if 193 <= num <= 288:
+					sitting_time_per_day = 3
+				case num if 289 <= num <= 384:
+					sitting_time_per_day = 2
+				case num if num >= 385:
+					sitting_time_per_day = 1
+		else:
+			sitting_time_per_day = 3
+		sitting_level = sitting_time_per_day
+		user_profile["sitting"] = sitting_level
 	else:
-		sitting_time_per_day = 3
-	sitting_level = sitting_time_per_day
-	user_profile["sitting"] = sitting_level
+		sitting_level = 1
 	# endregion sitting
 	physical_activity_score = round(
 		np.mean([vigorous_activity_level, moderate_activity_level, walking_level, sitting_level]))
@@ -870,7 +909,10 @@ def infer_integrated_data_layer(user_profile: dict) -> dict:
 	user_profile["level_of_symptoms"] = round((5 - 0) * (np.mean(symptoms) - 0) / (10 - 0) + 0)
 	# endregion Level of symptoms
 	# region Quality of life
-	qol = user_profile["quality_of_life"] + 1
+	if "quality_of_life" in user_profile:
+		qol = user_profile["quality_of_life"] + 1
+	else:
+		qol = 3
 	user_profile["quality_of_life"] = qol
 	# endregion Quality of life
 	return user_profile
@@ -1221,10 +1263,18 @@ def create_user_profile(userId: str, questionIds: list = None):
 				raise ValueError(f"Invalid general_health value: {temp}")
 	if "height_on-boarding" in temp_user_profile:
 		if temp_user_profile["height_on-boarding"] is not None:
-			user_profile["height"] = int(temp_user_profile["height_on-boarding"][0]["answer"]) / 100
+			# TODO: RISA SHOULD FIX THIS
+			try:
+				user_profile["height"] = int(temp_user_profile["height_on-boarding"][0]["answer"]) / 100
+			except:
+				user_profile["height"] = 1.6
 	if "weight_on-boarding" in temp_user_profile:
 		if temp_user_profile["weight_on-boarding"] is not None:
-			user_profile["weight"] = int(temp_user_profile["weight_on-boarding"][0]["answer"])
+			# TODO: RISA SHOULD FIX THIS
+			try:
+				user_profile["weight"] = int(temp_user_profile["weight_on-boarding"][0]["answer"])
+			except:
+				user_profile["weight"] = 70
 	if "breast_cancer_diagnosis" in temp_user_profile:
 		if temp_user_profile["breast_cancer_diagnosis"] is not None:
 			user_profile["diagnosis"] = True if temp_user_profile["breast_cancer_diagnosis"][0][
@@ -1293,7 +1343,7 @@ def create_user_profile(userId: str, questionIds: list = None):
 
 				if option["option"] == "feeling_nervous":
 					user_profile["nervousness"] = value
-				elif option["option"] == "cant_control_worrying":
+				elif option["option"] == "cant_control_worrying" or option["option"] == "control_worrying":
 					user_profile["worryness"] = value
 				elif option["option"] == "feeling_down":
 					user_profile["depression"] = value
@@ -1619,7 +1669,7 @@ def create_user_profile(userId: str, questionIds: list = None):
 					value = 3
 				elif option["answer"] == "not_really_limiting":
 					value = 4
-				elif option["answer"] == "definitely_not_limiting":
+				elif option["answer"] == "definitely_not_limiting" or option["answer"] == "not_limiting":
 					value = 5
 				else:
 					raise ValueError(f"Invalid dietary_restriction_factors value: {option['answer']}")
@@ -1728,17 +1778,18 @@ def create_user_profile(userId: str, questionIds: list = None):
 			else:
 				raise ValueError(f"Invalid tobacco_use_history value: {temp_user_profile['tobacco_use_history']}")
 	if "tobacco_use_duration" in temp_user_profile:
-		if temp_user_profile["tobacco_use_duration"][0] is not None:
-			if temp_user_profile["tobacco_use_duration"][0]["answer"] == "less_than_1":
-				user_profile["duration_of_smoking"] = "< 1 year"
-			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "2-5_years":
-				user_profile["duration_of_smoking"] = "2-5 years"
-			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "6-10_years":
-				user_profile["duration_of_smoking"] = "6-10 years"
-			elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "more_than_10_years":
-				user_profile["duration_of_smoking"] = ">10"
-			else:
-				raise ValueError(f"Invalid tobacco_use_duration value: {temp_user_profile['tobacco_use_duration']}")
+		if temp_user_profile["tobacco_use_duration"] is not None:
+			if temp_user_profile["tobacco_use_duration"][0] is not None:
+				if temp_user_profile["tobacco_use_duration"][0]["answer"] == "less_than_1_year":
+					user_profile["duration_of_smoking"] = "< 1 year"
+				elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "2-5_years":
+					user_profile["duration_of_smoking"] = "2-5 years"
+				elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "6-10_years":
+					user_profile["duration_of_smoking"] = "6-10 years"
+				elif temp_user_profile["tobacco_use_duration"][0]["answer"] == "more_than_10_years":
+					user_profile["duration_of_smoking"] = ">10"
+				else:
+					raise ValueError(f"Invalid tobacco_use_duration value: {temp_user_profile['tobacco_use_duration']}")
 	if "daily_tobacco_use" in temp_user_profile:
 		if temp_user_profile["daily_tobacco_use"] is not None:
 			for option in temp_user_profile["daily_tobacco_use"]:
@@ -1760,6 +1811,7 @@ def create_user_profile(userId: str, questionIds: list = None):
 					user_profile["other_tobacco_products"] = value
 				else:
 					raise ValueError(f"Invalid daily_tobacco_use option: {option['option']}")
+
 	if "vigorous_activity_days" in temp_user_profile:
 		if temp_user_profile["vigorous_activity_days"] is not None:
 			for option in temp_user_profile["vigorous_activity_days"]:
