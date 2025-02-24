@@ -21,10 +21,10 @@ class Objective(Enum):
 	SEEK_MEDICAL_HELP = "seek_medical_help"
 
 
-class PALevel(Enum):
-	LOW = 1
-	MEDIUM = 2
-	HIGH = 3
+class PALevel(str, Enum):
+	LOW = "beginner"
+	MEDIUM = "intermediate"
+	HIGH = "advanced"
 
 
 # @formatter:off

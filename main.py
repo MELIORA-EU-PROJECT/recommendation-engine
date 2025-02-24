@@ -2,7 +2,7 @@
 Copyright © 2024 Nikos Gournakis
 All rights reserved
 """
-from typing import List
+from typing import List, Literal
 
 import json5
 import uvicorn
@@ -704,9 +704,20 @@ async def get_mini_course_day(miniCourseId: str, day: str, response: Response):
 				 }
 			 }
 		 })
-async def get_physical_activity_levelV1(item: UserProfileSchema):
+async def get_physical_activity_levelV1(item: UserProfileSchema, response: Response):
 	user_profile = item.model_dump()
-	return get_physical_activity_level(user_profile)
+	PA_level: PALevel = get_physical_activity_level(user_profile)
+
+	match PA_level:
+		case PALevel.LOW:
+			return "beginner"
+		case PALevel.MEDIUM:
+			return "intermediate"
+		case PALevel.HIGH:
+			return "advanced"
+		case _:
+			response.status_code = 500
+			return "Error"
 
 
 @app.get("/v2/physical_activity_level/{userId}",
@@ -737,18 +748,29 @@ async def get_physical_activity_levelV2(userId: str, response: Response):
 	if len(user_profile.keys()) == 3:
 		raise HTTPException(status_code=404,
 							detail="User not found or user hasn't answered any physical activity question")
-	return get_physical_activity_level(user_profile)
+	PA_level: PALevel = get_physical_activity_level(user_profile)
+
+	match PA_level:
+		case PALevel.LOW:
+			return "beginner"
+		case PALevel.MEDIUM:
+			return "intermediate"
+		case PALevel.HIGH:
+			return "advanced"
+		case _:
+			response.status_code = 500
+			return "Error"
 
 
 @app.get("/tip_recommend/{PA_level}")
-async def recommend_tip(PA_level: int):
+async def recommend_tip(PA_level: PALevel):
 	print(f"PA Level: {PA_level}")
 	match PA_level:
-		case 1:
+		case "beginner":
 			return {"tips": get_random_tips("beginner")}
-		case 2:
+		case "intermediate":
 			return {"tips": get_random_tips("intermediate")}
-		case 3:
+		case "advanced":
 			return {"tips": get_random_tips("advanced")}
 		case _:
 			raise HTTPException(status_code=400, detail="PA Level not found")
