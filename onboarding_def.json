@@ -1,0 +1,3570 @@
+[
+  {
+    "questionId": "general_health",
+    "question": "How is your health in general?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "very_poor",
+        "text": "Very poor",
+        "hint": null
+      },
+      {
+        "option": "poor",
+        "text": "Poor",
+        "hint": null
+      },
+      {
+        "option": "neither_poor_or_good",
+        "text": "Neither poor or good",
+        "hint": null
+      },
+      {
+        "option": "good",
+        "text": "Good",
+        "hint": null
+      },
+      {
+        "option": "very_good",
+        "text": "Very good",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.477+00:00",
+    "updatedAt": "2025-01-16T17:07:50.477+00:00"
+  },
+  {
+    "questionId": "quality_of_life",
+    "question": "How would you rate your overall quality of life?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "very_poor",
+        "text": "Very poor",
+        "hint": null
+      },
+      {
+        "option": "poor",
+        "text": "Poor",
+        "hint": null
+      },
+      {
+        "option": "neither_poor_or_good",
+        "text": "Neither poor or good",
+        "hint": null
+      },
+      {
+        "option": "good",
+        "text": "Good",
+        "hint": null
+      },
+      {
+        "option": "very_good",
+        "text": "Very good",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.637+00:00",
+    "updatedAt": "2025-01-16T17:07:51.637+00:00"
+  },
+  {
+    "questionId": "frequent_heavy_drinking",
+    "question": "How often do you have 6 or more standard drinks on a single occasion? (A standard drink can be a small can of beer, a small glass of wine or a shot of hard liquor)",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "never",
+        "text": "Never",
+        "hint": null
+      },
+      {
+        "option": "less_than_monthly",
+        "text": "Less than monthly",
+        "hint": null
+      },
+      {
+        "option": "monthly",
+        "text": "Monthly",
+        "hint": null
+      },
+      {
+        "option": "weekly",
+        "text": "Weekly",
+        "hint": null
+      },
+      {
+        "option": "daily_or_almost_daily",
+        "text": "Daily or almost daily",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": true,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.218+00:00",
+    "updatedAt": "2025-01-16T17:07:52.218+00:00"
+  },
+  {
+    "questionId": "sweets_consumption",
+    "question": "How often do you eat sweets and sweet foods?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "not_eat_at_all",
+        "text": "I do not eat it at all",
+        "hint": null
+      },
+      {
+        "option": "less_than_1s_per_week",
+        "text": "Less than 1 serving per week",
+        "hint": null
+      },
+      {
+        "option": "1-2_per_week",
+        "text": "1-2 servings per week",
+        "hint": null
+      },
+      {
+        "option": "3-4_per_week",
+        "text": "3-4 servings per week",
+        "hint": null
+      },
+      {
+        "option": "5-6_per_week",
+        "text": "5-6 servings per week",
+        "hint": null
+      },
+      {
+        "option": "1_per_day",
+        "text": "1 serving per day",
+        "hint": null
+      },
+      {
+        "option": "2-3_per_day",
+        "text": "2-3 servings per day",
+        "hint": null
+      },
+      {
+        "option": "4-5_per_day",
+        "text": "4-5 servings per day",
+        "hint": null
+      },
+      {
+        "option": "more_than_6_per_day",
+        "text": "6 or more servings per day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.945+00:00",
+    "updatedAt": "2025-01-16T17:07:52.946+00:00"
+  },
+  {
+    "questionId": "leisure_activity_duration",
+    "question": "How much time did you usually spend on such activities on one of those days?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "number_of_leisure_activities_per_day",
+        "text": "number_of_leisure_activities_per_day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "Hobbies or leisure activities may include singing in a choir, playing an instrument, gardening, arts, photography.",
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:54.034+00:00",
+    "updatedAt": "2025-01-16T17:07:54.035+00:00"
+  },
+  {
+    "questionId": "chronic_medical_condition_diagnosis",
+    "question": "Have you been diagnosed with a chronic medical condition?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "yes",
+        "text": "Yes",
+        "hint": null
+      },
+      {
+        "option": "no",
+        "text": "No",
+        "hint": "If selected, skip to question mental_health_condition_diagnosis"
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.200+00:00",
+    "updatedAt": "2025-01-16T17:07:51.201+00:00"
+  },
+  {
+    "questionId": "legumes_nuts_seeds_consumption",
+    "question": "How often do you eat legumes, nuts and seeds?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "not_eat_at_all",
+        "text": "I do not eat it at all",
+        "hint": null
+      },
+      {
+        "option": "less_than_1s_per_week",
+        "text": "Less than 1 serving per week",
+        "hint": null
+      },
+      {
+        "option": "1-2_per_week",
+        "text": "1-2 servings per week",
+        "hint": null
+      },
+      {
+        "option": "3-4_per_week",
+        "text": "3-4 servings per week",
+        "hint": null
+      },
+      {
+        "option": "5-6_per_week",
+        "text": "5-6 servings per week",
+        "hint": null
+      },
+      {
+        "option": "1_per_day",
+        "text": "1 serving per day",
+        "hint": null
+      },
+      {
+        "option": "2-3_per_day",
+        "text": "2-3 servings per day",
+        "hint": null
+      },
+      {
+        "option": "4-5_per_day",
+        "text": "4-5 servings per day",
+        "hint": null
+      },
+      {
+        "option": "more_than_6_per_day",
+        "text": "6 or more servings per day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.509+00:00",
+    "updatedAt": "2025-01-16T17:07:52.509+00:00"
+  },
+  {
+    "questionId": "physical_activity_enablers",
+    "question": "To what extent do the following factors enhance your ability to undertake regular or increase your physical activity?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "support_from_family_friends",
+        "text": "Support from family and friends - I have someone I can exercise with.",
+        "hint": null
+      },
+      {
+        "option": "healthcare_emphasis_on_activity",
+        "text": "Emphasis on the importance of physical activity from healthcare professionals - I have received enough information from my doctors on the benefits of exercise for me.",
+        "hint": null
+      },
+      {
+        "option": "knowledge_of_activity_recommendations",
+        "text": "Knowledge of current physical activity recommendations - I know where to find trustworthy exercise recommendations and how to adopt them.",
+        "hint": null
+      },
+      {
+        "option": "access_to_activity_options",
+        "text": "Access to physical activity options - There are enough places to exercise (e.g., gyms, fitness clubs, parks) in the area where I live.",
+        "hint": null
+      },
+      {
+        "option": "exercise_routine_development",
+        "text": "Development of a routine - I have developed a daily/weekly exercising routine which motivates me to continue exercising.",
+        "hint": null
+      },
+      {
+        "option": "wake_up_call_diagnosis",
+        "text": "Recent medical diagnosis - A medical diagnosis that I received acted as a wake-up call to make changes towards a more physically active lifestyle.",
+        "hint": null
+      },
+      {
+        "option": "role_modeling_exercise",
+        "text": "Role modeling - If I exercise frequently, it is more likely that my children will do the same.",
+        "hint": null
+      },
+      {
+        "option": "improved_energy_for_exercise",
+        "text": "Everyday life, energy and strength are improved - I have enough energy to exercise frequently.",
+        "hint": null
+      },
+      {
+        "option": "tailored_healthcare_support",
+        "text": "Support from healthcare professionals to tailor activities to an individual’s level of physical functioning - I have received advice and/or an exercise programme which is tailored to my needs and/or diagnosis.",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": {
+      "not_really_enhancing": "Not really enhancing",
+      "somewhat_enhancing": "Somewhat enhancing",
+      "definitely_enhancing": "Definitely enhancing",
+      "neither_enhancing_nor_not_enhancing": "Neither enhancing nor not enhancing",
+      "definitely_not_enhancing": "Definitely not enhancing"
+    },
+    "hint": null,
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:54.254+00:00",
+    "updatedAt": "2025-01-16T17:07:54.254+00:00"
+  },
+  {
+    "questionId": "area",
+    "question": "Which of the following best describes the area you live in?",
+    "type": "CHOOSE_ONE_OR_OPEN",
+    "options": [
+      {
+        "option": "rural",
+        "text": "Rural area (Area with lots of nature and open spaces, with fewer people and buildings than urban or suburban areas.)",
+        "hint": null
+      },
+      {
+        "option": "suburban",
+        "text": "Suburban area (Area where people live just outside of a city or town. There are lots of houses in suburban areas, but not as many other buildings as urban areas—maybe just one or two small shops or stores.)",
+        "hint": null
+      },
+      {
+        "option": "urban",
+        "text": "Urban area (Area in a city or town: lots of people live there, and there are lots of different kinds of buildings close together.)",
+        "hint": null
+      },
+      {
+        "option": "other",
+        "text": "Other. Please specify.",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "sociodemographic",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:49.883+00:00",
+    "updatedAt": "2025-01-16T17:07:49.883+00:00"
+  },
+  {
+    "questionId": "sitting_time_weekday",
+    "question": "During the last 7 days, how much time did you spend sitting on an average day?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "number_of_minutes_sitting_per_day",
+        "text": "number_of_minutes_sitting_per_day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "This question is about the time you spent sitting on weekdays during the last 7 days.  Include time spent at work, at home, while doing course work and during leisure time. This may include time spent sitting at a desk, visiting friends, reading, or sitting or lying down to watch television.",
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.890+00:00",
+    "updatedAt": "2025-01-16T17:07:53.890+00:00"
+  },
+  {
+    "questionId": "current_country",
+    "question": "In which country do you currently live?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "greece",
+        "text": "Greece",
+        "hint": null
+      },
+      {
+        "option": "lithuania",
+        "text": "Lithuania",
+        "hint": null
+      },
+      {
+        "option": "spain",
+        "text": "Spain",
+        "hint": null
+      },
+      {
+        "option": "sweden",
+        "text": "Sweden",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "sociodemographic",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:49.809+00:00",
+    "updatedAt": "2025-01-16T17:07:49.809+00:00"
+  },
+  {
+    "questionId": "caring_responsibilities",
+    "question": "Do you have caring responsibilities towards others (e.g. elderly parents or other relatives, children, people with disability, a pet)?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "yes",
+        "text": "Yes",
+        "hint": null
+      },
+      {
+        "option": "no",
+        "text": "No",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "sociodemographic",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.331+00:00",
+    "updatedAt": "2025-01-16T17:07:50.331+00:00"
+  },
+  {
+    "questionId": "currently_receiving_breast_cancer_treatment",
+    "question": "Are you currently receiving treatment?",
+    "type": "CHOOSE_ONE_OR_OPEN",
+    "options": [
+      {
+        "option": "yes",
+        "text": "Yes",
+        "hint": "If selected, skip questions schedule_for_breast_cancer_treatment and current_status_breast_cancer"
+      },
+      {
+        "option": "no_i_haven't_started",
+        "text": "No. I haven't started/ I am currently waiting to start treatment (I have just been diagnosed with breast cancer).",
+        "hint": "If selected, skip to question schedule_for_breast_cancer_treatment (+ skip question current_status_breast_cancer)"
+      },
+      {
+        "option": "no_i_have_completed",
+        "text": "No. I have completed treatment.",
+        "hint": "If selected, skip to question current_status_breast_cancer"
+      },
+      {
+        "option": "other",
+        "text": "Other. Please specify.",
+        "hint": "If selected, skip to question current_status_breast_cancer"
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.840+00:00",
+    "updatedAt": "2025-01-16T17:07:50.840+00:00"
+  },
+  {
+    "questionId": "recent_problems_frequency",
+    "question": "Over the last two weeks, how often have you been bothered by the following problems?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "feeling_nervous",
+        "text": "Feeling nervous, anxious or on edge",
+        "hint": null
+      },
+      {
+        "option": "control_worrying",
+        "text": "Not being able to stop or control worrying",
+        "hint": null
+      },
+      {
+        "option": "feeling_down",
+        "text": "Feeling down, depressed or hopeless",
+        "hint": null
+      },
+      {
+        "option": "little_interest",
+        "text": "Little interest or pleasure in doing things",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": {
+      "more_than_half": "More than half days",
+      "not_at_all": "Not at all",
+      "several_days": "Several days",
+      "nearly_everyday": "Nearly every day"
+    },
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.492+00:00",
+    "updatedAt": "2025-01-16T17:07:51.492+00:00"
+  },
+  {
+    "questionId": "low_fat_dairy_consumption",
+    "question": "How often do you eat low-fat dairy?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "not_eat_at_all",
+        "text": "I do not eat it at all",
+        "hint": null
+      },
+      {
+        "option": "less_than_1s_per_week",
+        "text": "Less than 1 serving per week",
+        "hint": null
+      },
+      {
+        "option": "1-2_per_week",
+        "text": "1-2 servings per week",
+        "hint": null
+      },
+      {
+        "option": "3-4_per_week",
+        "text": "3-4 servings per week",
+        "hint": null
+      },
+      {
+        "option": "5-6_per_week",
+        "text": "5-6 servings per week",
+        "hint": null
+      },
+      {
+        "option": "1_per_day",
+        "text": "1 serving per day",
+        "hint": null
+      },
+      {
+        "option": "2-3_per_day",
+        "text": "2-3 servings per day",
+        "hint": null
+      },
+      {
+        "option": "4-5_per_day",
+        "text": "4-5 servings per day",
+        "hint": null
+      },
+      {
+        "option": "more_than_6_per_day",
+        "text": "6 or more servings per day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.800+00:00",
+    "updatedAt": "2025-01-16T17:07:52.800+00:00"
+  },
+  {
+    "questionId": "moderate_activity_days",
+    "question": "During the last 7 days, on how many days did you do moderate physical activities like carrying light loads, bicycling at a regular pace, or doubles tennis?  Do not include walking.",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "number_of_days_per_week_all_moderate_activities",
+        "text": "number_of_days_per_week_all_moderate_activities",
+        "hint": null
+      },
+      {
+        "option": "number_of_days_per_week_moderate_aerobic_activities",
+        "text": "number_of_days_per_week_moderate_aerobic_activities",
+        "hint": null
+      },
+      {
+        "option": "number_of_days_per_week_moderate_strengthening_activities",
+        "text": "number_of_days_per_week_moderate_strengthening_activities",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "Think about all the moderate activities that you did in the last 7 days.  Moderate activities refer to activities that take moderate physical effort and make you breathe somewhat harder than normal. Examples of moderate aerobic physical activities: -Moderate intensity recreational activities: brisk walking, hiking, bicycling, low impact aerobics, dancing. -Moderate intensity individual sports: swimming. -Moderate intensity team sports: competitive volleyball.) Examples of moderate muscle-strengthening activities: Yoga, weight training, housework that involves intense scrubbing and cleaning.)",
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.527+00:00",
+    "updatedAt": "2025-01-16T17:07:53.528+00:00"
+  },
+  {
+    "questionId": "moderate_activity_duration",
+    "question": "How much time did you usually spend doing moderate physical activities on one of those days?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "number_of_minutes_all_moderate_per_day",
+        "text": "number_of_minutes_all_moderate_per_day",
+        "hint": null
+      },
+      {
+        "option": "number_of_minutes_aerobic_moderate_per_day",
+        "text": "number_of_minutes_aerobic_moderate_per_day",
+        "hint": null
+      },
+      {
+        "option": "number_of_minutes_strengthening_moderate_per_day",
+        "text": "number_of_minutes_strengthening_moderate_per_day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "Think about all the moderate activities that you did in the last 7 days.  Moderate activities refer to activities that take moderate physical effort and make you breathe somewhat harder than normal. Examples of moderate aerobic physical activities: -Moderate intensity recreational activities: brisk walking, hiking, bicycling, low impact aerobics, dancing. -Moderate intensity individual sports: swimming. -Moderate intensity team sports: competitive volleyball.) Examples of moderate muscle-strengthening activities: Yoga, weight training, housework that involves intense scrubbing and cleaning.)",
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.600+00:00",
+    "updatedAt": "2025-01-16T17:07:53.600+00:00"
+  },
+  {
+    "questionId": "ethnic_group",
+    "question": "What is your ethnic group?",
+    "type": "CHOOSE_ONE_OR_OPEN",
+    "options": [
+      {
+        "option": "white_caucasian",
+        "text": "White / Caucasian",
+        "hint": null
+      },
+      {
+        "option": "black_african",
+        "text": "Black / African / Caribbean",
+        "hint": null
+      },
+      {
+        "option": "hispanic_latino",
+        "text": "Hispanic / Latino",
+        "hint": null
+      },
+      {
+        "option": "asian_pacific",
+        "text": "Asian / Pacific Islander",
+        "hint": null
+      },
+      {
+        "option": "mixed",
+        "text": "Mixed / Multiple ethnic background",
+        "hint": null
+      },
+      {
+        "option": "other",
+        "text": "Other (Please specify).",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "sociodemographic",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:49.649+00:00",
+    "updatedAt": "2025-01-16T17:07:49.650+00:00"
+  },
+  {
+    "questionId": "present_work",
+    "question": "What is your present work situation?",
+    "type": "CHOOSE_MANY",
+    "options": [
+      {
+        "option": "employed_for_wages",
+        "text": "Employed for wages",
+        "hint": null
+      },
+      {
+        "option": "self_employed",
+        "text": "Self-employed",
+        "hint": null
+      },
+      {
+        "option": "out_of_work",
+        "text": "Out of work",
+        "hint": null
+      },
+      {
+        "option": "homemaker",
+        "text": "Homemaker",
+        "hint": null
+      },
+      {
+        "option": "student",
+        "text": "Student",
+        "hint": null
+      },
+      {
+        "option": "retired",
+        "text": "Retired",
+        "hint": null
+      },
+      {
+        "option": "unable_to_work",
+        "text": "Unable to work",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "more than one answers could be selected",
+    "category": "sociodemographic",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.181+00:00",
+    "updatedAt": "2025-01-16T17:07:50.181+00:00"
+  },
+  {
+    "questionId": "height_on-boarding",
+    "question": "Height. Please enter your height in centimetres (cms)",
+    "type": "OPEN",
+    "options": null,
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.549+00:00",
+    "updatedAt": "2025-01-16T17:07:50.549+00:00"
+  },
+  {
+    "questionId": "breast_cancer_diagnosis",
+    "question": "Have you ever been diagnosed with breast cancer?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "yes",
+        "text": "Yes",
+        "hint": null
+      },
+      {
+        "option": "no",
+        "text": "No",
+        "hint": "If selected, skip to question chronic_medical_condition_diagnosis"
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.695+00:00",
+    "updatedAt": "2025-01-16T17:07:50.695+00:00"
+  },
+  {
+    "questionId": "chronic_medical_conditions",
+    "question": "Please specify what medical condition you have been diagnosed with.",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "cardiovascular_diseases",
+        "text": "Cardiovascular Diseases (e.g.hypertension, coronary artery disease (heart disease), heart failure, stroke)",
+        "hint": null
+      },
+      {
+        "option": "endocrine_and_metabolic_disorders",
+        "text": "Endocrine and Metabolic Disorders (e.g. type 2 diabetes mellitus 2, hyper-/hypothyroidism, dyslipidemia, non-alcoholic fatty liver disease, metabolic syndrome)",
+        "hint": null
+      },
+      {
+        "option": "respiratory_diseases",
+        "text": "Respiratory Diseases (e.g. chronic obstructive pulmonary disease (COPD), asthma)",
+        "hint": null
+      },
+      {
+        "option": "musculoskeletal_disorders",
+        "text": "Musculoskeletal Disorders (e.g. osteoarthritis, rheumatoid arthritis, osteoporosis)",
+        "hint": null
+      },
+      {
+        "option": "gastrointestinal_disorders",
+        "text": "Gastrointestinal Disorders (e.g. inflammatory bowel disease, chronic liver disease, irritable bowel syndrome (IBS), gastrointestinal reflux)",
+        "hint": null
+      },
+      {
+        "option": "kidney_urinary_disorders",
+        "text": "Kidney and Urinary Tract Disorders (e.g. chronic kidney disease (CKD), kidney stones)",
+        "hint": null
+      },
+      {
+        "option": "autoimmune_diseases",
+        "text": "Autoimmune Diseases (e.g. lupus, celiac disease, psoriasis, type 1 diabetes mellitus)",
+        "hint": null
+      },
+      {
+        "option": "cancer_other",
+        "text": "Cancer, other than breast cancer",
+        "hint": null
+      },
+      {
+        "option": "hematologic_blood_disorders",
+        "text": "Hematologic and Blood Disorders (anemia/ chronic anemia, sickle cell disease)",
+        "hint": null
+      },
+      {
+        "option": "hormonal_conditions",
+        "text": "Hormonal Conditions (e.g. polycystic ovary syndrome (POS))",
+        "hint": null
+      },
+      {
+        "option": "other",
+        "text": "Other, please specify",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.272+00:00",
+    "updatedAt": "2025-01-16T17:07:51.273+00:00"
+  },
+  {
+    "questionId": "eats_red_meat_weekly",
+    "question": "Do you eat 3 or more servings of red meat per week",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "yes",
+        "text": "Yes",
+        "hint": null
+      },
+      {
+        "option": "no",
+        "text": "No",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.290+00:00",
+    "updatedAt": "2025-01-16T17:07:52.290+00:00"
+  },
+  {
+    "questionId": "origin_country",
+    "question": "What is your country of origin?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "afghanistan",
+        "text": "Afghanistan",
+        "hint": null
+      },
+      {
+        "option": "albania",
+        "text": "Albania",
+        "hint": null
+      },
+      {
+        "option": "algeria",
+        "text": "Algeria",
+        "hint": null
+      },
+      {
+        "option": "andorra",
+        "text": "Andorra",
+        "hint": null
+      },
+      {
+        "option": "angola",
+        "text": "Angola",
+        "hint": null
+      },
+      {
+        "option": "antigua_and_barbuda",
+        "text": "Antigua and Barbuda",
+        "hint": null
+      },
+      {
+        "option": "argentina",
+        "text": "Argentina",
+        "hint": null
+      },
+      {
+        "option": "armenia",
+        "text": "Armenia",
+        "hint": null
+      },
+      {
+        "option": "australia",
+        "text": "Australia",
+        "hint": null
+      },
+      {
+        "option": "austria",
+        "text": "Austria",
+        "hint": null
+      },
+      {
+        "option": "azerbaijan",
+        "text": "Azerbaijan",
+        "hint": null
+      },
+      {
+        "option": "the_bahamas",
+        "text": "The Bahamas",
+        "hint": null
+      },
+      {
+        "option": "bahrain",
+        "text": "Bahrain",
+        "hint": null
+      },
+      {
+        "option": "bangladesh",
+        "text": "Bangladesh",
+        "hint": null
+      },
+      {
+        "option": "barbados",
+        "text": "Barbados",
+        "hint": null
+      },
+      {
+        "option": "belarus",
+        "text": "Belarus",
+        "hint": null
+      },
+      {
+        "option": "belgium",
+        "text": "Belgium",
+        "hint": null
+      },
+      {
+        "option": "belize",
+        "text": "Belize",
+        "hint": null
+      },
+      {
+        "option": "benin",
+        "text": "Benin",
+        "hint": null
+      },
+      {
+        "option": "bhutan",
+        "text": "Bhutan",
+        "hint": null
+      },
+      {
+        "option": "bolivia",
+        "text": "Bolivia",
+        "hint": null
+      },
+      {
+        "option": "bosnia_and_herzegovina",
+        "text": "Bosnia and Herzegovina",
+        "hint": null
+      },
+      {
+        "option": "botswana",
+        "text": "Botswana",
+        "hint": null
+      },
+      {
+        "option": "brazil",
+        "text": "Brazil",
+        "hint": null
+      },
+      {
+        "option": "brunei",
+        "text": "Brunei",
+        "hint": null
+      },
+      {
+        "option": "bulgaria",
+        "text": "Bulgaria",
+        "hint": null
+      },
+      {
+        "option": "burkina_faso",
+        "text": "Burkina Faso",
+        "hint": null
+      },
+      {
+        "option": "burundi",
+        "text": "Burundi",
+        "hint": null
+      },
+      {
+        "option": "cabo_verde",
+        "text": "Cabo Verde",
+        "hint": null
+      },
+      {
+        "option": "cambodia",
+        "text": "Cambodia",
+        "hint": null
+      },
+      {
+        "option": "cameroon",
+        "text": "Cameroon",
+        "hint": null
+      },
+      {
+        "option": "canada",
+        "text": "Canada",
+        "hint": null
+      },
+      {
+        "option": "central_african_republic",
+        "text": "Central African Republic",
+        "hint": null
+      },
+      {
+        "option": "chad",
+        "text": "Chad",
+        "hint": null
+      },
+      {
+        "option": "chile",
+        "text": "Chile",
+        "hint": null
+      },
+      {
+        "option": "china",
+        "text": "China",
+        "hint": null
+      },
+      {
+        "option": "colombia",
+        "text": "Colombia",
+        "hint": null
+      },
+      {
+        "option": "comoros",
+        "text": "Comoros",
+        "hint": null
+      },
+      {
+        "option": "congo_democratic_republic_of_the",
+        "text": "Congo, Democratic Republic of the",
+        "hint": null
+      },
+      {
+        "option": "congo_republic_of_the",
+        "text": "Congo, Republic of the",
+        "hint": null
+      },
+      {
+        "option": "costa_rica",
+        "text": "Costa Rica",
+        "hint": null
+      },
+      {
+        "option": "côte_d’ivoire",
+        "text": "Côte d’Ivoire",
+        "hint": null
+      },
+      {
+        "option": "croatia",
+        "text": "Croatia",
+        "hint": null
+      },
+      {
+        "option": "cuba",
+        "text": "Cuba",
+        "hint": null
+      },
+      {
+        "option": "cyprus",
+        "text": "Cyprus",
+        "hint": null
+      },
+      {
+        "option": "czech_republic",
+        "text": "Czech Republic",
+        "hint": null
+      },
+      {
+        "option": "denmark",
+        "text": "Denmark",
+        "hint": null
+      },
+      {
+        "option": "djibouti",
+        "text": "Djibouti",
+        "hint": null
+      },
+      {
+        "option": "dominica",
+        "text": "Dominica",
+        "hint": null
+      },
+      {
+        "option": "dominican_republic",
+        "text": "Dominican Republic",
+        "hint": null
+      },
+      {
+        "option": "east_timor_timor_leste",
+        "text": "East Timor (Timor-Leste)",
+        "hint": null
+      },
+      {
+        "option": "ecuador",
+        "text": "Ecuador",
+        "hint": null
+      },
+      {
+        "option": "egypt",
+        "text": "Egypt",
+        "hint": null
+      },
+      {
+        "option": "el_salvador",
+        "text": "El Salvador",
+        "hint": null
+      },
+      {
+        "option": "equatorial_guinea",
+        "text": "Equatorial Guinea",
+        "hint": null
+      },
+      {
+        "option": "eritrea",
+        "text": "Eritrea",
+        "hint": null
+      },
+      {
+        "option": "estonia",
+        "text": "Estonia",
+        "hint": null
+      },
+      {
+        "option": "eswatini",
+        "text": "Eswatini",
+        "hint": null
+      },
+      {
+        "option": "ethiopia",
+        "text": "Ethiopia",
+        "hint": null
+      },
+      {
+        "option": "fiji",
+        "text": "Fiji",
+        "hint": null
+      },
+      {
+        "option": "finland",
+        "text": "Finland",
+        "hint": null
+      },
+      {
+        "option": "france",
+        "text": "France",
+        "hint": null
+      },
+      {
+        "option": "gabon",
+        "text": "Gabon",
+        "hint": null
+      },
+      {
+        "option": "the_gambia",
+        "text": "The Gambia",
+        "hint": null
+      },
+      {
+        "option": "georgia",
+        "text": "Georgia",
+        "hint": null
+      },
+      {
+        "option": "germany",
+        "text": "Germany",
+        "hint": null
+      },
+      {
+        "option": "ghana",
+        "text": "Ghana",
+        "hint": null
+      },
+      {
+        "option": "greece",
+        "text": "Greece",
+        "hint": null
+      },
+      {
+        "option": "grenada",
+        "text": "Grenada",
+        "hint": null
+      },
+      {
+        "option": "guatemala",
+        "text": "Guatemala",
+        "hint": null
+      },
+      {
+        "option": "guinea",
+        "text": "Guinea",
+        "hint": null
+      },
+      {
+        "option": "guinea_bissau",
+        "text": "Guinea-Bissau",
+        "hint": null
+      },
+      {
+        "option": "guyana",
+        "text": "Guyana",
+        "hint": null
+      },
+      {
+        "option": "haiti",
+        "text": "Haiti",
+        "hint": null
+      },
+      {
+        "option": "honduras",
+        "text": "Honduras",
+        "hint": null
+      },
+      {
+        "option": "hungary",
+        "text": "Hungary",
+        "hint": null
+      },
+      {
+        "option": "iceland",
+        "text": "Iceland",
+        "hint": null
+      },
+      {
+        "option": "india",
+        "text": "India",
+        "hint": null
+      },
+      {
+        "option": "indonesia",
+        "text": "Indonesia",
+        "hint": null
+      },
+      {
+        "option": "iran",
+        "text": "Iran",
+        "hint": null
+      },
+      {
+        "option": "iraq",
+        "text": "Iraq",
+        "hint": null
+      },
+      {
+        "option": "ireland",
+        "text": "Ireland",
+        "hint": null
+      },
+      {
+        "option": "israel",
+        "text": "Israel",
+        "hint": null
+      },
+      {
+        "option": "italy",
+        "text": "Italy",
+        "hint": null
+      },
+      {
+        "option": "jamaica",
+        "text": "Jamaica",
+        "hint": null
+      },
+      {
+        "option": "japan",
+        "text": "Japan",
+        "hint": null
+      },
+      {
+        "option": "jordan",
+        "text": "Jordan",
+        "hint": null
+      },
+      {
+        "option": "kazakhstan",
+        "text": "Kazakhstan",
+        "hint": null
+      },
+      {
+        "option": "kenya",
+        "text": "Kenya",
+        "hint": null
+      },
+      {
+        "option": "kiribati",
+        "text": "Kiribati",
+        "hint": null
+      },
+      {
+        "option": "korea_north",
+        "text": "Korea, North",
+        "hint": null
+      },
+      {
+        "option": "korea_south",
+        "text": "Korea, South",
+        "hint": null
+      },
+      {
+        "option": "kosovo",
+        "text": "Kosovo",
+        "hint": null
+      },
+      {
+        "option": "kuwait",
+        "text": "Kuwait",
+        "hint": null
+      },
+      {
+        "option": "kyrgyzstan",
+        "text": "Kyrgyzstan",
+        "hint": null
+      },
+      {
+        "option": "laos",
+        "text": "Laos",
+        "hint": null
+      },
+      {
+        "option": "latvia",
+        "text": "Latvia",
+        "hint": null
+      },
+      {
+        "option": "lebanon",
+        "text": "Lebanon",
+        "hint": null
+      },
+      {
+        "option": "lesotho",
+        "text": "Lesotho",
+        "hint": null
+      },
+      {
+        "option": "liberia",
+        "text": "Liberia",
+        "hint": null
+      },
+      {
+        "option": "libya",
+        "text": "Libya",
+        "hint": null
+      },
+      {
+        "option": "liechtenstein",
+        "text": "Liechtenstein",
+        "hint": null
+      },
+      {
+        "option": "lithuania",
+        "text": "Lithuania",
+        "hint": null
+      },
+      {
+        "option": "luxembourg",
+        "text": "Luxembourg",
+        "hint": null
+      },
+      {
+        "option": "madagascar",
+        "text": "Madagascar",
+        "hint": null
+      },
+      {
+        "option": "malawi",
+        "text": "Malawi",
+        "hint": null
+      },
+      {
+        "option": "malaysia",
+        "text": "Malaysia",
+        "hint": null
+      },
+      {
+        "option": "maldives",
+        "text": "Maldives",
+        "hint": null
+      },
+      {
+        "option": "mali",
+        "text": "Mali",
+        "hint": null
+      },
+      {
+        "option": "malta",
+        "text": "Malta",
+        "hint": null
+      },
+      {
+        "option": "marshall_islands",
+        "text": "Marshall Islands",
+        "hint": null
+      },
+      {
+        "option": "mauritania",
+        "text": "Mauritania",
+        "hint": null
+      },
+      {
+        "option": "mauritius",
+        "text": "Mauritius",
+        "hint": null
+      },
+      {
+        "option": "mexico",
+        "text": "Mexico",
+        "hint": null
+      },
+      {
+        "option": "micronesia",
+        "text": "Micronesia",
+        "hint": null
+      },
+      {
+        "option": "moldova",
+        "text": "Moldova",
+        "hint": null
+      },
+      {
+        "option": "monaco",
+        "text": "Monaco",
+        "hint": null
+      },
+      {
+        "option": "mongolia",
+        "text": "Mongolia",
+        "hint": null
+      },
+      {
+        "option": "montenegro",
+        "text": "Montenegro",
+        "hint": null
+      },
+      {
+        "option": "morocco",
+        "text": "Morocco",
+        "hint": null
+      },
+      {
+        "option": "mozambique",
+        "text": "Mozambique",
+        "hint": null
+      },
+      {
+        "option": "myanmar_burma",
+        "text": "Myanmar (Burma)",
+        "hint": null
+      },
+      {
+        "option": "namibia",
+        "text": "Namibia",
+        "hint": null
+      },
+      {
+        "option": "nauru",
+        "text": "Nauru",
+        "hint": null
+      },
+      {
+        "option": "nepal",
+        "text": "Nepal",
+        "hint": null
+      },
+      {
+        "option": "netherlands",
+        "text": "Netherlands",
+        "hint": null
+      },
+      {
+        "option": "new_zealand",
+        "text": "New Zealand",
+        "hint": null
+      },
+      {
+        "option": "nicaragua",
+        "text": "Nicaragua",
+        "hint": null
+      },
+      {
+        "option": "niger",
+        "text": "Niger",
+        "hint": null
+      },
+      {
+        "option": "nigeria",
+        "text": "Nigeria",
+        "hint": null
+      },
+      {
+        "option": "north_macedonia",
+        "text": "North Macedonia",
+        "hint": null
+      },
+      {
+        "option": "norway",
+        "text": "Norway",
+        "hint": null
+      },
+      {
+        "option": "oman",
+        "text": "Oman",
+        "hint": null
+      },
+      {
+        "option": "pakistan",
+        "text": "Pakistan",
+        "hint": null
+      },
+      {
+        "option": "palau",
+        "text": "Palau",
+        "hint": null
+      },
+      {
+        "option": "panama",
+        "text": "Panama",
+        "hint": null
+      },
+      {
+        "option": "papua_new_guinea",
+        "text": "Papua New Guinea",
+        "hint": null
+      },
+      {
+        "option": "paraguay",
+        "text": "Paraguay",
+        "hint": null
+      },
+      {
+        "option": "peru",
+        "text": "Peru",
+        "hint": null
+      },
+      {
+        "option": "philippines",
+        "text": "Philippines",
+        "hint": null
+      },
+      {
+        "option": "poland",
+        "text": "Poland",
+        "hint": null
+      },
+      {
+        "option": "portugal",
+        "text": "Portugal",
+        "hint": null
+      },
+      {
+        "option": "qatar",
+        "text": "Qatar",
+        "hint": null
+      },
+      {
+        "option": "romania",
+        "text": "Romania",
+        "hint": null
+      },
+      {
+        "option": "russia",
+        "text": "Russia",
+        "hint": null
+      },
+      {
+        "option": "rwanda",
+        "text": "Rwanda",
+        "hint": null
+      },
+      {
+        "option": "saint_kitts_and_nevis",
+        "text": "Saint Kitts and Nevis",
+        "hint": null
+      },
+      {
+        "option": "saint_lucia",
+        "text": "Saint Lucia",
+        "hint": null
+      },
+      {
+        "option": "saint_vincent_and_the_grenadines",
+        "text": "Saint Vincent and the Grenadines",
+        "hint": null
+      },
+      {
+        "option": "samoa",
+        "text": "Samoa",
+        "hint": null
+      },
+      {
+        "option": "san_marino",
+        "text": "San Marino",
+        "hint": null
+      },
+      {
+        "option": "sao_tome_and_principe",
+        "text": "Sao Tome and Principe",
+        "hint": null
+      },
+      {
+        "option": "saudi_arabia",
+        "text": "Saudi Arabia",
+        "hint": null
+      },
+      {
+        "option": "senegal",
+        "text": "Senegal",
+        "hint": null
+      },
+      {
+        "option": "serbia",
+        "text": "Serbia",
+        "hint": null
+      },
+      {
+        "option": "seychelles",
+        "text": "Seychelles",
+        "hint": null
+      },
+      {
+        "option": "sierra_leone",
+        "text": "Sierra Leone",
+        "hint": null
+      },
+      {
+        "option": "singapore",
+        "text": "Singapore",
+        "hint": null
+      },
+      {
+        "option": "slovakia",
+        "text": "Slovakia",
+        "hint": null
+      },
+      {
+        "option": "slovenia",
+        "text": "Slovenia",
+        "hint": null
+      },
+      {
+        "option": "solomon_islands",
+        "text": "Solomon Islands",
+        "hint": null
+      },
+      {
+        "option": "somalia",
+        "text": "Somalia",
+        "hint": null
+      },
+      {
+        "option": "south_africa",
+        "text": "South Africa",
+        "hint": null
+      },
+      {
+        "option": "south_sudan",
+        "text": "South Sudan",
+        "hint": null
+      },
+      {
+        "option": "spain",
+        "text": "Spain",
+        "hint": null
+      },
+      {
+        "option": "sri_lanka",
+        "text": "Sri Lanka",
+        "hint": null
+      },
+      {
+        "option": "sudan",
+        "text": "Sudan",
+        "hint": null
+      },
+      {
+        "option": "suriname",
+        "text": "Suriname",
+        "hint": null
+      },
+      {
+        "option": "sweden",
+        "text": "Sweden",
+        "hint": null
+      },
+      {
+        "option": "switzerland",
+        "text": "Switzerland",
+        "hint": null
+      },
+      {
+        "option": "syria",
+        "text": "Syria",
+        "hint": null
+      },
+      {
+        "option": "taiwan",
+        "text": "Taiwan",
+        "hint": null
+      },
+      {
+        "option": "tajikistan",
+        "text": "Tajikistan",
+        "hint": null
+      },
+      {
+        "option": "tanzania",
+        "text": "Tanzania",
+        "hint": null
+      },
+      {
+        "option": "thailand",
+        "text": "Thailand",
+        "hint": null
+      },
+      {
+        "option": "togo",
+        "text": "Togo",
+        "hint": null
+      },
+      {
+        "option": "tonga",
+        "text": "Tonga",
+        "hint": null
+      },
+      {
+        "option": "trinidad_and_tobago",
+        "text": "Trinidad and Tobago",
+        "hint": null
+      },
+      {
+        "option": "tunisia",
+        "text": "Tunisia",
+        "hint": null
+      },
+      {
+        "option": "turkey",
+        "text": "Turkey",
+        "hint": null
+      },
+      {
+        "option": "turkmenistan",
+        "text": "Turkmenistan",
+        "hint": null
+      },
+      {
+        "option": "tuvalu",
+        "text": "Tuvalu",
+        "hint": null
+      },
+      {
+        "option": "uganda",
+        "text": "Uganda",
+        "hint": null
+      },
+      {
+        "option": "ukraine",
+        "text": "Ukraine",
+        "hint": null
+      },
+      {
+        "option": "united_arab_emirates",
+        "text": "United Arab Emirates",
+        "hint": null
+      },
+      {
+        "option": "united_kingdom",
+        "text": "United Kingdom",
+        "hint": null
+      },
+      {
+        "option": "united_states_of_america",
+        "text": "United States of America",
+        "hint": null
+      },
+      {
+        "option": "uruguay",
+        "text": "Uruguay",
+        "hint": null
+      },
+      {
+        "option": "uzbekistan",
+        "text": "Uzbekistan",
+        "hint": null
+      },
+      {
+        "option": "vanuatu",
+        "text": "Vanuatu",
+        "hint": null
+      },
+      {
+        "option": "vatican_city",
+        "text": "Vatican City",
+        "hint": null
+      },
+      {
+        "option": "venezuela",
+        "text": "Venezuela",
+        "hint": null
+      },
+      {
+        "option": "vietnam",
+        "text": "Vietnam",
+        "hint": null
+      },
+      {
+        "option": "yemen",
+        "text": "Yemen",
+        "hint": null
+      },
+      {
+        "option": "zambia",
+        "text": "Zambia",
+        "hint": null
+      },
+      {
+        "option": "zimbabwe",
+        "text": "Zimbabwe",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "sociodemographic",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:49.728+00:00",
+    "updatedAt": "2025-01-16T17:07:49.728+00:00"
+  },
+  {
+    "questionId": "vegetable_consumption",
+    "question": "How often do you eat vegetables?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "not_eat_at_all",
+        "text": "I do not eat it at all",
+        "hint": null
+      },
+      {
+        "option": "less_than_1s_per_week",
+        "text": "Less than 1 serving per week",
+        "hint": null
+      },
+      {
+        "option": "1-2_per_week",
+        "text": "1-2 servings per week",
+        "hint": null
+      },
+      {
+        "option": "3-4_per_week",
+        "text": "3-4 servings per week",
+        "hint": null
+      },
+      {
+        "option": "5-6_per_week",
+        "text": "5-6 servings per week",
+        "hint": null
+      },
+      {
+        "option": "1_per_day",
+        "text": "1 serving per day",
+        "hint": null
+      },
+      {
+        "option": "2-3_per_day",
+        "text": "2-3 servings per day",
+        "hint": null
+      },
+      {
+        "option": "4-5_per_day",
+        "text": "4-5 servings per day",
+        "hint": null
+      },
+      {
+        "option": "more_than_6_per_day",
+        "text": "6 or more servings per day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.436+00:00",
+    "updatedAt": "2025-01-16T17:07:52.437+00:00"
+  },
+  {
+    "questionId": "vigorous_activity_days",
+    "question": "During the last 7 days, on how many days did you do vigorous physical activities like heavy lifting, digging, aerobics, or fast bicycling?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "number_of_days_per_week_all_vigorous_activities",
+        "text": "number_of_days_per_week_all_vigorous_activities",
+        "hint": null
+      },
+      {
+        "option": "number_of_days_per_week_vigorous_aerobic_activities",
+        "text": "number_of_days_per_week_vigorous_aerobic_activities",
+        "hint": null
+      },
+      {
+        "option": "number_of_days_per_week_vigorous_strengthening_activities",
+        "text": "number_of_days_per_week_vigorous_strengthening_activities",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "Think about all the vigorous activities that you did in the last 7 days.  Vigorous physical activities refer to activities that take hard physical effort and make you breathe much harder than normal. Examples of vigorous aerobic physical activities: -Vigorous intensity recreational activities: jogging/running, mountain climbing, brisk bicycling, high impact step aerobics, brisk dancing. -Vigorous intensity individual sports: race walking, vigorous swimming, competitive tennis. -Vigorous intensity team sports: competitive basketball, soccer/football. Examples of vigorous muscle-strengthening activities: Vigorous intensity martial arts, heavy lifting, power yoga.)",
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.382+00:00",
+    "updatedAt": "2025-01-16T17:07:53.382+00:00"
+  },
+  {
+    "questionId": "walk_time_to_location",
+    "question": "Please select how long it takes for you to walk from your place of residence to the following",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "park",
+        "text": "Park",
+        "hint": null
+      },
+      {
+        "option": "open_gym",
+        "text": "Open gym",
+        "hint": null
+      },
+      {
+        "option": "gym",
+        "text": "Gym",
+        "hint": null
+      },
+      {
+        "option": "pool",
+        "text": "Pool",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": {
+      "10_30_min": "10–30 min",
+      "more_than_30_min": "More than 30 min",
+      "less_than_10_min": "Less than 10 min"
+    },
+    "hint": null,
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:54.107+00:00",
+    "updatedAt": "2025-01-16T17:07:54.107+00:00"
+  },
+  {
+    "questionId": "dietary_support_factors",
+    "question": "To what extent do the following factors enhance your ability to follow a healthier diet?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "low_cost_healthy_food",
+        "text": "Low cost of healthy food",
+        "hint": null
+      },
+      {
+        "option": "access_to_fresh_low_calorie_foods",
+        "text": "Access to good-quality and freshly produced, low in calories products",
+        "hint": null
+      },
+      {
+        "option": "income_mitigation_food_choices",
+        "text": "Availability of offers and/or coupons that make healthy food more affordable",
+        "hint": null
+      },
+      {
+        "option": "food_preparation_help",
+        "text": "A helping hand with food preparation",
+        "hint": null
+      },
+      {
+        "option": "family_support_healthy_choices",
+        "text": "Support from family and friends - other members of my family choose the same healthy options, changes are easier in a family level",
+        "hint": null
+      },
+      {
+        "option": "healthcare_emphasis_on_diet",
+        "text": "Emphasis on the importance of a healthy diet from healthcare professionals",
+        "hint": null
+      },
+      {
+        "option": "support_for_eating_recommendations",
+        "text": "Support of knowledge on current healthy eating recommendations - it is good to have someone to guide me on where i can find the recommendations",
+        "hint": null
+      },
+      {
+        "option": "accountability_partner",
+        "text": "Accountability partner - it is easier to follow a healthier diet when i have a partner/buddy i can account/commit to",
+        "hint": null
+      },
+      {
+        "option": "collaboration_healthcare_team",
+        "text": "Receiving support/solutions/proposals from healthcare professionals (primary care physician, dietitian, physiotherapist)",
+        "hint": null
+      },
+      {
+        "option": "meal_preparation_skills",
+        "text": "Skills on healthy food meal preparation",
+        "hint": null
+      },
+      {
+        "option": "wake_up_call_diet_change",
+        "text": "A recent medical diagnosis - a wake-up call to change towards a healthier diet",
+        "hint": null
+      },
+      {
+        "option": "healthy_diet_routine_development",
+        "text": "Development of a routine - a daily routine regarding healthy diet provides discipline and willingness to persist to a healthier diet",
+        "hint": null
+      },
+      {
+        "option": "increased_energy_daily_life",
+        "text": "Everyday life, energy and strength are improved - I have more energy in my daily life",
+        "hint": null
+      },
+      {
+        "option": "role_modeling_healthy_diet",
+        "text": "Role modelling - if i follow a healthier diet it is also more probable for my children to do the same",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": {
+      "not_really_enhancing": "Not really enhancing",
+      "somewhat_enhancing": "Somewhat enhancing",
+      "definitely_enhancing": "Definitely enhancing",
+      "neither_enhancing_nor_not_enhancing": "Neither enhancing nor not enhancing",
+      "definitely_not_enhancing": "Definitely not enhancing"
+    },
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.092+00:00",
+    "updatedAt": "2025-01-16T17:07:53.092+00:00"
+  },
+  {
+    "questionId": "tobacco_use_duration",
+    "question": "How long have you been smoking/using tobacco products?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "less_than_1_year",
+        "text": "Less than 1 year",
+        "hint": null
+      },
+      {
+        "option": "2-5_years",
+        "text": "2-5 years",
+        "hint": null
+      },
+      {
+        "option": "6-10_years",
+        "text": "6-10 years",
+        "hint": null
+      },
+      {
+        "option": "more_than_10_years",
+        "text": "More than 10 years",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "smoking",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.237+00:00",
+    "updatedAt": "2025-01-16T17:07:53.237+00:00"
+  },
+  {
+    "questionId": "vigorous_activity_duration",
+    "question": "How much time did you usually spend doing vigorous physical activities on one of those days?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "number_of_minutes_all_vigorous_per_day",
+        "text": "number_of_minutes_all_vigorous_per_day",
+        "hint": null
+      },
+      {
+        "option": "number_of_minutes_aerobic_vigorous_per_day",
+        "text": "number_of_minutes_aerobic_vigorous_per_day",
+        "hint": null
+      },
+      {
+        "option": "number_of_minutes_strengthening_vigorous_per_day",
+        "text": "number_of_minutes_strengthening_vigorous_per_day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "Think about all the vigorous activities that you did in the last 7 days.  Vigorous physical activities refer to activities that take hard physical effort and make you breathe much harder than normal. Examples of vigorous aerobic physical activities: -Vigorous intensity recreational activities: jogging/running, mountain climbing, brisk bicycling, high impact step aerobics, brisk dancing. -Vigorous intensity individual sports: race walking, vigorous swimming, competitive tennis. -Vigorous intensity team sports: competitive basketball, soccer/football. Examples of vigorous muscle-strengthening activities: Vigorous intensity martial arts, heavy lifting, power yoga.)",
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.454+00:00",
+    "updatedAt": "2025-01-16T17:07:53.454+00:00"
+  },
+  {
+    "questionId": "walking_duration",
+    "question": "How much time did you usually spend walking on one of those days?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "number_of_minutes_walking_per_day",
+        "text": "number_of_minutes_walking_per_day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "Think about the time you spent walking in the last 7 days.  This includes at work and at home, walking to travel from place to place, and any other walking that you have done solely for recreation, sport, exercise, or leisure.",
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.745+00:00",
+    "updatedAt": "2025-01-16T17:07:53.746+00:00"
+  },
+  {
+    "questionId": "breast_cancer_diagnosis_date",
+    "question": "When were you first told that you had breast cancer?",
+    "type": "OPEN",
+    "options": null,
+    "customAnswerFormat": "MM-YYYY",
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.767+00:00",
+    "updatedAt": "2025-01-16T17:07:50.767+00:00"
+  },
+  {
+    "questionId": "tobacco_use_history",
+    "question": "Have you ever smoked/used any tobacco products?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "never_smoked",
+        "text": "Never smoked",
+        "hint": "If selected, skip to question vigorous_activity_days"
+      },
+      {
+        "option": "former_smoker_gte_10",
+        "text": "Former smoker ≥10 years",
+        "hint": null
+      },
+      {
+        "option": "former_smoker_lte_10",
+        "text": "Former smoker <10 years",
+        "hint": null
+      },
+      {
+        "option": "active_smoker",
+        "text": "Active smoker",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "smoking",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.165+00:00",
+    "updatedAt": "2025-01-16T17:07:53.165+00:00"
+  },
+  {
+    "questionId": "daily_tobacco_use",
+    "question": "How many cigarettes/other tobacco products do you smoke/use on an average day?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "manufactured_cigarettes",
+        "text": "Manufactured cigarettes [Number/Day]",
+        "hint": null
+      },
+      {
+        "option": "hand_rolled",
+        "text": "Hand-rolled cigarettes [Number/Day]",
+        "hint": null
+      },
+      {
+        "option": "pipes",
+        "text": "Pipes full of tobacco [Number/Day]",
+        "hint": null
+      },
+      {
+        "option": "cigars_cheroots_cigarillos",
+        "text": "Cigars, cheroots, or cigarillos [Number/Day]",
+        "hint": null
+      },
+      {
+        "option": "waterpipe",
+        "text": "Waterpipe sessions [Number/Day]",
+        "hint": null
+      },
+      {
+        "option": "other_number_per_day",
+        "text": "Other [Number/Day]",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "smoking",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.309+00:00",
+    "updatedAt": "2025-01-16T17:07:53.309+00:00"
+  },
+  {
+    "questionId": "steps_per_day",
+    "question": "How many steps did you usually walk on one of those days?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "number_of_minutes_walking_per_day",
+        "text": "number_of_minutes_walking_per_day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "Think about the time you spent walking in the last 7 days.  This includes at work and at home, walking to travel from place to place, and any other walking that you have done solely for recreation, sport, exercise, or leisure. You can check the number of steps that you walked on other apps that you may have, such as Apple Health or through your smartwatch.",
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.818+00:00",
+    "updatedAt": "2025-01-16T17:07:53.818+00:00"
+  },
+  {
+    "questionId": "mental_health_conditions",
+    "question": "Please specify what mental health condition you have been diagnosed with.",
+    "type": "CHOOSE_ONE_OR_OPEN",
+    "options": [
+      {
+        "option": "anxiety_disorders",
+        "text": "Anxiety disorders",
+        "hint": null
+      },
+      {
+        "option": "bipolar_affective_disorder",
+        "text": "Bipolar affective disorder",
+        "hint": null
+      },
+      {
+        "option": "depression",
+        "text": "Depression",
+        "hint": null
+      },
+      {
+        "option": "dissociation_disorders",
+        "text": "Dissociation and dissociative disorders",
+        "hint": null
+      },
+      {
+        "option": "eating_disorders",
+        "text": "Eating disorders",
+        "hint": null
+      },
+      {
+        "option": "obsessive_disorders",
+        "text": "Obsessive compulsive disorder",
+        "hint": null
+      },
+      {
+        "option": "paranoia",
+        "text": "Paranoia",
+        "hint": null
+      },
+      {
+        "option": "post_traumatic_stress",
+        "text": "Post-traumatic stress disorder",
+        "hint": null
+      },
+      {
+        "option": "psychosis",
+        "text": "Psychosis",
+        "hint": null
+      },
+      {
+        "option": "schizophrenia",
+        "text": "Schizophrenia",
+        "hint": null
+      },
+      {
+        "option": "other",
+        "text": "Other (Please specify).",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "more than one answers could be selected",
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.418+00:00",
+    "updatedAt": "2025-01-16T17:07:51.418+00:00"
+  },
+  {
+    "questionId": "breastfed_6_months",
+    "question": "Have you breastfed for a total of 6 months or longer?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "yes",
+        "text": "Yes",
+        "hint": null
+      },
+      {
+        "option": "no",
+        "text": "No",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "family",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.855+00:00",
+    "updatedAt": "2025-01-16T17:07:51.855+00:00"
+  },
+  {
+    "questionId": "current_menstrual_status",
+    "question": "How would you describe your current menstrual status?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "premenopause",
+        "text": "Premenopause (before menopause; having regular periods)",
+        "hint": null
+      },
+      {
+        "option": "perimenopause",
+        "text": "Perimenopause (changes in periods, but have not gone 12 months in a row without period)",
+        "hint": null
+      },
+      {
+        "option": "menopause",
+        "text": "Menopause",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "family",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.927+00:00",
+    "updatedAt": "2025-01-16T17:07:51.927+00:00"
+  },
+  {
+    "questionId": "refined_grains_consumption",
+    "question": "How often do you eat refined grains?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "not_eat_at_all",
+        "text": "I do not eat it at all",
+        "hint": null
+      },
+      {
+        "option": "less_than_1s_per_week",
+        "text": "Less than 1 serving per week",
+        "hint": null
+      },
+      {
+        "option": "1-2_per_week",
+        "text": "1-2 servings per week",
+        "hint": null
+      },
+      {
+        "option": "3-4_per_week",
+        "text": "3-4 servings per week",
+        "hint": null
+      },
+      {
+        "option": "5-6_per_week",
+        "text": "5-6 servings per week",
+        "hint": null
+      },
+      {
+        "option": "1_per_day",
+        "text": "1 serving per day",
+        "hint": null
+      },
+      {
+        "option": "2-3_per_day",
+        "text": "2-3 servings per day",
+        "hint": null
+      },
+      {
+        "option": "4-5_per_day",
+        "text": "4-5 servings per day",
+        "hint": null
+      },
+      {
+        "option": "more_than_6_per_day",
+        "text": "6 or more servings per day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.727+00:00",
+    "updatedAt": "2025-01-16T17:07:52.728+00:00"
+  },
+  {
+    "questionId": "walking_days_10_min",
+    "question": "During the last 7 days, on how many days did you walk for leisure or to travel from place to place?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "number_of_days_walking",
+        "text": "number_of_days_walking",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "Think about the time you spent walking in the last 7 days.  This includes at work and at home, walking to travel from place to place, and any other walking that you have done solely for recreation, sport, exercise, or leisure.",
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.672+00:00",
+    "updatedAt": "2025-01-16T17:07:53.672+00:00"
+  },
+  {
+    "questionId": "physical_activity_limitations",
+    "question": "To what extent do the following factors may limit your ability to undertake regular or increase your physical activity?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "lack_of_time_activity_limitations",
+        "text": "Lack of time and competing priorities - I don’t have the time needed to exercise due to work, family and/or other engagements.",
+        "hint": null
+      },
+      {
+        "option": "lack_of_exercise_motivation",
+        "text": "Lack of motivation to undertake exercise in the short-term - It is difficult for me to find motivation to exercise on a day-to-day basis.",
+        "hint": null
+      },
+      {
+        "option": "lack_of_long_term_motivation",
+        "text": "Lack of motivation to stick to exercising routines in the long-term - It is difficult for me to find motivation to keep on exercising for 6 months or more.",
+        "hint": null
+      },
+      {
+        "option": "fatigue_lack_of_energy",
+        "text": "Feel fatigue and/or lack of energy - I often feel too tired to exercise.",
+        "hint": null
+      },
+      {
+        "option": "sedentary_activity_competition",
+        "text": "Competition with activities promoting a sedentary lifestyle - I prefer to watch television and/or engage in hobbies that do not involve exercising.",
+        "hint": null
+      },
+      {
+        "option": "lack_of_healthcare_support",
+        "text": "Lack of support from healthcare professionals to tailor activities to an individual’s level of physical functioning - I tried to exercise but was unable to complete exercises due to my diagnosis and/or my current health condition.",
+        "hint": null
+      },
+      {
+        "option": "lack_of_exercise_skills",
+        "text": "Lack of exercising skills - I don’t know how to exercise effectively.",
+        "hint": null
+      },
+      {
+        "option": "lack_of_physical_fitness",
+        "text": "Lack of physical fitness - I feel weak or get easily tired when exercising.",
+        "hint": null
+      },
+      {
+        "option": "concern_due_to_health",
+        "text": "Concern due to physical condition (e.g., disability, chronic illness) - My health is not good enough to exercise.",
+        "hint": null
+      },
+      {
+        "option": "lack_of_support_network",
+        "text": "Lack of support from family and friends - I have no one I can exercise with.",
+        "hint": null
+      },
+      {
+        "option": "lack_of_belief_in_effectiveness",
+        "text": "Lack of belief in the effectiveness of physical activity for preventing lifestyle-related diseases - I don’t think that exercising will help me to improve my overall health.",
+        "hint": null
+      },
+      {
+        "option": "environmental_barriers",
+        "text": "Barriers in the built-up environment and geographical isolation - There is no place to exercise that I can easily access.",
+        "hint": null
+      },
+      {
+        "option": "belief_health_is_sufficient",
+        "text": "I believe I do not need to exercise because my overall health is good enough.",
+        "hint": null
+      },
+      {
+        "option": "lack_of_activity_knowledge",
+        "text": "Lack of knowledge on current physical activity recommendations - I don’t know where to find trustworthy exercise recommendations and how to adopt them.",
+        "hint": null
+      },
+      {
+        "option": "fear_of_injury",
+        "text": "Fear of injury - I’m afraid that I may get hurt or injured when exercising.",
+        "hint": null
+      },
+      {
+        "option": "social_norms_stigma",
+        "text": "Social norms and stigma - I don’t feel welcome in a fitness club and/or other places of public exercise.",
+        "hint": null
+      },
+      {
+        "option": "weather_conditions_barrier",
+        "text": "Weather conditions - It is difficult for me to exercise due to the weather conditions (e.g., it is too hot/rainy) in the area where I live.",
+        "hint": null
+      },
+      {
+        "option": "safety_concerns_exercise",
+        "text": "Concerns about safety - I feel that it is unsafe for me to access public exercise spaces or exercise in these in the area where I live (e.g., to walk to/exercise in local parks).",
+        "hint": null
+      },
+      {
+        "option": "discomfort_exercising_in_public",
+        "text": "Feel uncomfortable to exercise in public - My appearance has changed after the diagnosis and the treatment undertaken and I feel uncomfortable to exercise in front of others.",
+        "hint": null
+      },
+      {
+        "option": "trust_in_activity_information",
+        "text": "Accuracy of information regarding physical activity - I do not know if I can trust information I find from the internet or social media on how to exercise.",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": {
+      "neither_limiting_nor_not_limiting": "Neither limiting nor not limiting",
+      "somewhat_limiting": "Somewhat limiting",
+      "definitely_not_limiting": "Definitely not limiting",
+      "definitely_limiting": "Definitely limiting",
+      "not_really_limiting": "Not really limiting"
+    },
+    "hint": null,
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:54.179+00:00",
+    "updatedAt": "2025-01-16T17:07:54.180+00:00"
+  },
+  {
+    "questionId": "year_of_birth",
+    "question": "What is your year of birth?",
+    "type": "OPEN",
+    "options": null,
+    "customAnswerFormat": "YYYY",
+    "valuesExplained": null,
+    "hint": null,
+    "category": "sociodemographic",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:49.561+00:00",
+    "updatedAt": "2025-01-16T17:07:49.568+00:00"
+  },
+  {
+    "questionId": "has_given_birth",
+    "question": "Have you ever given birth?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "never_gave_birth",
+        "text": "Never gave birth",
+        "hint": "If selected, skip to question current_menstrual_status"
+      },
+      {
+        "option": "at_least_one",
+        "text": "At least one birth",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "family",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.782+00:00",
+    "updatedAt": "2025-01-16T17:07:51.783+00:00"
+  },
+  {
+    "questionId": "postcode",
+    "question": "What is your postcode?",
+    "type": "OPEN",
+    "options": null,
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "This is an optional question,  please feel free to skip it if you don’t want to share this information.",
+    "category": "sociodemographic",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:49.957+00:00",
+    "updatedAt": "2025-01-16T17:07:49.958+00:00"
+  },
+  {
+    "questionId": "weight_on-boarding",
+    "question": "Weight. Please enter your weight in kilograms (kg)",
+    "type": "OPEN",
+    "options": null,
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.622+00:00",
+    "updatedAt": "2025-01-16T17:07:50.622+00:00"
+  },
+  {
+    "questionId": "schedule_for_breast_cancer_treatment",
+    "question": "Please specify when you are scheduled to receive treatment, If you are currently waiting to start breast cancer treatment",
+    "type": "OPEN",
+    "options": null,
+    "customAnswerFormat": "DD-MM-YYYY",
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.056+00:00",
+    "updatedAt": "2025-01-16T17:07:51.056+00:00"
+  },
+  {
+    "questionId": "typical_daily_alcohol_intake",
+    "question": "How many standard drinks containing alcohol do you have on a typical day when you are drinking? (A standard drink can be a can of beer, a small glass of wine or a shot of hard liquor)",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "1-2",
+        "text": "1-2",
+        "hint": null
+      },
+      {
+        "option": "3-4",
+        "text": "3-4",
+        "hint": null
+      },
+      {
+        "option": "5-6",
+        "text": "5-6",
+        "hint": null
+      },
+      {
+        "option": "7-9",
+        "text": "7-9",
+        "hint": null
+      },
+      {
+        "option": "10 or more",
+        "text": "10 or more",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": true,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.145+00:00",
+    "updatedAt": "2025-01-16T17:07:52.145+00:00"
+  },
+  {
+    "questionId": "fresh_fruit_consumption",
+    "question": "How often do you eat fresh fruits?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "not_eat_at_all",
+        "text": "I do not eat it at all",
+        "hint": null
+      },
+      {
+        "option": "less_than_1s_per_week",
+        "text": "Less than 1 serving per week",
+        "hint": null
+      },
+      {
+        "option": "1-2_per_week",
+        "text": "1-2 servings per week",
+        "hint": null
+      },
+      {
+        "option": "3-4_per_week",
+        "text": "3-4 servings per week",
+        "hint": null
+      },
+      {
+        "option": "5-6_per_week",
+        "text": "5-6 servings per week",
+        "hint": null
+      },
+      {
+        "option": "1_per_day",
+        "text": "1 serving per day",
+        "hint": null
+      },
+      {
+        "option": "2-3_per_day",
+        "text": "2-3 servings per day",
+        "hint": null
+      },
+      {
+        "option": "4-5_per_day",
+        "text": "4-5 servings per day",
+        "hint": null
+      },
+      {
+        "option": "more_than_6_per_day",
+        "text": "6 or more servings per day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.363+00:00",
+    "updatedAt": "2025-01-16T17:07:52.363+00:00"
+  },
+  {
+    "questionId": "whole_grains_consumption",
+    "question": "How often do you eat whole grains?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "not_eat_at_all",
+        "text": "I do not eat it at all",
+        "hint": null
+      },
+      {
+        "option": "less_than_1s_per_week",
+        "text": "Less than 1 serving per week",
+        "hint": null
+      },
+      {
+        "option": "1-2_per_week",
+        "text": "1-2 servings per week",
+        "hint": null
+      },
+      {
+        "option": "3-4_per_week",
+        "text": "3-4 servings per week",
+        "hint": null
+      },
+      {
+        "option": "5-6_per_week",
+        "text": "5-6 servings per week",
+        "hint": null
+      },
+      {
+        "option": "1_per_day",
+        "text": "1 serving per day",
+        "hint": null
+      },
+      {
+        "option": "2-3_per_day",
+        "text": "2-3 servings per day",
+        "hint": null
+      },
+      {
+        "option": "4-5_per_day",
+        "text": "4-5 servings per day",
+        "hint": null
+      },
+      {
+        "option": "more_than_6_per_day",
+        "text": "6 or more servings per day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.655+00:00",
+    "updatedAt": "2025-01-16T17:07:52.655+00:00"
+  },
+  {
+    "questionId": "marital_status",
+    "question": "What is your marital status?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "single",
+        "text": "Single",
+        "hint": null
+      },
+      {
+        "option": "married_domestic",
+        "text": "Married or domestic partnership",
+        "hint": null
+      },
+      {
+        "option": "widowed",
+        "text": "Widowed",
+        "hint": null
+      },
+      {
+        "option": "divorced",
+        "text": "Divorced",
+        "hint": null
+      },
+      {
+        "option": "separated",
+        "text": "Separated",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "sociodemographic",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.031+00:00",
+    "updatedAt": "2025-01-16T17:07:50.031+00:00"
+  },
+  {
+    "questionId": "current_breast_cancer_treatments",
+    "question": "What kind of treatment are you currently receiving?",
+    "type": "CHOOSE_ONE_OR_OPEN",
+    "options": [
+      {
+        "option": "surgery",
+        "text": "Surgery",
+        "hint": null
+      },
+      {
+        "option": "radiation_therapy",
+        "text": "Radiation therapy",
+        "hint": null
+      },
+      {
+        "option": "hormone_therapy",
+        "text": "Hormone Therapy",
+        "hint": null
+      },
+      {
+        "option": "chemotherapy",
+        "text": "Chemotherapy",
+        "hint": null
+      },
+      {
+        "option": "rehabilitation",
+        "text": "Rehabilitation",
+        "hint": null
+      },
+      {
+        "option": "other",
+        "text": "Other (Please specify).",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "more than one answers could be selected",
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.912+00:00",
+    "updatedAt": "2025-01-16T17:07:50.912+00:00"
+  },
+  {
+    "questionId": "last_breast_cancer_treatment_date",
+    "question": "What was the date of your last treatment for breast cancer?",
+    "type": "OPEN",
+    "options": null,
+    "customAnswerFormat": "DD-MM-YYYY",
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.984+00:00",
+    "updatedAt": "2025-01-16T17:07:50.984+00:00"
+  },
+  {
+    "questionId": "alcohol_consumption_frequency",
+    "question": "How often do you have a drink containing alcohol?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "never",
+        "text": "Never",
+        "hint": "If selected, skip to question eats_red_meat_weekly"
+      },
+      {
+        "option": "monthly_or_less",
+        "text": "Monthly or less",
+        "hint": null
+      },
+      {
+        "option": "2-4_times_per_month",
+        "text": "2-4 times per month",
+        "hint": null
+      },
+      {
+        "option": "2-3_times_per_week",
+        "text": "2-3 times per week",
+        "hint": null
+      },
+      {
+        "option": "4_or_more_per_week",
+        "text": "4 or more times per week",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": true,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.073+00:00",
+    "updatedAt": "2025-01-16T17:07:52.073+00:00"
+  },
+  {
+    "questionId": "activity_days_10_min",
+    "question": "During the last 7 days, on how many days did you participate in hobbies or leisure activities, other than exercising, that involve standing?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "number_of_minutes_leisure_activities",
+        "text": "number_of_minutes_leisure_activities",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": "Hobbies or leisure activities may include singing in a choir, playing an instrument, gardening, arts, photography.",
+    "category": "physicalActivity",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.962+00:00",
+    "updatedAt": "2025-01-16T17:07:53.962+00:00"
+  },
+  {
+    "questionId": "mental_health_condition_diagnosis",
+    "question": "Have you been diagnosed with a mental health condition?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "yes",
+        "text": "Yes",
+        "hint": null
+      },
+      {
+        "option": "no",
+        "text": "No",
+        "hint": "If selected, skip to question recent_problems_frequency"
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.346+00:00",
+    "updatedAt": "2025-01-16T17:07:51.346+00:00"
+  },
+  {
+    "questionId": "symptoms_experienced_last_week",
+    "question": "Have you experienced any of the following symptoms in the last week?",
+    "type": "ASSIGN_VALUES",
+    "options": [
+      {
+        "option": "pain",
+        "text": "Pain",
+        "hint": null
+      },
+      {
+        "option": "fatigue",
+        "text": "Fatigue (feeling exhausted)",
+        "hint": null
+      },
+      {
+        "option": "nausea",
+        "text": "Nausea/Vomiting",
+        "hint": null
+      },
+      {
+        "option": "constipation_diarrhoea",
+        "text": "Constipation/diarrhoea",
+        "hint": null
+      },
+      {
+        "option": "d_sleep",
+        "text": "Disturbed sleep",
+        "hint": null
+      },
+      {
+        "option": "s_breath",
+        "text": "Shortness of breath",
+        "hint": null
+      },
+      {
+        "option": "l_appetite",
+        "text": "Lack of appetite",
+        "hint": null
+      },
+      {
+        "option": "drowsy",
+        "text": "Feeling drowsy (sleepy)",
+        "hint": null
+      },
+      {
+        "option": "dry_mouth",
+        "text": "Dry mouth",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": {
+      "0": "Not present",
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10": "As bad as you can imagine"
+    },
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.564+00:00",
+    "updatedAt": "2025-01-16T17:07:51.564+00:00"
+  },
+  {
+    "questionId": "fish_seafood_consumption",
+    "question": "How often do you eat fish or seafood?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "not_eat_at_all",
+        "text": "I do not eat it at all",
+        "hint": null
+      },
+      {
+        "option": "less_than_1s_per_week",
+        "text": "Less than 1 serving per week",
+        "hint": null
+      },
+      {
+        "option": "1-2_per_week",
+        "text": "1-2 servings per week",
+        "hint": null
+      },
+      {
+        "option": "3-4_per_week",
+        "text": "3-4 servings per week",
+        "hint": null
+      },
+      {
+        "option": "5-6_per_week",
+        "text": "5-6 servings per week",
+        "hint": null
+      },
+      {
+        "option": "1_per_day",
+        "text": "1 serving per day",
+        "hint": null
+      },
+      {
+        "option": "2-3_per_day",
+        "text": "2-3 servings per day",
+        "hint": null
+      },
+      {
+        "option": "4-5_per_day",
+        "text": "4-5 servings per day",
+        "hint": null
+      },
+      {
+        "option": "more_than_6_per_day",
+        "text": "6 or more servings per day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.582+00:00",
+    "updatedAt": "2025-01-16T17:07:52.582+00:00"
+  },
+  {
+    "questionId": "education_level",
+    "question": "What is the highest degree or level of education you have completed?",
+    "type": "CHOOSE_ONE_OR_OPEN",
+    "options": [
+      {
+        "option": "no_schooling",
+        "text": "No schooling completed",
+        "hint": null
+      },
+      {
+        "option": "primary_school",
+        "text": "Primary school",
+        "hint": null
+      },
+      {
+        "option": "secondary_school",
+        "text": "SecondaryHigh school graduate, diploma or equivalent",
+        "hint": null
+      },
+      {
+        "option": "trade",
+        "text": "Trade/technical/vocational training",
+        "hint": null
+      },
+      {
+        "option": "bachelor",
+        "text": "Bachelor's degree or equivalent",
+        "hint": null
+      },
+      {
+        "option": "master",
+        "text": "Master's degree or equivalent",
+        "hint": null
+      },
+      {
+        "option": "doctoral",
+        "text": "Doctorate degree or equivalent",
+        "hint": null
+      },
+      {
+        "option": "other",
+        "text": "Other (Please specify).",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "sociodemographic",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.104+00:00",
+    "updatedAt": "2025-01-16T17:07:50.104+00:00"
+  },
+  {
+    "questionId": "contraceptives_or_hormones",
+    "question": "Use of contraceptives or other menopause hormones",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "yes",
+        "text": "Yes",
+        "hint": null
+      },
+      {
+        "option": "no",
+        "text": "No",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "family",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.000+00:00",
+    "updatedAt": "2025-01-16T17:07:52.000+00:00"
+  },
+  {
+    "questionId": "household_economy",
+    "question": "What is your household's economic situation compared to the average household situation in the country where you reside?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "above_average",
+        "text": "Above the average",
+        "hint": null
+      },
+      {
+        "option": "slightly_above_the_average",
+        "text": "Slightly above the average",
+        "hint": null
+      },
+      {
+        "option": "similar_to_the_average",
+        "text": "Similar to the average",
+        "hint": null
+      },
+      {
+        "option": "slightly_below_the_average",
+        "text": "Slightly below the average",
+        "hint": null
+      },
+      {
+        "option": "below_the_average",
+        "text": "Below the average",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "sociodemographic",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.258+00:00",
+    "updatedAt": "2025-01-16T17:07:50.258+00:00"
+  },
+  {
+    "questionId": "current_status_breast_cancer",
+    "question": "To the best of your knowledge, are you now free of breast cancer?",
+    "type": "CHOOSE_ONE_OR_OPEN",
+    "options": [
+      {
+        "option": "yes",
+        "text": "Yes",
+        "hint": null
+      },
+      {
+        "option": "no",
+        "text": "No",
+        "hint": null
+      },
+      {
+        "option": "other",
+        "text": "Other (Please specify).",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "health",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.128+00:00",
+    "updatedAt": "2025-01-16T17:07:51.128+00:00"
+  },
+  {
+    "questionId": "high_fat_dairy_saturated_fats_consumption",
+    "question": "How often do you eat high-fat dairy and saturated fats?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "not_eat_at_all",
+        "text": "I do not eat it at all",
+        "hint": null
+      },
+      {
+        "option": "less_than_1s_per_week",
+        "text": "Less than 1 serving per week",
+        "hint": null
+      },
+      {
+        "option": "1-2_per_week",
+        "text": "1-2 servings per week",
+        "hint": null
+      },
+      {
+        "option": "3-4_per_week",
+        "text": "3-4 servings per week",
+        "hint": null
+      },
+      {
+        "option": "5-6_per_week",
+        "text": "5-6 servings per week",
+        "hint": null
+      },
+      {
+        "option": "1_per_day",
+        "text": "1 serving per day",
+        "hint": null
+      },
+      {
+        "option": "2-3_per_day",
+        "text": "2-3 servings per day",
+        "hint": null
+      },
+      {
+        "option": "4-5_per_day",
+        "text": "4-5 servings per day",
+        "hint": null
+      },
+      {
+        "option": "more_than_6_per_day",
+        "text": "6 or more servings per day",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:52.873+00:00",
+    "updatedAt": "2025-01-16T17:07:52.873+00:00"
+  },
+  {
+    "questionId": "dog_owner",
+    "question": "dog_owner",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "yes",
+        "text": "Yes",
+        "hint": null
+      },
+      {
+        "option": "no",
+        "text": "No",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "sociodemographic",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:50.404+00:00",
+    "updatedAt": "2025-01-16T17:07:50.404+00:00"
+  },
+  {
+    "questionId": "first_degree_breast_cancer",
+    "question": "How many of your first-degree relatives (parent, sibling, child) have had breast cancer?",
+    "type": "CHOOSE_ONE",
+    "options": [
+      {
+        "option": "none",
+        "text": "None",
+        "hint": null
+      },
+      {
+        "option": "one",
+        "text": "One",
+        "hint": null
+      },
+      {
+        "option": "more_than_one",
+        "text": "More than one",
+        "hint": null
+      },
+      {
+        "option": "unknown",
+        "text": "Unknown",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": null,
+    "hint": null,
+    "category": "family",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:51.710+00:00",
+    "updatedAt": "2025-01-16T17:07:51.710+00:00"
+  },
+  {
+    "questionId": "dietary_restriction_factors",
+    "question": "To what extent do the following factors limit your ability to follow a healthier diet?",
+    "type": "ASSIGN_VALUES_AND_OPEN",
+    "options": [
+      {
+        "option": "healthy_food_cost",
+        "text": "Cost of healthy food",
+        "hint": null
+      },
+      {
+        "option": "fast_foods_high_availability",
+        "text": "High availability of high-calorie and fast-food products",
+        "hint": null
+      },
+      {
+        "option": "limited_access",
+        "text": "Lack or limited access to good-quality and freshly produced, low in calories products",
+        "hint": null
+      },
+      {
+        "option": "lack_of_time",
+        "text": "Lack of time and competing priorities (work, family, hobbies)",
+        "hint": null
+      },
+      {
+        "option": "lack_of_support",
+        "text": "Lack of support from family and friends - other members of my family do not choose healthy options",
+        "hint": null
+      },
+      {
+        "option": "local_community",
+        "text": "Difficulties in avoiding unhealthy foods in local community settings or at gatherings (business, family) - unhealthy options are usually more than the healthy ones in family gatherings or business meals",
+        "hint": null
+      },
+      {
+        "option": "family_dietary_patterns",
+        "text": "Unhealthy family dietary patterns",
+        "hint": null
+      },
+      {
+        "option": "healthcare_system_lack_of_support",
+        "text": "Lack of support/solutions/proposals from healthcare professionals (primary care physician, dietitian, physiotherapist)",
+        "hint": null
+      },
+      {
+        "option": "lack_of_knowledge_skills_lifestyle",
+        "text": "Lack of knowledge and skills regarding the necessary steps to implement healthy lifestyle principles",
+        "hint": null
+      },
+      {
+        "option": "lack_of_healthy_recommendations",
+        "text": "Lack of knowledge on current healthy eating recommendations ",
+        "hint": null
+      },
+      {
+        "option": "lack_of_meal_preparation",
+        "text": "Lack of skills on healthy food meal preparation",
+        "hint": null
+      },
+      {
+        "option": "healthy_eating_info_accuracy",
+        "text": "Accuracy of information regarding healthy eating - I don’t know if I can trust information I find from the internet or the social media",
+        "hint": null
+      },
+      {
+        "option": "lot_of_effort",
+        "text": "Adjusting habits requires a lot of effort",
+        "hint": null
+      },
+      {
+        "option": "temptations",
+        "text": "Difficult to fight the temptations",
+        "hint": null
+      },
+      {
+        "option": "sweet_salty_craving",
+        "text": "Craving sweet/salty food",
+        "hint": null
+      },
+      {
+        "option": "healthy_unfavourable",
+        "text": "Unfavourable taste of healthy food",
+        "hint": null
+      },
+      {
+        "option": "lack_of_motivation",
+        "text": "Lack of motivation to make changes",
+        "hint": null
+      },
+      {
+        "option": "lack_of_belief",
+        "text": "Lack of belief in the efficacy of healthy diet for preventing lifestyle-related diseases",
+        "hint": null
+      }
+    ],
+    "customAnswerFormat": null,
+    "valuesExplained": {
+      "neither_limiting_nor_not_limiting": "Neither limiting nor not limiting",
+      "somewhat_limiting": "Somewhat limiting",
+      "definitely_not_limiting": "Definitely not limiting",
+      "definitely_limiting": "Definitely limiting",
+      "not_really_limiting": "Not really limiting"
+    },
+    "hint": null,
+    "category": "drinkingEating",
+    "historical": false,
+    "version": 3,
+    "createdAt": "2025-01-16T17:07:53.018+00:00",
+    "updatedAt": "2025-01-16T17:07:53.019+00:00"
+  }
+]
